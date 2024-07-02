@@ -73,4 +73,18 @@ public class Instrument {
     return ret;
   }
 
+  /**
+   * Sends ENQ (0x5) from this instrument.
+   */
+  public void sendEnq() {
+    sendMessage(new byte[] {0x5});
+  }
+
+  /**
+   * Sends ACK (0x4) from this instrument.
+   */
+  public void sendAck() {
+    sendMessage(new byte[] {0x4});
+  }
+
 }

@@ -19,14 +19,12 @@ public class Emulator {
     instrument.initialiseSocket(hostname, port);
 
     // send an ENQ, wait for ACK, close with EOT
-    byte[] message = {(byte) 5}; // ENQ
-    instrument.sendMessage(message);
+    instrument.sendEnq();
 
     byte[] response = instrument.receiveMessage();
     System.out.println(new String(response, StandardCharsets.US_ASCII));
-
-    message = new byte[]{(byte) 4}; // EOT
-    instrument.sendMessage(message);
+    
+    instrument.sendAck();
 
     System.out.println("Bye bye!");
   }
