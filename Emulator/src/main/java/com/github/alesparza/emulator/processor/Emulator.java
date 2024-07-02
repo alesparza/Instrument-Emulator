@@ -7,15 +7,15 @@ import java.nio.charset.StandardCharsets;
 
 public class Emulator {
   public static void main(String[] args) {
-
+    GUI gui = new GUI();
 
     SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run() {
-        GUI gui = new GUI();
         gui.setVisible(true);
       }
     });
+    
 
     // set up the emulator
     if (args.length != 2) {
