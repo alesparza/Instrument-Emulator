@@ -1,7 +1,6 @@
-package com.github.alesparza.emulator;
+package com.github.alesparza.emulator.processor;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 /**

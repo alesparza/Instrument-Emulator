@@ -1,8 +1,5 @@
-package com.github.alesparza.emulator;
+package com.github.alesparza.emulator.processor;
 
-import java.io.*;
-import java.net.Socket;
-import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 
 public class Emulator {
@@ -23,7 +20,7 @@ public class Emulator {
 
     byte[] response = instrument.receiveMessage();
     System.out.println(new String(response, StandardCharsets.US_ASCII));
-    
+
     instrument.sendAck();
 
     System.out.println("Bye bye!");
