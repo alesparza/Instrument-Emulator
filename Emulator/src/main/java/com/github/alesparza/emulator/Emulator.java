@@ -7,14 +7,24 @@ import java.nio.charset.StandardCharsets;
 
 public class Emulator {
     public static void main(String[] args) {
+
+        // set up the emulator
+        if (args.length != 2) {
+            System.out.println("Usage: java Emulator hostname port");
+        }
         String hostName = args[0];
         int portNumber = Integer.parseInt(args[1]);
-        Socket clientSocket = null;
-        byte[] message = {(byte) 5}; // ENQ
-        byte[] response = new byte[] {0};
+
+        // send an ENQ, wait for ACK, close with EOT
         try {
+            // configure the client
+            Socket clientSocket;
+
             clientSocket = new Socket(hostName, portNumber);
             OutputStream out = clientSocket.getOutputStream();
+
+            byte[] message = {(byte) 5}; // ENQ
+            byte[] response = new byte[] {0};
             out.write(message);
             InputStream in = clientSocket.getInputStream();
             in.read(response); // expecting ACK (0x6)
@@ -30,6 +40,7 @@ public class Emulator {
             System.err.println("IOException");
             throw new RuntimeException(e);
         }
-        clientSocket = null;
+
+        System.out.println("Bye bye!");
     }
 }
