@@ -14,9 +14,7 @@ public class StartPanel extends JFrame {
   private JPanel contentPane;
   private JLabel topLabel;
   private JTable instrumentsTable;
-  private JLabel connectedInstrumentsLabel;
   private JComboBox instrumentTypeComboBox;
-  private JLabel newInstrumentLabel;
   private JTextField nameTextField;
   private JLabel nameLabel;
   private JLabel instrumentTypeLabel;
@@ -29,7 +27,9 @@ public class StartPanel extends JFrame {
   private JRadioButton serverRadioButton;
   private JRadioButton clientRadioButton;
   private JTextArea consoleTextArea;
-
+  private JPanel instrumentCreationPanel;
+  private JPanel consolePanel;
+  private JPanel createdInstrumentsPanel;
 
 
   private final ArrayList<Instrument> instrumentArrayList = new ArrayList<>();
