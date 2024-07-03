@@ -1,6 +1,6 @@
 package com.github.alesparza.emulator.gui;
 
-import com.github.alesparza.emulator.processor.InstrumentConnection;
+import com.github.alesparza.emulator.instrument.InstrumentConnection;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

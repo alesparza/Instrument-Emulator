@@ -1,11 +1,11 @@
-package com.github.alesparza.emulator.processor;
+package com.github.alesparza.emulator.instrument;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Represents an Instrument.
+ * Represents an Instrument Connection.
  */
 public class InstrumentConnection {
 
