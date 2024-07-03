@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class StartPanel extends JFrame {
+public class StartFrame extends JFrame {
 
 
   private JPanel contentPane;
@@ -34,7 +34,7 @@ public class StartPanel extends JFrame {
 
   private final ArrayList<Instrument> instrumentArrayList = new ArrayList<>();
 
-  public StartPanel() {
+  public StartFrame() {
     setTitle("Emulator");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setContentPane(contentPane);
