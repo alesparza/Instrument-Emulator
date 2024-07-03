@@ -4,6 +4,8 @@ import com.github.alesparza.emulator.instrument.Instrument;
 import com.github.alesparza.emulator.instrument.InstrumentType;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ public class StartFrame extends JFrame {
   private JTextField nameTextField;
   private JLabel nameLabel;
   private JLabel instrumentTypeLabel;
-  private JLabel conectionTypeLabel;
+  private JLabel connectionTypeLabel;
   private JLabel portLabel;
   private JLabel hostnameLabel;
   private JTextField hostnameTextField;
@@ -28,8 +30,8 @@ public class StartFrame extends JFrame {
   private JRadioButton clientRadioButton;
   private JTextArea consoleTextArea;
   private JPanel instrumentCreationPanel;
-  private JPanel createdInstrumentsPanel;
   private JScrollPane consolePanel;
+  private JScrollPane instrumentsPanel;
 
 
   private final ArrayList<Instrument> instrumentArrayList = new ArrayList<>();
@@ -43,6 +45,33 @@ public class StartFrame extends JFrame {
     for (InstrumentType instrumentType : InstrumentType.values()) {
       instrumentTypeComboBox.addItem(instrumentType);
     }
+
+    // Setup instruments table
+    TableModel instrumentTableModel = new AbstractTableModel() {
+      private final String[] columnNames = {"Name", "Type", "Connection Type", "Port", "Hostname"};
+      @Override
+      public int getRowCount() {
+        return instrumentArrayList.size();
+      }
+
+      @Override
+      public int getColumnCount() {
+        return columnNames.length;
+      }
+
+      @Override
+      public Object getValueAt(int rowIndex, int columnIndex) {
+        return null;
+      }
+
+      @Override
+      public String getColumnName(int column) {
+        return columnNames[column];
+      }
+    };
+    instrumentsTable.setModel(instrumentTableModel);
+
+
 
     // create a new instrument
     createInstrumentButton.addActionListener(new ActionListener() {
@@ -93,7 +122,6 @@ public class StartFrame extends JFrame {
         println("Created new instrument '" + name + "' of type " + type + ", communicating on " + hostname + ":" + port);
       }
     });
-
 
     // can only select one option
     serverRadioButton.addActionListener(new ActionListener() {
