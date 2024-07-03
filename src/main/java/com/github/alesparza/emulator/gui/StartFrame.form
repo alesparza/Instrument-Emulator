@@ -135,29 +135,6 @@
           </component>
         </children>
       </grid>
-      <grid id="a5b1f" binding="consolePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-        <border type="line" title="Console"/>
-        <children>
-          <component id="ff43e" class="javax.swing.JTextArea" binding="consoleTextArea">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="1" use-parent-layout="false">
-                <preferred-size width="800" height="150"/>
-              </grid>
-            </constraints>
-            <properties>
-              <editable value="false"/>
-              <lineWrap value="true"/>
-              <name value="Console"/>
-              <wrapStyleWord value="true"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
       <grid id="d5c45" binding="createdInstrumentsPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
@@ -182,6 +159,26 @@
           </component>
         </children>
       </grid>
+      <scrollpane id="16f9f" binding="consolePanel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="800" height="200"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="line" title="Console"/>
+        <children>
+          <component id="ff43e" class="javax.swing.JTextArea" binding="consoleTextArea">
+            <constraints/>
+            <properties>
+              <editable value="false"/>
+              <lineWrap value="true"/>
+              <name value="Console"/>
+              <wrapStyleWord value="true"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>

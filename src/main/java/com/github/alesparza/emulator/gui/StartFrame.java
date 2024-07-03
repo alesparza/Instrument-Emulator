@@ -28,8 +28,8 @@ public class StartFrame extends JFrame {
   private JRadioButton clientRadioButton;
   private JTextArea consoleTextArea;
   private JPanel instrumentCreationPanel;
-  private JPanel consolePanel;
   private JPanel createdInstrumentsPanel;
+  private JScrollPane consolePanel;
 
 
   private final ArrayList<Instrument> instrumentArrayList = new ArrayList<>();
