@@ -7,7 +7,7 @@ import java.net.Socket;
 /**
  * Represents an Instrument.
  */
-public class Instrument {
+public class InstrumentConnection {
 
   private OutputStream out;
 

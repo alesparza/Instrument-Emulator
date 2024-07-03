@@ -1,7 +1,6 @@
 package com.github.alesparza.emulator.gui;
 
-import com.github.alesparza.emulator.processor.Emulator;
-import com.github.alesparza.emulator.processor.Instrument;
+import com.github.alesparza.emulator.processor.InstrumentConnection;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -36,20 +35,20 @@ public class GUI extends JFrame implements ActionListener {
     if (e.getActionCommand().equals("connect")) {
       if (comboBox1.getSelectedIndex() == 0) {
         System.out.println("Connecting...");
-        Instrument instrument = new Instrument();
-        instrument.initialiseSocket(hostnameTextField.getText(), Integer.parseInt(portTextField.getText()));
+        InstrumentConnection instrumentConnection = new InstrumentConnection();
+        instrumentConnection.initialiseSocket(hostnameTextField.getText(), Integer.parseInt(portTextField.getText()));
 
         // send an ENQ, wait for ACK, close with EOT
-        instrument.sendEnq();
+        instrumentConnection.sendEnq();
 
-        byte[] response = instrument.receiveMessage();
+        byte[] response = instrumentConnection.receiveMessage();
         System.out.println(new String(response, StandardCharsets.US_ASCII));
 
-        instrument.sendAck();
+        instrumentConnection.sendAck();
       }
       else if (comboBox1.getSelectedItem().equals("Server")) {
-        Instrument instrument = new Instrument();
-        instrument.initialiseSocket(Integer.parseInt(portTextField.getText()));
+        InstrumentConnection instrumentConnection = new InstrumentConnection();
+        instrumentConnection.initialiseSocket(Integer.parseInt(portTextField.getText()));
       }
     }
 
