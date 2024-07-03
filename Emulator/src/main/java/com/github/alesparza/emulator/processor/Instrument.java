@@ -1,6 +1,7 @@
 package com.github.alesparza.emulator.processor;
 
 import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
@@ -12,18 +13,23 @@ public class Instrument {
 
   private InputStream in;
 
+  private Socket socket;
+
+  private ServerSocket serverSocket;
+
   /**
    * Initialises this instrument as a client configuration.
    * @param hostname hostname of the server to connect to
    * @param port port number the server is listening on
    */
   public void initialiseSocket(String hostname, int port) {
+    this.shutdown();
     try {
       Socket socket = new Socket(hostname, port);
       out = socket.getOutputStream();
       in = socket.getInputStream();
     } catch (IOException e) {
-      System.out.println("Error creating client socket: " + e.getMessage());
+      System.err.println("Error creating client socket: " + e.getMessage());
       throw new RuntimeException(e);
     }
   }
@@ -84,6 +90,44 @@ public class Instrument {
    */
   public void sendAck() {
     sendMessage(new byte[] {0x4});
+  }
+
+  /**
+   * Shuts down the instrument and closes all connections.
+   */
+  public void shutdown() {
+    if (this.socket != null) {
+      try {
+        this.socket.close();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    }
+    if (this.serverSocket != null) {
+      try {
+        this.serverSocket.close();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    }
+    if (this.in != null) {
+      try {
+        in.close();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    }
+    if (this.out != null) {
+      try {
+        out.close();
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    }
+    serverSocket = null;
+    socket = null;
+    in = null;
+    out = null;
   }
 
 }
