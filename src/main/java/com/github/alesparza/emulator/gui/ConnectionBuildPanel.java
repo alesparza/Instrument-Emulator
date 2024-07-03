@@ -19,7 +19,7 @@ public class ConnectionBuildPanel extends JFrame implements ActionListener {
   private JComboBox instrumentModeComboBox;
 
   public ConnectionBuildPanel() {
-    setTitle("Emulator");
+    setTitle("Instrument Connector");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setContentPane(contentPane);
 
