@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.charset.StandardCharsets;
 
-public class GUI extends JFrame implements ActionListener {
+public class ConnectionBuildPanel extends JFrame implements ActionListener {
   private JPanel contentPane;
   private JTextField hostnameTextField;
   private JTextField portTextField;
@@ -18,7 +18,7 @@ public class GUI extends JFrame implements ActionListener {
   private JButton connectButton;
   private JComboBox instrumentModeComboBox;
 
-  public GUI () {
+  public ConnectionBuildPanel() {
     setTitle("Emulator");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setContentPane(contentPane);

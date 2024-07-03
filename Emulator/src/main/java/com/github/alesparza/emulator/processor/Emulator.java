@@ -1,17 +1,17 @@
 package com.github.alesparza.emulator.processor;
 
-import com.github.alesparza.emulator.gui.GUI;
+import com.github.alesparza.emulator.gui.ConnectionBuildPanel;
 
 import javax.swing.*;
 
 public class Emulator {
   public static void main(String[] args) {
-    GUI gui = new GUI();
+    ConnectionBuildPanel connectionBuildPanel = new ConnectionBuildPanel();
 
     SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run() {
-        gui.setVisible(true);
+        connectionBuildPanel.setVisible(true);
       }
     });
   }
