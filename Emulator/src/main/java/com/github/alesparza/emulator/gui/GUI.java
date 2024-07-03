@@ -16,7 +16,7 @@ public class GUI extends JFrame implements ActionListener {
   private JLabel instrumentModeLabel;
   private JLabel titleLabel;
   private JButton connectButton;
-  private JComboBox comboBox1;
+  private JComboBox instrumentModeComboBox;
 
   public GUI () {
     setTitle("Emulator");
@@ -33,7 +33,7 @@ public class GUI extends JFrame implements ActionListener {
   public void actionPerformed (ActionEvent e) {
     // handle connection button connecting
     if (e.getActionCommand().equals("connect")) {
-      if (comboBox1.getSelectedIndex() == 0) {
+      if (instrumentModeComboBox.getSelectedIndex() == 0) {
         System.out.println("Connecting...");
         InstrumentConnection instrumentConnection = new InstrumentConnection();
         instrumentConnection.initialiseSocket(hostnameTextField.getText(), Integer.parseInt(portTextField.getText()));
@@ -46,7 +46,7 @@ public class GUI extends JFrame implements ActionListener {
 
         instrumentConnection.sendAck();
       }
-      else if (comboBox1.getSelectedItem().equals("Server")) {
+      else if (instrumentModeComboBox.getSelectedItem().equals("Server")) {
         InstrumentConnection instrumentConnection = new InstrumentConnection();
         instrumentConnection.initialiseSocket(Integer.parseInt(portTextField.getText()));
       }
