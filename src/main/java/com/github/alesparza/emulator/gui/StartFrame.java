@@ -158,7 +158,11 @@ public class StartFrame extends JFrame {
         instrumentArrayList.add(instrument);
         println("Created new instrument '" + name + "' of type " + type + ", communicating on " + hostname + ":" + port);
         ((AbstractTableModel) instrumentTableModel).fireTableDataChanged();
+
         //TODO: create a new window to open
+        JFrame instrumentedFrame = new InstrumentFrame();
+        instrumentedFrame.setTitle(name + " - " + hostname + ":" + port);
+        instrumentedFrame.setVisible(true);
       }
     });
 
