@@ -32,7 +32,6 @@ public class InstrumentConnection {
       in = socket.getInputStream();
     } catch (IOException e) {
       return "Error creating client socket: " + e.getMessage();
-
     }
     isInit = true;
     return "Connected to " + hostname + ":" + port;
@@ -134,6 +133,7 @@ public class InstrumentConnection {
     socket = null;
     in = null;
     out = null;
+    isInit = false;
     return "Shut down successful.";
   }
 
