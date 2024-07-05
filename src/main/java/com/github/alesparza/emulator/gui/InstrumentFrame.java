@@ -17,6 +17,12 @@ public class InstrumentFrame extends JFrame {
   private JScrollPane sampleTab;
   private JScrollPane deviceTab;
   private JScrollPane resultTab;
+  private JTextField hostnameTextField;
+  private JTextField portTextField;
+  private JTextField typeTextField;
+  private JLabel hostnameLabel;
+  private JLabel portLabel;
+  private JLabel typeLabel;
 
 
   private Instrument instrument;
@@ -25,6 +31,9 @@ public class InstrumentFrame extends JFrame {
     this.instrument = instrument;
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     setContentPane(contentPanel);
+    this.hostnameTextField.setText(instrument.getHostname());
+    this.portTextField.setText(String.valueOf(instrument.getPort()));
+    this.typeTextField.setText(instrument.getType().toString());
 
 
 
