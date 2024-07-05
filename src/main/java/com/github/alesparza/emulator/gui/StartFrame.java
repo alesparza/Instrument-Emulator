@@ -186,5 +186,6 @@ public class StartFrame extends JFrame {
 
   public void println(String message) {
     this.consoleTextArea.append(message + "\n");
+    this.consoleTextArea.setCaretPosition(this.consoleTextArea.getDocument().getLength());
   }
 }
