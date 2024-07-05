@@ -141,6 +141,17 @@ public class StartFrame extends JFrame {
             }
           }
         }
+
+        if (clientRadioButton.isSelected()) {
+          for (Instrument instrument : instrumentArrayList) {
+            if (instrument.getPort() == port && instrument.getHostname().equals(hostname)) {
+              println("Already have client type instrument connecting on " + hostname + ":" + port);
+              return;
+              //TODO: collapse loop into single pass
+            }
+          }
+        }
+        // this is hardcoded so it should not be an issue
         type  = (InstrumentType) instrumentTypeComboBox.getSelectedItem();
 
         Instrument instrument = new Instrument(name, type, hostname, port);
