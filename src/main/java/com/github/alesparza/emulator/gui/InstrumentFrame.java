@@ -23,6 +23,10 @@ public class InstrumentFrame extends JFrame {
   private JLabel hostnameLabel;
   private JLabel portLabel;
   private JLabel typeLabel;
+  private JButton startButton;
+  private JButton stopButton;
+  private JButton resetButton;
+  private JButton checkButton;
 
 
   private Instrument instrument;
