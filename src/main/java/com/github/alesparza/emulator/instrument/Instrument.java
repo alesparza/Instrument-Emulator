@@ -39,8 +39,28 @@ public class Instrument {
   }
 
 
+  /**
+   * Gets the name of the instrument.
+   * @return the name of the instrument
+   */
   public String getName() {
     return name;
+  }
+
+  /**
+   * Gets the type of the instrument.
+   * @return the InstrumentType of the instrument
+   */
+  public InstrumentType getType() {
+    return type;
+  }
+
+  public String getHostname() {
+    return hostname;
+  }
+
+  public int getPort() {
+    return port;
   }
 
 }

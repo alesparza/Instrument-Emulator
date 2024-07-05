@@ -32,6 +32,7 @@ public class StartFrame extends JFrame {
   private JPanel instrumentCreationPanel;
   private JScrollPane consolePanel;
   private JScrollPane instrumentsPanel;
+  private final TableModel instrumentTableModel;
 
 
   private final ArrayList<Instrument> instrumentArrayList = new ArrayList<>();
@@ -47,8 +48,8 @@ public class StartFrame extends JFrame {
     }
 
     // Setup instruments table
-    TableModel instrumentTableModel = new AbstractTableModel() {
-      private final String[] columnNames = {"Name", "Type", "Connection Type", "Port", "Hostname"};
+    instrumentTableModel = new AbstractTableModel() {
+      private final String[] columnNames = {"Name", "Type", "Connection Type", "Hostname/IP", "Port Number"};
       @Override
       public int getRowCount() {
         return instrumentArrayList.size();
@@ -61,7 +62,22 @@ public class StartFrame extends JFrame {
 
       @Override
       public Object getValueAt(int rowIndex, int columnIndex) {
-        return null;
+        switch (columnIndex) {
+          case 0:
+            return instrumentArrayList.get(rowIndex).getName();
+          case 1:
+            return instrumentArrayList.get(rowIndex).getType();
+          case 2:
+            if (instrumentArrayList.get(rowIndex).getHostname().isEmpty()) {
+              return "Server";
+            }
+            else return "Client";
+          case 3:
+            return instrumentArrayList.get(rowIndex).getHostname();
+          case 4:
+            return instrumentArrayList.get(rowIndex).getPort();
+        }
+        return "";
       }
 
       @Override
@@ -120,6 +136,8 @@ public class StartFrame extends JFrame {
         Instrument instrument = new Instrument(name, type, hostname, port);
         instrumentArrayList.add(instrument);
         println("Created new instrument '" + name + "' of type " + type + ", communicating on " + hostname + ":" + port);
+        ((AbstractTableModel) instrumentTableModel).fireTableDataChanged();
+        //TODO: create a new window to open
       }
     });
 
