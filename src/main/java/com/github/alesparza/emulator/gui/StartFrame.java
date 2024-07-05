@@ -16,7 +16,7 @@ public class StartFrame extends JFrame {
   private JPanel contentPane;
   private JLabel topLabel;
   private JTable instrumentsTable;
-  private JComboBox instrumentTypeComboBox;
+  private JComboBox<InstrumentType> instrumentTypeComboBox;
   private JTextField nameTextField;
   private JLabel nameLabel;
   private JLabel instrumentTypeLabel;
