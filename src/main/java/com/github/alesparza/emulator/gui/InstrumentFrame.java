@@ -34,18 +34,20 @@ public class InstrumentFrame extends JFrame {
   private Instrument instrument;
 
   public InstrumentFrame(Instrument instrument) {
-    this.instrument = instrument;
+
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     setContentPane(contentPanel);
     this.hostnameTextField.setText(instrument.getHostname());
     this.portTextField.setText(String.valueOf(instrument.getPort()));
     this.typeTextField.setText(instrument.getType().toString());
+    this.instrument = instrument;
+    instrument.setGUIComponents(consoleTextArea, commTextArea);
 
     // start button
     this.startButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        printConsoleLn(instrument.connect());
+        instrument.connect();
       }
     });
 
@@ -53,22 +55,11 @@ public class InstrumentFrame extends JFrame {
     this.stopButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        printConsoleLn(instrument.disconnect());
+        instrument.disconnect();
       }
     });
 
 
     pack();
-  }
-
-
-  public void printConsoleLn(String message) {
-    this.consoleTextArea.append(message + "\n");
-    this.consoleTextArea.setCaretPosition(this.consoleTextArea.getDocument().getLength());
-  }
-
-  public void printCommLn(String message) {
-    this.commTextArea.append(message + "\n");
-    this.commTextArea.setCaretPosition(this.commTextArea.getDocument().getLength());
   }
 }

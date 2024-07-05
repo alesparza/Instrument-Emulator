@@ -1,5 +1,6 @@
 package com.github.alesparza.emulator.instrument;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -18,6 +19,7 @@ public class InstrumentConnection {
   private ServerSocket serverSocket;
 
   private boolean isInit = false;
+
 
   /**
    * Initialises this instrument as a client configuration.
@@ -50,20 +52,14 @@ public class InstrumentConnection {
    * Send a message from this instrument.
    * @param message the message to send
    */
-  public void sendMessage(String message) {
-    sendMessage(message.getBytes());
-  }
-
-  /**
-   * Send a message from this instrument.
-   * @param message the message to send
-   */
-  public void sendMessage(byte[] message) {
+  public String sendMessage(byte[] message) {
     try {
       out.write(message);
+      out.flush();
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      return "Error sending message: " + e.getMessage();
     }
+    return "";
   }
 
   /**
@@ -81,19 +77,6 @@ public class InstrumentConnection {
     return ret;
   }
 
-  /**
-   * Sends ENQ (0x5) from this instrument.
-   */
-  public void sendEnq() {
-    sendMessage(new byte[] {0x5});
-  }
-
-  /**
-   * Sends ACK (0x4) from this instrument.
-   */
-  public void sendAck() {
-    sendMessage(new byte[] {0x4});
-  }
 
   /**
    * Shuts down the instrument and closes all connections.

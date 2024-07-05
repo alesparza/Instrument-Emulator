@@ -1,5 +1,7 @@
 package com.github.alesparza.emulator.instrument;
 
+import javax.swing.*;
+
 /**
  * Represents a single Instrument.
  */
@@ -25,6 +27,11 @@ public class Instrument {
    */
   private final int port;
 
+  private JTextArea consoleTextArea;
+
+  private JTextArea commTextArea;
+
+
   /**
    * The Instrument Connection this instrument uses to communicate.
    */
@@ -38,16 +45,32 @@ public class Instrument {
     connection = new InstrumentConnection();
   }
 
+  public void setGUIComponents(JTextArea consoleTextArea, JTextArea commTextArea) {
+    this.consoleTextArea = consoleTextArea;
+    this.commTextArea = commTextArea;
+  }
+
+  public void printConsoleLn(String message) {
+    this.consoleTextArea.append(message + "\n");
+    this.consoleTextArea.setCaretPosition(this.consoleTextArea.getDocument().getLength());
+  }
+
+  public void printCommLn(String message) {
+    this.commTextArea.append(message + "\n");
+    this.commTextArea.setCaretPosition(this.commTextArea.getDocument().getLength());
+  }
+
+
   /**
    * Connect the instrument.
    * @return success or failure message.
    */
-  public String connect() {
+  public void connect() {
     if (hostname == null || hostname.isEmpty()) {
-      return connection.initialise(port);
+      printConsoleLn(connection.initialise(port));
     }
     else {
-      return connection.initialise(hostname, port);
+      printConsoleLn(connection.initialise(hostname, port));
     }
   }
 
@@ -55,8 +78,12 @@ public class Instrument {
    * Disconnect the instrument.
    * @return success or failure message.
    */
-  public String disconnect() {
-    return connection.shutdown();
+  public void disconnect() {
+    printConsoleLn(connection.shutdown());
+  }
+
+  public void check() {
+    printConsoleLn("Not implemented");
   }
 
 

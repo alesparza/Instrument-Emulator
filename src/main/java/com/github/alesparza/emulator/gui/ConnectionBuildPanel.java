@@ -39,12 +39,12 @@ public class ConnectionBuildPanel extends JFrame implements ActionListener {
         instrumentConnection.initialise(hostnameTextField.getText(), Integer.parseInt(portTextField.getText()));
 
         // send an ENQ, wait for ACK, close with EOT
-        instrumentConnection.sendEnq();
+        //instrumentConnection.sendEnq();
 
         byte[] response = instrumentConnection.receiveMessage();
         System.out.println(new String(response, StandardCharsets.US_ASCII));
 
-        instrumentConnection.sendAck();
+        //instrumentConnection.sendAck();
       }
       else if (instrumentModeComboBox.getSelectedItem().equals("Server")) {
         InstrumentConnection instrumentConnection = new InstrumentConnection();
