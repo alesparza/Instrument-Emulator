@@ -163,6 +163,7 @@ public class StartFrame extends JFrame {
         //create a new window to open
         JFrame instrumentedFrame = new InstrumentFrame(instrument);
         instrumentedFrame.setTitle(name + " - " + hostname + ":" + port);
+        instrumentedFrame.setLocationRelativeTo(null);
         instrumentedFrame.setVisible(true);
       }
     });
