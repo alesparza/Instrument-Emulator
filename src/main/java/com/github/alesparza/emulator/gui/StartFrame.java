@@ -154,13 +154,14 @@ public class StartFrame extends JFrame {
         // this is hardcoded so it should not be an issue
         type  = (InstrumentType) instrumentTypeComboBox.getSelectedItem();
 
+        // add new instrument to table
         Instrument instrument = new Instrument(name, type, hostname, port);
         instrumentArrayList.add(instrument);
         println("Created new instrument '" + name + "' of type " + type + ", communicating on " + hostname + ":" + port);
         ((AbstractTableModel) instrumentTableModel).fireTableDataChanged();
 
-        //TODO: create a new window to open
-        JFrame instrumentedFrame = new InstrumentFrame();
+        //create a new window to open
+        JFrame instrumentedFrame = new InstrumentFrame(instrument);
         instrumentedFrame.setTitle(name + " - " + hostname + ":" + port);
         instrumentedFrame.setVisible(true);
       }
