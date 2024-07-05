@@ -7,12 +7,16 @@ import javax.swing.*;
 public class InstrumentFrame extends JFrame {
   private JPanel contentPanel;
   private JLabel topLabel;
-  private JTabbedPane tabbedPane1;
+  private JTabbedPane tabbedPane;
   private JPanel commandsPanel;
   private JScrollPane consoleScrollablePane;
   private JTextArea consoleTextArea;
   private JTextArea commTextArea;
   private JScrollPane commScrollablePane;
+  private JScrollPane connectionTab;
+  private JScrollPane sampleTab;
+  private JScrollPane deviceTab;
+  private JScrollPane resultTab;
 
 
   private Instrument instrument;

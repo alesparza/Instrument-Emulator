@@ -18,33 +18,47 @@
           <text value="Instrument Window"/>
         </properties>
       </component>
-      <tabbedpane id="69023" binding="tabbedPane1" default-binding="true">
+      <tabbedpane id="69023" binding="tabbedPane">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="200" height="200"/>
           </grid>
         </constraints>
         <properties/>
-        <border type="line" title="Emulations"/>
+        <border type="line" title="Emulation"/>
         <children>
-          <grid id="8bc2a" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
+          <scrollpane id="69906" binding="connectionTab">
             <constraints>
-              <tabbedpane title="Untitled"/>
+              <tabbedpane title="Connection"/>
             </constraints>
             <properties/>
             <border type="none"/>
-            <children>
-              <scrollpane id="7419e">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties/>
-                <border type="none"/>
-                <children/>
-              </scrollpane>
-            </children>
-          </grid>
+            <children/>
+          </scrollpane>
+          <scrollpane id="933b" binding="deviceTab">
+            <constraints>
+              <tabbedpane title="Device"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </scrollpane>
+          <scrollpane id="5765b" binding="sampleTab">
+            <constraints>
+              <tabbedpane title="Sample"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </scrollpane>
+          <scrollpane id="68fbe" binding="resultTab">
+            <constraints>
+              <tabbedpane title="Results"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </scrollpane>
         </children>
       </tabbedpane>
       <grid id="74cc" binding="commandsPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -67,7 +81,9 @@
         <children>
           <component id="35645" class="javax.swing.JTextArea" binding="consoleTextArea">
             <constraints/>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
         </children>
       </scrollpane>
@@ -82,7 +98,9 @@
         <children>
           <component id="aea9c" class="javax.swing.JTextArea" binding="commTextArea">
             <constraints/>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
         </children>
       </scrollpane>
