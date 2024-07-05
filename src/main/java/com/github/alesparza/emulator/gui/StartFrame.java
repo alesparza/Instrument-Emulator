@@ -6,8 +6,6 @@ import com.github.alesparza.emulator.instrument.InstrumentType;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class StartFrame extends JFrame {
@@ -91,98 +89,89 @@ public class StartFrame extends JFrame {
 
 
     // create a new instrument
-    createInstrumentButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        InstrumentType type;
-        String name;
-        String hostname;
-        int port;
+    createInstrumentButton.addActionListener(e -> {
+      InstrumentType type;
+      String name;
+      String hostname;
+      int port;
 
-        // make sure all required fields filled out
-        if (nameTextField.getText().isEmpty()) {
-          println("Instrument name cannot be blank.");
+      // make sure all required fields filled out
+      if (nameTextField.getText().isEmpty()) {
+        println("Instrument name cannot be blank.");
+        return;
+      }
+      name = nameTextField.getText();
+      for (Instrument instrument : instrumentArrayList) {
+        if (instrument.getName().equals(name)) {
+          println("Instrument name already exits");
           return;
         }
-        name = nameTextField.getText();
+      }
+
+      if (hostnameTextField.getText().isEmpty() && clientRadioButton.isSelected()) {
+        println("Hostname/IP cannot be blank when running as client.");
+        return;
+      }
+      if (serverRadioButton.isSelected()) {
+        hostname = "";
+      } else {
+        hostname = hostnameTextField.getText();
+      }
+
+      if (portTextField.getText().isEmpty()) {
+        println("Port number required.");
+        return;
+      }
+      try {
+        port = Integer.parseInt(portTextField.getText());
+      } catch (NumberFormatException ex) {
+        println("Port number must be an integer");
+        return;
+      }
+
+      // servers can't use the same port
+      if (serverRadioButton.isSelected()) {
         for (Instrument instrument : instrumentArrayList) {
-          if (instrument.getName().equals(name)) {
-            println("Instrument name already exits");
+          if (instrument.getPort() == port) {
+            println("Already have server type instrument listening on port " + port);
             return;
           }
         }
-
-        if (hostnameTextField.getText().isEmpty() && clientRadioButton.isSelected()) {
-          println("Hostname/IP cannot be blank when running as client.");
-          return;
-        }
-        if (serverRadioButton.isSelected()) {
-          hostname = "";
-        } else {
-          hostname = hostnameTextField.getText();
-        }
-
-        if (portTextField.getText().isEmpty()) {
-          println("Port number required.");
-          return;
-        }
-        try {
-          port = Integer.parseInt(portTextField.getText());
-        } catch (NumberFormatException ex) {
-          println("Port number must be an integer");
-          return;
-        }
-
-        // servers can't use the same port
-        if (serverRadioButton.isSelected()) {
-          for (Instrument instrument : instrumentArrayList) {
-            if (instrument.getPort() == port) {
-              println("Already have server type instrument listening on port " + port);
-              return;
-            }
-          }
-        }
-
-        if (clientRadioButton.isSelected()) {
-          for (Instrument instrument : instrumentArrayList) {
-            if (instrument.getPort() == port && instrument.getHostname().equals(hostname)) {
-              println("Already have client type instrument connecting on " + hostname + ":" + port);
-              return;
-              //TODO: collapse loop into single pass
-            }
-          }
-        }
-        // this is hardcoded so it should not be an issue
-        type  = (InstrumentType) instrumentTypeComboBox.getSelectedItem();
-
-        // add new instrument to table
-        Instrument instrument = new Instrument(name, type, hostname, port);
-        instrumentArrayList.add(instrument);
-        println("Created new instrument '" + name + "' of type " + type + ", communicating on " + hostname + ":" + port);
-        ((AbstractTableModel) instrumentTableModel).fireTableDataChanged();
-
-        //create a new window to open
-        JFrame instrumentedFrame = new InstrumentFrame(instrument);
-        instrumentedFrame.setTitle(name);
-        instrumentedFrame.setLocationRelativeTo(null);
-        instrumentedFrame.setVisible(true);
       }
+
+      if (clientRadioButton.isSelected()) {
+        for (Instrument instrument : instrumentArrayList) {
+          if (instrument.getPort() == port && instrument.getHostname().equals(hostname)) {
+            println("Already have client type instrument connecting on " + hostname + ":" + port);
+            return;
+            //TODO: collapse loop into single pass
+          }
+        }
+      }
+      // this is hardcoded so it should not be an issue
+      type  = (InstrumentType) instrumentTypeComboBox.getSelectedItem();
+
+      // add new instrument to table
+      Instrument instrument = new Instrument(name, type, hostname, port);
+      instrumentArrayList.add(instrument);
+      println("Created new instrument '" + name + "' of type " + type + ", communicating on " + hostname + ":" + port);
+      ((AbstractTableModel) instrumentTableModel).fireTableDataChanged();
+
+      //create a new window to open
+      JFrame instrumentedFrame = new InstrumentFrame(instrument);
+      instrumentedFrame.setTitle(name);
+      instrumentedFrame.setLocationRelativeTo(null);
+      instrumentedFrame.setVisible(true);
     });
 
     // can only select one option
-    serverRadioButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        clientRadioButton.setSelected(false);
-        hostnameTextField.setEditable(false);
-      }
+    serverRadioButton.addActionListener(e -> {
+      clientRadioButton.setSelected(false);
+      hostnameTextField.setEditable(false);
     });
-    clientRadioButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        serverRadioButton.setSelected(false);
-        hostnameTextField.setEditable(true);
-      }
+    clientRadioButton.addActionListener(e -> {
+      serverRadioButton.setSelected(false);
+      hostnameTextField.setEditable(true);
     });
 
     // done setting up GUI

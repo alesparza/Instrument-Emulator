@@ -3,8 +3,6 @@ package com.github.alesparza.emulator.gui;
 import com.github.alesparza.emulator.instrument.Instrument;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class InstrumentFrame extends JFrame {
   private JPanel contentPanel;
@@ -31,8 +29,6 @@ public class InstrumentFrame extends JFrame {
   private JButton checkButton;
 
 
-  private Instrument instrument;
-
   public InstrumentFrame(Instrument instrument) {
 
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -40,40 +36,19 @@ public class InstrumentFrame extends JFrame {
     this.hostnameTextField.setText(instrument.getHostname());
     this.portTextField.setText(String.valueOf(instrument.getPort()));
     this.typeTextField.setText(instrument.getType().toString());
-    this.instrument = instrument;
     instrument.setGUIComponents(consoleTextArea, commTextArea);
 
     // start button
-    this.startButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        instrument.connect();
-      }
-    });
+    this.startButton.addActionListener(e -> instrument.connect());
 
     // stop button
-    this.stopButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        instrument.disconnect();
-      }
-    });
+    this.stopButton.addActionListener(e -> instrument.disconnect());
 
     // check button
-    this.checkButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        instrument.check();
-      }
-    });
+    this.checkButton.addActionListener(e -> instrument.check());
 
     // reset button
-    this.resetButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        instrument.reset();
-      }
-    });
+    this.resetButton.addActionListener(e -> instrument.reset());
 
 
     pack();
