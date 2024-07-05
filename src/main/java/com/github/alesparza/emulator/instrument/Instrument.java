@@ -38,6 +38,27 @@ public class Instrument {
     connection = new InstrumentConnection();
   }
 
+  /**
+   * Connect the instrument.
+   * @return success or failure message.
+   */
+  public String connect() {
+    if (hostname == null || hostname.isEmpty()) {
+      return connection.initialise(port);
+    }
+    else {
+      return connection.initialise(hostname, port);
+    }
+  }
+
+  /**
+   * Disconnect the instrument.
+   * @return success or failure message.
+   */
+  public String disconnect() {
+    return connection.shutdown();
+  }
+
 
   /**
    * Gets the name of the instrument.

@@ -36,7 +36,7 @@ public class ConnectionBuildPanel extends JFrame implements ActionListener {
       if (instrumentModeComboBox.getSelectedIndex() == 0) {
         System.out.println("Connecting...");
         InstrumentConnection instrumentConnection = new InstrumentConnection();
-        instrumentConnection.initialiseSocket(hostnameTextField.getText(), Integer.parseInt(portTextField.getText()));
+        instrumentConnection.initialise(hostnameTextField.getText(), Integer.parseInt(portTextField.getText()));
 
         // send an ENQ, wait for ACK, close with EOT
         instrumentConnection.sendEnq();
@@ -48,7 +48,7 @@ public class ConnectionBuildPanel extends JFrame implements ActionListener {
       }
       else if (instrumentModeComboBox.getSelectedItem().equals("Server")) {
         InstrumentConnection instrumentConnection = new InstrumentConnection();
-        instrumentConnection.initialiseSocket(Integer.parseInt(portTextField.getText()));
+        instrumentConnection.initialise(Integer.parseInt(portTextField.getText()));
       }
     }
 

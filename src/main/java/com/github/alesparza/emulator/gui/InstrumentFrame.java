@@ -3,6 +3,8 @@ package com.github.alesparza.emulator.gui;
 import com.github.alesparza.emulator.instrument.Instrument;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class InstrumentFrame extends JFrame {
   private JPanel contentPanel;
@@ -39,7 +41,21 @@ public class InstrumentFrame extends JFrame {
     this.portTextField.setText(String.valueOf(instrument.getPort()));
     this.typeTextField.setText(instrument.getType().toString());
 
+    // start button
+    this.startButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        printConsoleLn(instrument.connect());
+      }
+    });
 
+    // stop button
+    this.stopButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        printConsoleLn(instrument.disconnect());
+      }
+    });
 
 
     pack();
