@@ -32,6 +32,7 @@ public class StartFrame extends JFrame {
   private JPanel instrumentCreationPanel;
   private JScrollPane consolePanel;
   private JScrollPane instrumentsPanel;
+  private JPanel reservedPanel;
   private final TableModel instrumentTableModel;
 
 
