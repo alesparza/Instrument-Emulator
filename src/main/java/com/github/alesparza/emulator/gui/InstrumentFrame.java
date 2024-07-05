@@ -19,7 +19,7 @@ public class InstrumentFrame extends JFrame {
 
   public InstrumentFrame(Instrument instrument) {
     this.instrument = instrument;
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     setContentPane(contentPanel);
 
 
