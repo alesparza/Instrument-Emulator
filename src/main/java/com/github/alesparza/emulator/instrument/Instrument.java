@@ -82,8 +82,21 @@ public class Instrument {
     printConsoleLn(connection.shutdown());
   }
 
+  /**
+   * Check if the connection is okay.
+   * <br>
+   * Sends ENQ, expects ACK, sends EOT.
+   */
   public void check() {
     printConsoleLn("Not implemented");
+    byte[] message = new byte[] {0x5};
+    connection.sendMessage(message);
+    printCommLn("--> " + new String(message));
+    byte[] receive = connection.receiveMessage();
+    printCommLn("<-- " + new String(receive));
+    message = new byte[] {0x4};
+    connection.sendMessage(message);
+    printCommLn("--> " + new String(receive));
   }
 
 

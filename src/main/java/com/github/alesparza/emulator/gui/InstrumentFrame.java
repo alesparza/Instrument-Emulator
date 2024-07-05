@@ -59,6 +59,14 @@ public class InstrumentFrame extends JFrame {
       }
     });
 
+    // check button
+    this.checkButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        instrument.check();
+      }
+    });
+
 
     pack();
   }
