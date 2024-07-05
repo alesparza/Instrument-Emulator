@@ -63,7 +63,6 @@ public class Instrument {
 
   /**
    * Connect the instrument.
-   * @return success or failure message.
    */
   public void connect() {
     if (hostname == null || hostname.isEmpty()) {
@@ -76,7 +75,6 @@ public class Instrument {
 
   /**
    * Disconnect the instrument.
-   * @return success or failure message.
    */
   public void disconnect() {
     printConsoleLn(connection.shutdown());
@@ -88,7 +86,6 @@ public class Instrument {
    * Sends ENQ, expects ACK, sends EOT.
    */
   public void check() {
-    printConsoleLn("Not implemented");
     byte[] message = new byte[] {0x5};
     connection.sendMessage(message);
     printCommLn("--> " + new String(message));
@@ -97,6 +94,11 @@ public class Instrument {
     message = new byte[] {0x4};
     connection.sendMessage(message);
     printCommLn("--> " + new String(receive));
+  }
+
+  public void reset() {
+    connection.shutdown();
+    connection.initialise();
   }
 
 

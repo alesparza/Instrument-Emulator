@@ -67,6 +67,14 @@ public class InstrumentFrame extends JFrame {
       }
     });
 
+    // reset button
+    this.resetButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        instrument.reset();
+      }
+    });
+
 
     pack();
   }

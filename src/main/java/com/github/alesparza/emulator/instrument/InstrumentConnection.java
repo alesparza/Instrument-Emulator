@@ -1,6 +1,5 @@
 package com.github.alesparza.emulator.instrument;
 
-import javax.swing.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -20,6 +19,9 @@ public class InstrumentConnection {
 
   private boolean isInit = false;
 
+  public String initialise() {
+    return "Not implemented";
+  }
 
   /**
    * Initialises this instrument as a client configuration.
@@ -29,7 +31,7 @@ public class InstrumentConnection {
   public String initialise(String hostname, int port) {
     if (isInit) return "Error: already started";
     try {
-      Socket socket = new Socket(hostname, port);
+      socket = new Socket(hostname, port);
       out = socket.getOutputStream();
       in = socket.getInputStream();
     } catch (IOException e) {
