@@ -131,6 +131,16 @@ public class StartFrame extends JFrame {
           println("Port number must be an integer");
           return;
         }
+
+        // servers can't use the same port
+        if (serverRadioButton.isSelected()) {
+          for (Instrument instrument : instrumentArrayList) {
+            if (instrument.getPort() == port) {
+              println("Already have server type instrument listening on port " + port);
+              return;
+            }
+          }
+        }
         type  = (InstrumentType) instrumentTypeComboBox.getSelectedItem();
 
         Instrument instrument = new Instrument(name, type, hostname, port);
