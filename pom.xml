@@ -35,7 +35,7 @@
                                 true</addDefaultSpecificationEntries>
                         </manifest>
                         <manifestEntries>
-                            <Main-Class>com.github.alesparza.emulator.processor.Emulator</Main-Class>
+                            <Main-Class>com.github.alesparza.emulator.Emulator</Main-Class>
                             <Can-Redefine-Classes>false</Can-Redefine-Classes>
                             <Can-Retransform-Classes>true</Can-Retransform-Classes>
                         </manifestEntries>

@@ -1,4 +1,4 @@
-package com.github.alesparza.emulator.processor;
+package com.github.alesparza.emulator;
 
 import com.github.alesparza.emulator.gui.StartFrame;
 
