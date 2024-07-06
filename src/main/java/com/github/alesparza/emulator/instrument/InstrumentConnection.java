@@ -3,6 +3,7 @@ package com.github.alesparza.emulator.instrument;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Arrays;
 
 /**
  * Represents an Instrument Connection.
@@ -72,7 +73,8 @@ public class InstrumentConnection {
     byte[] message = new byte[1024];
     byte[] ret;
     try {
-      ret = new byte[in.read(message)] ;
+      int read = in.read(message);
+      ret = Arrays.copyOfRange(message,0,read);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

@@ -1,5 +1,8 @@
 package com.github.alesparza.emulator.instrument;
 
+import com.github.alesparza.astm.Ascii;
+import com.github.alesparza.astm.Ascii.CntlChar;
+
 import javax.swing.*;
 
 /**
@@ -86,14 +89,14 @@ public class Instrument {
    * Sends ENQ, expects ACK, sends EOT.
    */
   public void check() {
-    byte[] message = new byte[] {0x5};
+    byte[] message = new byte[] {CntlChar.ENQ.getAsciiByte()};
     connection.sendMessage(message);
-    printCommLn("--> " + new String(message));
+    printCommLn("--> " + Ascii.getFormattedString(message));
     byte[] receive = connection.receiveMessage();
-    printCommLn("<-- " + new String(receive));
-    message = new byte[] {0x4};
+    printCommLn("<-- " + Ascii.getFormattedString(receive));
+    message = new byte[] {CntlChar.EOT.getAsciiByte()};
     connection.sendMessage(message);
-    printCommLn("--> " + new String(receive));
+    printCommLn("--> " + Ascii.getFormattedString(message));
   }
 
   public void reset() {
