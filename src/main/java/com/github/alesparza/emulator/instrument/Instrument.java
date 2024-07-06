@@ -1,7 +1,7 @@
 package com.github.alesparza.emulator.instrument;
 
-import com.github.alesparza.astm.Ascii;
-import com.github.alesparza.astm.Ascii.CntlChar;
+import com.github.alesparza.ascii.Ascii;
+import com.github.alesparza.ascii.Ascii.CntlChar;
 
 import javax.swing.*;
 

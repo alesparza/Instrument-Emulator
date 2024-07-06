@@ -1,4 +1,4 @@
-package com.github.alesparza.astm;
+package com.github.alesparza.ascii;
 
 /**
  * Formats ASCII Strings into a human-readable format.
