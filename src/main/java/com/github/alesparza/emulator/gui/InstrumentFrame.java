@@ -27,6 +27,7 @@ public class InstrumentFrame extends JFrame {
   private JButton stopButton;
   private JButton resetButton;
   private JButton checkButton;
+  private JScrollPane patientTab;
 
 
   public InstrumentFrame(Instrument instrument) {

@@ -116,6 +116,14 @@
             <border type="none"/>
             <children/>
           </scrollpane>
+          <scrollpane id="23bc2" binding="patientTab">
+            <constraints>
+              <tabbedpane title="Untitled"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </scrollpane>
           <scrollpane id="5765b" binding="sampleTab">
             <constraints>
               <tabbedpane title="Sample"/>
