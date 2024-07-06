@@ -118,7 +118,7 @@
           </scrollpane>
           <scrollpane id="23bc2" binding="patientTab">
             <constraints>
-              <tabbedpane title="Untitled"/>
+              <tabbedpane title="Patient"/>
             </constraints>
             <properties/>
             <border type="none"/>
