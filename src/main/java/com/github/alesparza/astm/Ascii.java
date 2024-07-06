@@ -3,12 +3,12 @@ package com.github.alesparza.astm;
 /**
  * Formats ASCII Strings into a human-readable format.
  */
-public class ASCIIFormatter {
+public class Ascii {
 
   /**
    * Enum for different control characters.
    */
-  public enum AsciiControlFormat {
+  public enum CntlChar {
     NUL((byte) 0x00, "\0", "<NUL>"),
     SOH((byte) 0x01, "\1", "<SOH>"),
     STX((byte) 0x02, "\2", "<STX>"),
@@ -38,8 +38,11 @@ public class ASCIIFormatter {
      */
     private final String asciiFormat;
 
+    public final byte getAsciiByte() {
+      return this.asciiByte;
+    }
 
-    AsciiControlFormat(byte b, String e, String s) {
+    CntlChar(byte b, String e, String s) {
       asciiByte = b;
       asciiEscape = e;
       asciiFormat = s;
@@ -53,7 +56,7 @@ public class ASCIIFormatter {
    */
   public static String getFormattedString(byte[] bytes) {
     String ret = new String(bytes);
-    for (AsciiControlFormat format : AsciiControlFormat.values()) {
+    for (CntlChar format : CntlChar.values()) {
       ret = ret.replaceAll(format.asciiEscape, format.asciiFormat);
     }
     return ret;
