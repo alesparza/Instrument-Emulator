@@ -13,12 +13,12 @@ public class InstrumentConnection {
   /**
    * Hostname for communication.
    */
-  private String hostname;
+  private final String hostname;
 
   /**
    * Port number for communication.
    */
-  private int port;
+  private final int port;
 
   /**
    * Communication output stream.
