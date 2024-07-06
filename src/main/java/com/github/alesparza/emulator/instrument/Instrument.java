@@ -30,8 +30,14 @@ public class Instrument {
    */
   private final int port;
 
+  /**
+   * Text area for console logging.
+   */
   private JTextArea consoleTextArea;
 
+  /**
+   * Text area for communication logging.
+   */
   private JTextArea commTextArea;
 
 
@@ -40,24 +46,44 @@ public class Instrument {
    */
   private final InstrumentConnection connection;
 
+  /**
+   * Constructs a new instrument.
+   * @param name name of instrument
+   * @param type type of instrument
+   * @param hostname hostname for communication
+   * @param port port for communication
+   */
   public Instrument(String name, InstrumentType type, String hostname, int port) {
     this.type = type;
     this.name = name;
     this.hostname = hostname;
     this.port = port;
-    connection = new InstrumentConnection();
+    connection = new InstrumentConnection(hostname, port);
   }
 
+  /**
+   * Sets the text areas to print to for logging.
+   * @param consoleTextArea console log area
+   * @param commTextArea communication log area
+   */
   public void setGUIComponents(JTextArea consoleTextArea, JTextArea commTextArea) {
     this.consoleTextArea = consoleTextArea;
     this.commTextArea = commTextArea;
   }
 
+  /**
+   * Prints a messae to the console log area.
+   * @param message the message to print
+   */
   public void printConsoleLn(String message) {
     this.consoleTextArea.append(message + "\n");
     this.consoleTextArea.setCaretPosition(this.consoleTextArea.getDocument().getLength());
   }
 
+  /**
+   * Prints a message to the communication log area.
+   * @param message the message to print
+   */
   public void printCommLn(String message) {
     this.commTextArea.append(message + "\n");
     this.commTextArea.setCaretPosition(this.commTextArea.getDocument().getLength());
@@ -68,12 +94,7 @@ public class Instrument {
    * Connect the instrument.
    */
   public void connect() {
-    if (hostname == null || hostname.isEmpty()) {
-      printConsoleLn(connection.initialise(port));
-    }
-    else {
-      printConsoleLn(connection.initialise(hostname, port));
-    }
+    printConsoleLn(connection.initialise());
   }
 
   /**
@@ -99,6 +120,11 @@ public class Instrument {
     printCommLn("--> " + Ascii.getFormattedString(message));
   }
 
+  /**
+   * Resets the connection.
+   * <br>
+   * Shutdown the connection and re-initialise.
+   */
   public void reset() {
     connection.shutdown();
     connection.initialise();
@@ -121,10 +147,18 @@ public class Instrument {
     return type;
   }
 
+  /**
+   * Gets the hostname of the instrument.
+   * @return the hostname of the instrument
+   */
   public String getHostname() {
     return hostname;
   }
 
+  /**
+   * Gets the port of the instrument.
+   * @return the port of the instrument
+   */
   public int getPort() {
     return port;
   }

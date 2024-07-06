@@ -10,20 +10,46 @@ import java.util.Arrays;
  */
 public class InstrumentConnection {
 
+  /**
+   * Hostname for communication.
+   */
   private String hostname;
 
+  /**
+   * Port number for communication.
+   */
   private int port;
 
+  /**
+   * Communication output stream.
+   */
   private OutputStream out;
 
+  /**
+   * Communication input stream.
+   */
   private InputStream in;
 
+  /**
+   * Socket for communication.
+   */
   private Socket socket;
 
+  /**
+   * Socket for server
+   */
   private ServerSocket serverSocket;
 
+  /**
+   * Flag for if the connection is initialised or not.
+   */
   private boolean isInit = false;
 
+  /**
+   * Constructs a new connection for an instrument.
+   * @param hostname hostname for communication
+   * @param port port for communication
+   */
   public InstrumentConnection(String hostname, int port) {
     this.hostname = hostname;
     this.port = port;

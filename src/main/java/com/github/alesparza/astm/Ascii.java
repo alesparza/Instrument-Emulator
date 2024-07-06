@@ -38,6 +38,10 @@ public class Ascii {
      */
     private final String asciiFormat;
 
+    /**
+     * Gets the byte of a control character.
+     * @return the byte of a control character
+     */
     public final byte getAsciiByte() {
       return this.asciiByte;
     }
