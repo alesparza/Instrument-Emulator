@@ -110,6 +110,10 @@ public class Instrument {
    * Sends ENQ, expects ACK, sends EOT.
    */
   public void check() {
+    if (!connection.isInit()) {
+      printConsoleLn("Error: not started");
+      return;
+    }
     byte[] message = new byte[] {CntlChar.ENQ.getAsciiByte()};
     connection.sendMessage(message);
     printCommLn("--> " + Ascii.getFormattedString(message));
@@ -126,8 +130,8 @@ public class Instrument {
    * Shutdown the connection and re-initialise.
    */
   public void reset() {
-    connection.shutdown();
-    connection.initialise();
+    disconnect();
+    connect();
   }
 
 

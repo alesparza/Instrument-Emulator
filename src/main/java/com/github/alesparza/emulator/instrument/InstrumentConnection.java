@@ -100,6 +100,9 @@ public class InstrumentConnection {
    * @param message the message to send
    */
   public String sendMessage(byte[] message) {
+    if (!isInit) {
+      return "Error: not started";
+    }
     try {
       out.write(message);
       out.flush();
@@ -166,6 +169,14 @@ public class InstrumentConnection {
     out = null;
     isInit = false;
     return "Shut down successful.";
+  }
+
+  /**
+   * Checks if connection is initialised.
+   * @return true if initialised, otherwise false
+   */
+  public boolean isInit() {
+    return this.isInit;
   }
 
 }
