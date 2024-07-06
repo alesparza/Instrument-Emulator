@@ -1,4 +1,4 @@
-package com.github.alesparza.astm;
+package com.github.alesparza.astm.component;
 
 /**
  * Represents a ASTM record.
