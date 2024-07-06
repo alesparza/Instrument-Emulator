@@ -72,7 +72,7 @@ public class Instrument {
   }
 
   /**
-   * Prints a messae to the console log area.
+   * Prints a message to the console log area.
    * @param message the message to print
    */
   public void printConsoleLn(String message) {
