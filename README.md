@@ -1,6 +1,6 @@
 # Instrument-Emulator
 
-Foobar is a Java library to emulate laboratory instruments.
+Instrument-Emulator is a Java library to emulate laboratory instruments.
 
 ## Installation
 
