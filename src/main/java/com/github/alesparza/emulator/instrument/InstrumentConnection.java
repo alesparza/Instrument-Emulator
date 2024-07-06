@@ -10,6 +10,10 @@ import java.util.Arrays;
  */
 public class InstrumentConnection {
 
+  private String hostname;
+
+  private int port;
+
   private OutputStream out;
 
   private InputStream in;
@@ -20,14 +24,27 @@ public class InstrumentConnection {
 
   private boolean isInit = false;
 
+  public InstrumentConnection(String hostname, int port) {
+    this.hostname = hostname;
+    this.port = port;
+  }
+
+  /**
+   * Initialise the instrument connection.
+   * @return status message
+   */
   public String initialise() {
-    return "Not implemented";
+    if (this.hostname.isEmpty()) {
+      return initialise(port);
+    }
+    return initialise(hostname, port);
   }
 
   /**
    * Initialises this instrument as a client configuration.
    * @param hostname hostname of the server to connect to
    * @param port port number the server is listening on
+   * @return status message
    */
   public String initialise(String hostname, int port) {
     if (isInit) return "Error: already started";
@@ -45,6 +62,7 @@ public class InstrumentConnection {
   /**
    * Initialises this instrument as a server configuration.
    * @param port the port number to listen on
+   * @return status message
    */
   public String initialise(int port) {
     if (isInit) return "Error: already started";
