@@ -26,6 +26,15 @@ public class HostRecord extends Record {
     fields[1] = recordIdentifier;
 
     Field delimiters = new Field(4, "Delimiters");
+    component = new Component("Field", 1, new byte[] { (byte) '|'});
+    delimiters.setComponent(0, component);
+    component = new Component("Repeat", 1, new byte[] { (byte) '\\'});
+    delimiters.setComponent(1, component);
+    component = new Component("Component", 1, new byte[] { (byte) '!'});
+    delimiters.setComponent(2, component);
+    component = new Component("Escape", 1, new byte[] { (byte) '~'});
+    delimiters.setComponent(3, component);
+    fields[2] = delimiters;
 
     // remainder are instrument specific
     switch (type) {
