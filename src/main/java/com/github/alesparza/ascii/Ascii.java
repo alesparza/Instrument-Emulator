@@ -54,6 +54,16 @@ public class Ascii {
   }
 
   /**
+   * Offset to convert a digit to the ASCII character.
+   */
+  public static final int DIGIT_TO_CHAR_OFFSET = 48;
+
+  /**
+   * Offset to convert an ASCII character to the digit.
+   */
+  public static final int CHAR_TO_DIGIT_OFFSET = -48;
+
+  /**
    * Formats a byte array to a readable String.
    * @param bytes the bytes to format
    * @return a readable string
@@ -65,4 +75,5 @@ public class Ascii {
     }
     return ret;
   }
+
 }
