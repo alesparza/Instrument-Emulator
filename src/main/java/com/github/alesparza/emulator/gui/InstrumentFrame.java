@@ -30,6 +30,7 @@ public class InstrumentFrame extends JFrame {
   private JScrollPane patientTab;
   private JPanel connectionPanel;
   private PatientPanel patientPanel;
+  private JButton sendButton;
   //TODO: add a label or something that changes to indicated connected
 
 
@@ -53,6 +54,10 @@ public class InstrumentFrame extends JFrame {
 
     // reset button
     this.resetButton.addActionListener(e -> instrument.reset());
+    // send button
+    this.sendButton.addActionListener(e -> {
+      instrument.printConsoleLn("Not implemented.  But it would take all the data and send the appropriate messages to the LIS.");
+    });
 
     pack();
   }
