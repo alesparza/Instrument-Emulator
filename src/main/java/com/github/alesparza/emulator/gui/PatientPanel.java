@@ -9,11 +9,13 @@ public class PatientPanel {
   private JTextField lastNameTextField;
   private JTextField patientIDTextField;
   private JTextField DOBTextField;
-  private JTextField textField6;
+  private JTextField sexTextField;
   private JLabel middleNameLabel;
   private JLabel firstNameLabel;
   private JLabel lastNameLabel;
   private JLabel patientIDLabel;
   private JLabel dobLabel;
   private JLabel sexLabel;
+  private JTextField locationTextField;
+  private JLabel locationLabel;
 }

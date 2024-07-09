@@ -29,7 +29,9 @@
         <children>
           <scrollpane id="69906" binding="connectionTab">
             <constraints>
-              <tabbedpane title="Connection"/>
+              <tabbedpane title="Connection">
+                <tooltip value="Connection information"/>
+              </tabbedpane>
             </constraints>
             <properties>
               <maximumSize width="800" height="400"/>
@@ -119,7 +121,9 @@
           </scrollpane>
           <scrollpane id="933b" binding="deviceTab">
             <constraints>
-              <tabbedpane title="Device"/>
+              <tabbedpane title="Device">
+                <tooltip value="Device information"/>
+              </tabbedpane>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -204,10 +208,12 @@
           </scrollpane>
           <scrollpane id="23bc2" binding="patientTab">
             <constraints>
-              <tabbedpane title="Patient"/>
+              <tabbedpane title="Patient">
+                <tooltip value="Patient information"/>
+              </tabbedpane>
             </constraints>
             <properties>
-              <verticalScrollBarPolicy value="22"/>
+              <verticalScrollBarPolicy value="20"/>
             </properties>
             <border type="none"/>
             <children>
@@ -218,7 +224,9 @@
           </scrollpane>
           <scrollpane id="5765b" binding="sampleTab">
             <constraints>
-              <tabbedpane title="Sample"/>
+              <tabbedpane title="Sample">
+                <tooltip value="Sample information"/>
+              </tabbedpane>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -234,7 +242,9 @@
           </scrollpane>
           <scrollpane id="68fbe" binding="resultTab">
             <constraints>
-              <tabbedpane title="Results"/>
+              <tabbedpane title="Results">
+                <tooltip value="Results information"/>
+              </tabbedpane>
             </constraints>
             <properties>
               <preferredSize width="600" height="200"/>
@@ -259,7 +269,9 @@
       <grid id="74cc" binding="commandsPanel" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="356" height="53"/>
+          </grid>
         </constraints>
         <properties/>
         <border type="line" title="Commands"/>
@@ -280,11 +292,6 @@
               <text value="Stop"/>
             </properties>
           </component>
-          <hspacer id="5575d">
-            <constraints>
-              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </hspacer>
           <component id="1aad9" class="javax.swing.JButton" binding="resetButton" default-binding="true">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -301,6 +308,11 @@
               <text value="Check"/>
             </properties>
           </component>
+          <hspacer id="91056">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
         </children>
       </grid>
       <scrollpane id="78189" binding="consoleScrollablePane">
