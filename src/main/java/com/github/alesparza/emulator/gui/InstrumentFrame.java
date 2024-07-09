@@ -29,10 +29,10 @@ public class InstrumentFrame extends JFrame {
   private JButton checkButton;
   private JScrollPane patientTab;
   private JPanel conectionPanel;
-  private JPanel patientPanel;
   private JPanel devicePanel;
   private JPanel samplePanel;
   private JPanel resultPanel;
+  private PatientPanel patientPanel;
 
 
   public InstrumentFrame(Instrument instrument) {
@@ -55,7 +55,6 @@ public class InstrumentFrame extends JFrame {
 
     // reset button
     this.resetButton.addActionListener(e -> instrument.reset());
-
 
     pack();
   }
