@@ -4,12 +4,20 @@ import javax.swing.*;
 
 public class SamplePanel {
   private JPanel samplePanel;
-  private JTextField textField1;
-  private JTextField textField2;
-  private JTextField textField3;
-  private JTextField textField4;
-  private JTextField textField5;
-  private JTextField textField6;
-  private JTextField textField7;
-  private JTextField textField8;
+  private JTextField specimenIDTextField;
+  private JTextField positionIDTextField;
+  private JTextField priorityTextField;
+  private JTextField requestDateAndTimeTextField;
+  private JTextField collectionDateAndTimeTextField;
+  private JTextField receivedDateAndTimeTextField;
+  private JTextField specimenTypeTextField;
+  private JTextField releasedDateAndTimeTextField;
+  private JLabel positionIDLabel;
+  private JLabel specimenIDLabel;
+  private JLabel priorityLabel;
+  private JLabel requestDTLabel;
+  private JLabel collectDTLabel;
+  private JLabel receiveDTLabel;
+  private JLabel completeDTLabel;
+  private JLabel specimenTypeLabel;
 }
