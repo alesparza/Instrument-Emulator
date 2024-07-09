@@ -21,7 +21,7 @@
       <tabbedpane id="69023" binding="tabbedPane">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="800" height="400"/>
+            <preferred-size width="800" height="100"/>
           </grid>
         </constraints>
         <properties/>
@@ -31,7 +31,10 @@
             <constraints>
               <tabbedpane title="Connection"/>
             </constraints>
-            <properties/>
+            <properties>
+              <maximumSize width="800" height="400"/>
+              <minimumSize width="400" height="100"/>
+            </properties>
             <border type="none"/>
             <children>
               <grid id="32cd4" binding="conectionPanel" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -166,7 +169,11 @@
               <grid id="c24fc" binding="resultPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints/>
-                <properties/>
+                <properties>
+                  <maximumSize width="800" height="400"/>
+                  <minimumSize width="400" height="200"/>
+                  <preferredSize width="800" height="100"/>
+                </properties>
                 <border type="none"/>
                 <children/>
               </grid>
@@ -224,7 +231,7 @@
       <scrollpane id="78189" binding="consoleScrollablePane">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="800" height="200"/>
+            <preferred-size width="800" height="150"/>
           </grid>
         </constraints>
         <properties/>
@@ -241,7 +248,7 @@
       <scrollpane id="455ca" binding="commScrollablePane">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="800" height="200"/>
+            <preferred-size width="800" height="150"/>
           </grid>
         </constraints>
         <properties/>
