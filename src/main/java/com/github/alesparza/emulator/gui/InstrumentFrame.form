@@ -155,7 +155,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <text value=""/>
+                      <text value="Instrument"/>
                       <toolTipText value="Name of device.  Max characters 40."/>
                     </properties>
                   </component>
@@ -175,6 +175,7 @@
                       </grid>
                     </constraints>
                     <properties>
+                      <text value="123 Lab Lane"/>
                       <toolTipText value="Address of device.  Must be ASCII characters only."/>
                     </properties>
                   </component>
@@ -194,6 +195,7 @@
                       </grid>
                     </constraints>
                     <properties>
+                      <text value="555.123.4567"/>
                       <toolTipText value="Phone Number of device.  Must be ASCII characters only."/>
                     </properties>
                   </component>
@@ -231,13 +233,9 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="713ec" binding="samplePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="0" left="0" bottom="0" right="0"/>
+              <nested-form id="b42ac" form-file="com/github/alesparza/emulator/gui/SamplePanel.form">
                 <constraints/>
-                <properties/>
-                <border type="none"/>
-                <children/>
-              </grid>
+              </nested-form>
             </children>
           </scrollpane>
           <scrollpane id="68fbe" binding="resultTab">

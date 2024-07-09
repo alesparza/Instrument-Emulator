@@ -17,13 +17,14 @@
           <text value="First Name"/>
         </properties>
       </component>
-      <component id="80f32" class="javax.swing.JTextField" binding="firstNameTextField" default-binding="true">
+      <component id="80f32" class="javax.swing.JTextField" binding="firstTextField" default-binding="true">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
         <properties>
+          <text value="First"/>
           <toolTipText value="First Name.  Max characters 20."/>
         </properties>
       </component>
@@ -46,53 +47,58 @@
           <grid row="7" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
-      <component id="402c7" class="javax.swing.JTextField" binding="middleNameTextField" default-binding="true">
+      <component id="402c7" class="javax.swing.JTextField" binding="mTextField" default-binding="true">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
         <properties>
+          <text value="M"/>
           <toolTipText value="Middle Name.  Max characters 20."/>
         </properties>
       </component>
-      <component id="3a71d" class="javax.swing.JTextField" binding="lastNameTextField" default-binding="true">
+      <component id="3a71d" class="javax.swing.JTextField" binding="lastTextField" default-binding="true">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
         <properties>
+          <text value="Last"/>
           <toolTipText value="Last Name.  Max characters 20."/>
         </properties>
       </component>
-      <component id="327b7" class="javax.swing.JTextField" binding="patientIDTextField" default-binding="true">
+      <component id="327b7" class="javax.swing.JTextField" binding="a123456789TextField" default-binding="true">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
         <properties>
+          <text value="123456789"/>
           <toolTipText value="Patient ID/MRN.  Max characters 25."/>
         </properties>
       </component>
-      <component id="a55e5" class="javax.swing.JTextField" binding="DOBTextField" default-binding="true">
+      <component id="a55e5" class="javax.swing.JTextField" binding="a20000101TextField" default-binding="true">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
         <properties>
+          <text value="20000101"/>
           <toolTipText value="Date of Birth.  Must be YYYYMMDD."/>
         </properties>
       </component>
-      <component id="1c232" class="javax.swing.JTextField" binding="sexTextField" default-binding="true">
+      <component id="1c232" class="javax.swing.JTextField" binding="uTextField" default-binding="true">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
         <properties>
+          <text value="U"/>
           <toolTipText value="Patient Sex.  Max characters 1 ('M', &quot;F', 'U')"/>
         </properties>
       </component>
@@ -142,13 +148,15 @@
           <toolTipText value="Patient Location.  Max 16 characters."/>
         </properties>
       </component>
-      <component id="bbb58" class="javax.swing.JTextField" binding="locationTextField" default-binding="true">
+      <component id="bbb58" class="javax.swing.JTextField" binding="hospitalTextField" default-binding="true">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value="Hospital"/>
+        </properties>
       </component>
     </children>
   </grid>
