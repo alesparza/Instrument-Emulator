@@ -30,7 +30,7 @@
       </component>
       <hspacer id="a497f">
         <constraints>
-          <grid row="0" column="2" row-span="6" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="2" row-span="7" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
       <component id="be53b" class="javax.swing.JLabel" binding="middleNameLabel">
