@@ -30,7 +30,6 @@ public class InstrumentFrame extends JFrame {
   private JScrollPane patientTab;
   private JPanel conectionPanel;
   private JPanel devicePanel;
-  private JPanel resultPanel;
   private PatientPanel patientPanel;
   private JLabel nameLabel;
   private JTextField nameTextField;

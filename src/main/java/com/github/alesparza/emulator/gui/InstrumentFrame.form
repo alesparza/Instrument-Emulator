@@ -249,17 +249,9 @@
             </properties>
             <border type="none"/>
             <children>
-              <grid id="c24fc" binding="resultPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="0" left="0" bottom="0" right="0"/>
+              <nested-form id="1073b" form-file="com/github/alesparza/emulator/gui/ResultPanel.form">
                 <constraints/>
-                <properties>
-                  <maximumSize width="800" height="400"/>
-                  <minimumSize width="400" height="200"/>
-                  <preferredSize width="600" height="200"/>
-                </properties>
-                <border type="none"/>
-                <children/>
-              </grid>
+              </nested-form>
             </children>
           </scrollpane>
         </children>
