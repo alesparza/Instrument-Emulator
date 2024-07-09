@@ -3,6 +3,7 @@ package com.github.alesparza.emulator.instrument;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.Arrays;
 
 /**
@@ -92,7 +93,21 @@ public class InstrumentConnection {
    */
   public String initialise(int port) {
     if (isInit) return "Error: already started";
-    return "Error: cannot use instrument as server (not implemented)";
+    int timeout = 1000;
+    try {
+      serverSocket = new ServerSocket(port);
+      serverSocket.setSoTimeout(timeout);
+      socket = serverSocket.accept();
+      isInit = true;
+      return "Started server on port " + port + " and connected to LIS";
+    } catch (SocketTimeoutException e) {
+      isInit = false;
+      return "Timed out after " + timeout / 1000 + " seconds waiting for connection to port " + port + ".  Try again later.";
+    }
+    catch (IOException e) {
+      isInit = false;
+      return "Error starting server: " + e;
+    }
   }
 
   /**
