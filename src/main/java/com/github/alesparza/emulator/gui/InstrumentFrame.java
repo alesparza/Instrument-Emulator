@@ -19,7 +19,7 @@ public class InstrumentFrame extends JFrame {
   private JScrollPane resultTab;
   private JTextField hostnameTextField;
   private JTextField portTextField;
-  private JTextField typeTextField;
+  private JTextField typeTextField; // TODO: move to device panel
   private JLabel hostnameLabel;
   private JLabel portLabel;
   private JLabel typeLabel;
@@ -28,8 +28,9 @@ public class InstrumentFrame extends JFrame {
   private JButton resetButton;
   private JButton checkButton;
   private JScrollPane patientTab;
-  private JPanel conectionPanel;
+  private JPanel connectionPanel;
   private PatientPanel patientPanel;
+  //TODO: add a label or something that changes to indicated connected
 
 
   public InstrumentFrame(Instrument instrument) {
