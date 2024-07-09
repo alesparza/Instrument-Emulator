@@ -168,10 +168,17 @@ public class StartFrame extends JFrame {
     serverRadioButton.addActionListener(e -> {
       clientRadioButton.setSelected(false);
       hostnameTextField.setEditable(false);
+      serverRadioButton.setEnabled(false);
+      clientRadioButton.setEnabled(true);
     });
     clientRadioButton.addActionListener(e -> {
+      if (!clientRadioButton.isSelected()) {
+        return;
+      }
       serverRadioButton.setSelected(false);
       hostnameTextField.setEditable(true);
+      serverRadioButton.setEnabled(true);
+      clientRadioButton.setEnabled(false);
     });
 
     // done setting up GUI
