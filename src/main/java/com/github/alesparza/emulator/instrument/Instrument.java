@@ -110,6 +110,21 @@ public class Instrument {
    * Sends ENQ, expects ACK, sends EOT.
    */
   public void check() {
+    sendENQ();
+    boolean check = checkForACK();
+    sendEOT();
+    if (!check) {
+      printConsoleLn("did not receive ACK from LIS");
+    }
+    else {
+      printConsoleLn("Connection check successful");
+    }
+  }
+
+  /**
+   * Sends ENQ to start an ASTM message.
+   */
+  public void sendENQ() {
     if (!connection.isInit()) {
       printConsoleLn("Error: not started");
       return;
@@ -117,11 +132,32 @@ public class Instrument {
     byte[] message = new byte[] {CntlChar.ENQ.getAsciiByte()};
     connection.sendMessage(message);
     printCommLn("--> " + Ascii.getFormattedString(message));
-    byte[] receive = connection.receiveMessage();
-    printCommLn("<-- " + Ascii.getFormattedString(receive));
-    message = new byte[] {CntlChar.EOT.getAsciiByte()};
+  }
+
+  /**
+   * Sends EOT to end an ASTM message.
+   */
+  public void sendEOT() {
+    if (!connection.isInit()) {
+      printConsoleLn("Error: not started");
+      return;
+    }
+    byte[] message = new byte[] {CntlChar.EOT.getAsciiByte()};
     connection.sendMessage(message);
     printCommLn("--> " + Ascii.getFormattedString(message));
+  }
+
+  /**
+   * checks if response is ACK
+   * @return <code>true</code> if the response is ACK, <code>false</code>otherwise.
+   */
+  public boolean checkForACK() {
+    byte[] receive = connection.receiveMessage();
+    printCommLn("<-- " + Ascii.getFormattedString(receive));
+    if (receive[0] == CntlChar.ACK.getAsciiByte()) {
+      return true;
+    };
+    return false;
   }
 
   /**
@@ -133,8 +169,7 @@ public class Instrument {
     disconnect();
     connect();
   }
-
-
+  
   /**
    * Gets the name of the instrument.
    * @return the name of the instrument

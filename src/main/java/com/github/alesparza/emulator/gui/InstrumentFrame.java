@@ -56,7 +56,15 @@ public class InstrumentFrame extends JFrame {
     this.resetButton.addActionListener(e -> instrument.reset());
     // send button
     this.sendButton.addActionListener(e -> {
-      instrument.printConsoleLn("Not implemented.  But it would take all the data and send the appropriate messages to the LIS.");
+      instrument.printConsoleLn("Attempting to send message");
+      instrument.sendENQ();
+      // instrument.sendHRecord();
+      // instrument.sendPRecord();
+      // instrument.sendORecord();
+      // instrument.sendRCRecords();
+      // instrument.sendLRecord();
+      instrument.check();
+      instrument.check();
     });
 
     pack();
