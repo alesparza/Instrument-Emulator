@@ -58,13 +58,12 @@ public class InstrumentFrame extends JFrame {
     this.sendButton.addActionListener(e -> {
       instrument.printConsoleLn("Attempting to send message");
       instrument.sendENQ();
-      // instrument.sendHRecord();
-      // instrument.sendPRecord();
-      // instrument.sendORecord();
-      // instrument.sendRCRecords();
-      // instrument.sendLRecord();
-      instrument.check();
-      instrument.check();
+      // TODO: instrument.sendHRecord();
+      // TODO: instrument.sendPRecord();
+      // TODO: instrument.sendORecord();
+      // TODO: instrument.sendRCRecords();
+      // TODO: instrument.sendLRecord();
+      instrument.sendEOT();
     });
 
     pack();
