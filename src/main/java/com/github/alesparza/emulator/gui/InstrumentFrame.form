@@ -254,15 +254,9 @@
         </properties>
         <border type="line" title="Console Log"/>
         <children>
-          <component id="35645" class="javax.swing.JTextArea" binding="consoleTextArea">
+          <component id="a5f4b" class="javax.swing.JTextArea" binding="consoleTextArea">
             <constraints/>
-            <properties>
-              <editable value="false"/>
-              <lineWrap value="true"/>
-              <maximumSize width="-1" height="-1"/>
-              <minimumSize width="-1" height="-1"/>
-              <preferredSize width="-1" height="100"/>
-            </properties>
+            <properties/>
           </component>
         </children>
       </scrollpane>
@@ -275,15 +269,9 @@
         <properties/>
         <border type="line" title="Communication Log"/>
         <children>
-          <component id="aea9c" class="javax.swing.JTextArea" binding="commTextArea">
+          <component id="2e682" class="javax.swing.JTextArea" binding="commTextArea">
             <constraints/>
-            <properties>
-              <editable value="false"/>
-              <lineWrap value="true"/>
-              <maximumSize width="-1" height="-1"/>
-              <minimumSize width="-1" height="-1"/>
-              <preferredSize width="-1" height="100"/>
-            </properties>
+            <properties/>
           </component>
         </children>
       </scrollpane>
