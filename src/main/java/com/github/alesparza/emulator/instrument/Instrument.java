@@ -226,7 +226,7 @@ public class Instrument {
     printCommLn("--> " + Ascii.getFormattedString(toSend));
     if (!checkForACK()) {
       printConsoleLn("Failed to send message");
-      return -1; // TODO: magic number
+      return AstmProtocol.INVALID_FRAME;
     }
     return frame;
   }

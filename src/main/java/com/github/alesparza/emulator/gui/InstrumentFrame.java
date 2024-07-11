@@ -1,6 +1,7 @@
 package com.github.alesparza.emulator.gui;
 
 import com.github.alesparza.astm.component.HostRecord;
+import com.github.alesparza.astm.protcol.AstmProtocol;
 import com.github.alesparza.emulator.instrument.Instrument;
 
 import javax.swing.*;
@@ -55,6 +56,7 @@ public class InstrumentFrame extends JFrame {
 
     // reset button
     this.resetButton.addActionListener(e -> instrument.reset());
+
     // send button
     this.sendButton.addActionListener(e -> {
 
@@ -86,7 +88,7 @@ public class InstrumentFrame extends JFrame {
         return;
       }
 
-      frame = (lastFrame + 1) % 8; // calculate next frame to send, mod 8 (0-7)
+      frame = (lastFrame + 1) % AstmProtocol.FRAME_MODULO; // calculate next frame to use
       // TODO: instrument.sendPRecord();
       // TODO: instrument.sendORecord();
       // TODO: instrument.sendRCRecords();
