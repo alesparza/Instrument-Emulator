@@ -7,15 +7,45 @@ public class PatientPanel {
   private JTextField firstTextField;
   private JTextField mTextField;
   private JTextField lastTextField;
-  private JTextField a123456789TextField;
-  private JTextField a20000101TextField;
-  private JTextField uTextField;
+  private JTextField mrnTextField;
+  private JTextField dobTextField; // TODO: make it a chooser
+  private JTextField sexTextField;
   private JLabel middleNameLabel;
   private JLabel firstNameLabel;
   private JLabel lastNameLabel;
   private JLabel patientIDLabel;
   private JLabel dobLabel;
   private JLabel sexLabel;
-  private JTextField hospitalTextField;
+  private JTextField locationTextField;
   private JLabel locationLabel;
+
+
+  public String getFirstName() {
+    return firstTextField.getText();
+  }
+
+  public String getMiddleName() {
+    return mTextField.getText();
+  }
+
+  public String getLastName() {
+    return lastTextField.getText();
+  }
+
+  public String getPatientID() {
+    return mrnTextField.getText();
+  }
+
+  public String getDOB() {
+    return dobTextField.getText();
+  }
+
+  public String getSex() {
+    return sexTextField.getText();
+  }
+
+  public String getLocation() {
+    return locationTextField.getText();
+  }
+
 }

@@ -232,6 +232,26 @@ public class Instrument {
   }
 
   /**
+   * Sends the P record(s).
+   * @return <code>true</code> if entire message sent and ACK'd successfully, <code>false</code>otherwise.
+   */
+  public int sendPRecord(int startFrame, Record record) {
+    int frame = startFrame;
+    byte[] data = AstmProtocol.generatePRecord(asmtConfiguration, record);
+
+    // TODO: loop through 64000 characters, incrementing frame number
+    // TODO: 64000 is DxH, but may not be standard
+    byte[] toSend = AstmProtocol.generateMessage(frame, data, true);
+    connection.sendMessage(toSend);
+    printCommLn("--> " + Ascii.getFormattedString(toSend));
+    if (!checkForACK()) {
+      printConsoleLn("Failed to send message");
+      return AstmProtocol.INVALID_FRAME;
+    }
+    return frame;
+  }
+
+  /**
    * Gets the name of the instrument.
    * @return the name of the instrument
    */

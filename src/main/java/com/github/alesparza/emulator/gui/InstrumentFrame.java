@@ -3,6 +3,7 @@ package com.github.alesparza.emulator.gui;
 import com.github.alesparza.astm.component.Component;
 import com.github.alesparza.astm.component.Field;
 import com.github.alesparza.astm.component.HostRecord;
+import com.github.alesparza.astm.component.PatientRecord;
 import com.github.alesparza.astm.protcol.AstmProtocol;
 import com.github.alesparza.emulator.instrument.Instrument;
 
@@ -63,6 +64,7 @@ public class InstrumentFrame extends JFrame {
     // send button
     this.sendButton.addActionListener(e -> {
       HostRecord hostRecord = getHostRecord();
+      PatientRecord patientRecord = getPatientRecord();
 
       instrument.printConsoleLn("Attempting to send message");
 
@@ -90,7 +92,13 @@ public class InstrumentFrame extends JFrame {
       }
 
       frame = (lastFrame + 1) % AstmProtocol.FRAME_MODULO; // calculate next frame to use
-      // TODO: instrument.sendPRecord();
+      if ((lastFrame = instrument.sendPRecord(frame, patientRecord)) == -1) {
+        instrument.printConsoleLn("Failed to send P record");
+        instrument.sendEOT();
+        return;
+      };
+
+      frame = (lastFrame + 1) % AstmProtocol.FRAME_MODULO;
       // TODO: instrument.sendORecord();
       // TODO: instrument.sendRCRecords();
       // TODO: instrument.sendLRecord();
@@ -131,5 +139,48 @@ public class InstrumentFrame extends JFrame {
     field10.setComponent(0, component);
     hostRecord.setField(10, field10);
     return hostRecord;
+  }
+
+  /**
+   * Gets a Host Record from the InstrumentForm contents
+   * @return new Record
+   */
+  private PatientRecord getPatientRecord() {
+    PatientRecord patientRecord = new PatientRecord();
+
+    // field 4: Laboratory Assigned Patient ID
+    Field field4 = new Field("Laboratory Assigned Patient ID", 1);
+    Component component = new Component("MRN", 100, patientPanel.getPatientID().getBytes());
+    field4.setComponent(0, component);
+    patientRecord.setField(4, field4);
+
+    // field 6: Patient Name
+    Field field6 = new Field("Patient Name", 3);
+    component = new Component("Last Name", 100, patientPanel.getLastName().getBytes());
+    Component component2 = new Component("First Name", 100, patientPanel.getFirstName().getBytes());
+    Component component3 = new Component("Middle Name", 100, patientPanel.getMiddleName().getBytes());
+    field6.setComponent(0, component);
+    field6.setComponent(1, component2);
+    field6.setComponent(2, component3);
+    patientRecord.setField(6, field6);
+
+    // field 8: Birthdate (YYYYMMDD)
+    Field field8 = new Field("Birthdate", 1);
+    component = new Component("DOB", 8, patientPanel.getDOB().getBytes());
+    field8.setComponent(0, component);
+    patientRecord.setField(8, field8);
+
+    // field 9: Sex
+    Field field9 = new Field("Sex", 1);
+    component = new Component("Sex", 1, patientPanel.getSex().getBytes());
+    field9.setComponent(0, component);
+    patientRecord.setField(9, field8);
+
+    // field 26: Location
+    Field field26 = new Field("Patient Location", 1);
+    component = new Component("Location", 100, patientPanel.getLocation().getBytes());
+    field26.setComponent(0, component);
+    patientRecord.setField(26, field26);
+    return patientRecord;
   }
 }
