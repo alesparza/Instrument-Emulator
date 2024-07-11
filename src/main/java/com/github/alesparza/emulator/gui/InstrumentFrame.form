@@ -128,7 +128,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <nested-form id="a6748" form-file="com/github/alesparza/emulator/gui/DevicePanel.form">
+              <nested-form id="a6748" form-file="com/github/alesparza/emulator/gui/DevicePanel.form" binding="devicePanel">
                 <constraints/>
               </nested-form>
             </children>

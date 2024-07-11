@@ -35,6 +35,7 @@ public class InstrumentFrame extends JFrame {
   private JPanel connectionPanel;
   private PatientPanel patientPanel;
   private JButton sendButton;
+  private DevicePanel devicePanel;
   //TODO: add a label or something that changes to indicated connected
 
 
