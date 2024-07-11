@@ -1,6 +1,6 @@
 package com.github.alesparza.astm.protcol;
 
-public class astmConfiguration {
+public class AstmConfiguration {
 
   /**
    * Default field delimiter: '|'
@@ -45,7 +45,7 @@ public class astmConfiguration {
   /**
    * Constructs a new ASTM configuration using the default delimiters.
    */
-  public astmConfiguration() {
+  public AstmConfiguration() {
     fieldDelimiter = DEFAULT_FIELD_DELIM;
     repeatDelimiter = DEFAULT_REPEAT_DELIM;
     componentDelimiter = DEFAULT_COMPONENT_DELIM;
@@ -59,7 +59,7 @@ public class astmConfiguration {
    * @param componentDelimiter component delimiter to use
    * @param escapeDelimiter escape delimiter to use
    */
-  public astmConfiguration(char fieldDelimiter, char repeatDelimiter, char componentDelimiter, char escapeDelimiter) {
+  public AstmConfiguration(char fieldDelimiter, char repeatDelimiter, char componentDelimiter, char escapeDelimiter) {
     this.fieldDelimiter = fieldDelimiter;
     this.repeatDelimiter = repeatDelimiter;
     this.componentDelimiter = componentDelimiter;
