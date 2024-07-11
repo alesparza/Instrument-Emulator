@@ -78,6 +78,7 @@ public class AstmProtocol {
    * <br>
    * Example: <STX>1H|\!~|||DxH|||||LIS||P|LIS2-A|20240703125902<CR><ETX>59<CR><LF>
    * @param astmConfiguration the ASTM configuration to use for this record
+   * @param record
    * @return
    */
   public static byte[] generateHRecord(AstmConfiguration astmConfiguration, Record record) {
@@ -144,4 +145,177 @@ public class AstmProtocol {
 
     return sb.toString().getBytes();
   }
+
+  /**
+   * Generates a P record.
+   * <br>
+   * Example: <STX>2P|1||641647714||ZZZTSTTWO!HUPLAB||19731107!50!Y|F|||||||||||||||||HCDS HUP Centr<CR><ETX>C5<CR><LF>
+   * @param astmConfiguration the ASTM configuration to use for this record
+   * @param record
+   * @return
+   */
+  public static byte[] generatePRecord(AstmConfiguration astmConfiguration, Record record) {
+    StringBuilder sb = new StringBuilder();
+    // field 1: Record Identifier
+    sb.append(RecordType.P);
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 2: Sequence Number
+    sb.append("1"); // TODO: will this ever be longer than one?
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 3: Practise Assigned Patient ID
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 4: Laboratory Assigned Patient ID
+    sb.append(record.getField(4).getComponent(0).getData());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 5: Patient ID Flag
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 6: Patient Name
+    sb.append(record.getField(6).getComponent(0).getData()); // last name
+    sb.append(astmConfiguration.getComponentDelimiter());
+    sb.append(record.getField(6).getComponent(1).getData()); // first name
+    sb.append(astmConfiguration.getComponentDelimiter());
+    sb.append(record.getField(6).getComponent(2).getData()); // middle name
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 7: Mother's Maiden Name
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 8: Birthdate (YYYYMMDD)
+    sb.append(record.getField(8).getComponent(0).getData());
+    sb.append(astmConfiguration.getComponentDelimiter());
+    // skip age
+    sb.append(astmConfiguration.getComponentDelimiter());
+    // skip age units
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 9: Sex
+    sb.append(record.getField(9).getComponent(0).getData());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 10: Patient Race-Ethnic Origin
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 11: Patient Address
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 12: Reserved
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 13: Patient Telephone
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 14: Attending Physician ID
+    // skip ID
+    sb.append(astmConfiguration.getComponentDelimiter());
+    // skip last name
+    sb.append(astmConfiguration.getComponentDelimiter());
+    // skip first name
+    sb.append(astmConfiguration.getComponentDelimiter());
+    // skip middle name
+    sb.append(astmConfiguration.getComponentDelimiter());
+    // skip suffix
+    sb.append(astmConfiguration.getComponentDelimiter());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 15: Special Field 1
+    // skip user field 1
+    sb.append(astmConfiguration.getComponentDelimiter());
+    // skip user field 2
+    sb.append(astmConfiguration.getComponentDelimiter());
+    // skip user field 3
+    sb.append(astmConfiguration.getComponentDelimiter());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 16: Special Field 2
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 17: Patient Height
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 18: Patient Weight
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 19: Patient Diagnosis
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 20: Patient Medications
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 21: Patient Diet
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 22: Practise Field #1
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 23: Practise Field #2
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 24: Admission and Discharge Dates
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 25: Admission Status
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 26: Patient Location
+    sb.append(record.getField(26).getComponent(0).getData());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 27: Nature of Alt. Diag. Code & Class
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 28: Alt. Diag. Code & Class
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 29: Patient Religion
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 30: Patient Marital Status
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 31: Isolation Status
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 32: Hospital Service
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 33: Hospital Institution
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 34: Dosage Category
+    // skipped
+
+    // end of record
+    sb.append("\r");
+
+    return sb.toString().getBytes();
+  }
+
 }
