@@ -42,7 +42,7 @@ public class AstmProtocol {
     for (int i = 1; i < data.length; i++) {
       sum = (sum + data[i]) % CHECKSUM_MODULO;
     }
-    return Integer.toHexString(sum).getBytes();
+    return Integer.toHexString(sum).toUpperCase().getBytes();
   }
 
   /**
