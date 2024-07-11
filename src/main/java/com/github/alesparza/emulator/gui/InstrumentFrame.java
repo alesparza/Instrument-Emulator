@@ -1,5 +1,6 @@
 package com.github.alesparza.emulator.gui;
 
+import com.github.alesparza.astm.component.HostRecord;
 import com.github.alesparza.emulator.instrument.Instrument;
 
 import javax.swing.*;
@@ -56,6 +57,10 @@ public class InstrumentFrame extends JFrame {
     this.resetButton.addActionListener(e -> instrument.reset());
     // send button
     this.sendButton.addActionListener(e -> {
+
+      // TODO: build all records based on current state of form
+      HostRecord hostRecord = new HostRecord(instrument.getType());
+
       instrument.printConsoleLn("Attempting to send message");
 
       // start message with ENQ, terminate early on error
@@ -75,7 +80,7 @@ public class InstrumentFrame extends JFrame {
       // send H record, terminate early etc.
       int frame = 1; // always start with frame 1
       int lastFrame; // return value is the last frame sent
-      if ((lastFrame = instrument.sendHRecord(frame)) == -1) {
+      if ((lastFrame = instrument.sendHRecord(frame, hostRecord)) == -1) {
         instrument.printConsoleLn("Failed to send H record");
         instrument.sendEOT();
         return;
