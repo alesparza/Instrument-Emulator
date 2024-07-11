@@ -66,4 +66,19 @@ public class AstmConfiguration {
     this.escapeDelimiter = escapeDelimiter;
   }
 
+  public char getFieldDelimiter() {
+    return fieldDelimiter;
+  }
+
+  public char getRepeatDelimiter() {
+    return repeatDelimiter;
+  }
+
+  public char getComponentDelimiter() {
+    return componentDelimiter;
+  }
+
+  public char getEscapeDelimiter() {
+    return escapeDelimiter;
+  }
 }
