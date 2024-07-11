@@ -2,6 +2,7 @@ package com.github.alesparza.emulator.instrument;
 
 import com.github.alesparza.ascii.Ascii;
 import com.github.alesparza.ascii.Ascii.CntlChar;
+import com.github.alesparza.astm.component.Record;
 import com.github.alesparza.astm.protcol.AstmConfiguration;
 import com.github.alesparza.astm.protcol.AstmProtocol;
 
@@ -75,15 +76,15 @@ public class Instrument {
    * @param type type of instrument
    * @param hostname hostname for communication
    * @param port port for communication
-   * @param asmtConfiguration astm configuration
+   * @param astmConfiguration astm configuration
    */
-  public Instrument(String name, InstrumentType type, String hostname, int port, AstmConfiguration asmtConfiguration) {
+  public Instrument(String name, InstrumentType type, String hostname, int port, AstmConfiguration astmConfiguration) {
     this.type = type;
     this.name = name;
     this.hostname = hostname;
     this.port = port;
     connection = new InstrumentConnection(hostname, port);
-    this.asmtConfiguration = asmtConfiguration;
+    this.asmtConfiguration = astmConfiguration;
   }
 
   /**
@@ -214,16 +215,19 @@ public class Instrument {
    * Sends the H record(s).
    * @return <code>true</code> if entire message sent and ACK'd successfully, <code>false</code>otherwise.
    */
-  public int sendHRecord(int startFrame) {
+  public int sendHRecord(int startFrame, Record record) {
     int frame = startFrame;
-    byte[] data = AstmProtocol.generateHRecord(asmtConfiguration);
+    byte[] data = AstmProtocol.generateHRecord(asmtConfiguration, record);
 
     // TODO: loop through 64000 characters, incrementing frame number
     // TODO: 64000 is DxH, but may not be standard
     byte[] toSend = AstmProtocol.generateMessage(frame, data, true);
-
-    printConsoleLn("Sending: " + Ascii.getFormattedString(toSend));
-
+    connection.sendMessage(toSend);
+    printCommLn("--> " + Ascii.getFormattedString(toSend));
+    if (!checkForACK()) {
+      printConsoleLn("Failed to send message");
+      return -1; // TODO: magic number
+    }
     return frame;
   }
 
