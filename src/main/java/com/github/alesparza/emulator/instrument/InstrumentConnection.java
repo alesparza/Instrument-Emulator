@@ -75,8 +75,10 @@ public class InstrumentConnection {
    */
   public String initialise(String hostname, int port) {
     if (isInit) return "Error: already started";
+    int timeout = 1000;
     try {
       socket = new Socket(hostname, port);
+      socket.setSoTimeout(timeout);
       out = socket.getOutputStream();
       in = socket.getInputStream();
     } catch (IOException e) {
@@ -98,6 +100,7 @@ public class InstrumentConnection {
       serverSocket = new ServerSocket(port);
       serverSocket.setSoTimeout(timeout);
       socket = serverSocket.accept();
+      socket.setSoTimeout(timeout);
       isInit = true;
       return "Started server on port " + port + " and connected to LIS";
     } catch (SocketTimeoutException e) {
