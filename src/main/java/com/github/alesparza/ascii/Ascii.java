@@ -21,6 +21,7 @@ public class Ascii {
     VT((byte) 0x0b, "\13", "<VT>"),
     CR((byte) 0x0d, "\r", "<CR>"),
     NAK((byte) 0x15, "\25","<NAK>"),
+    ETB((byte) 0x17, "\27","<ETB>"),
     ;
 
     /**
