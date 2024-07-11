@@ -32,11 +32,11 @@ public abstract class Record {
   }
 
   /**
-   * Sets a specific field.  Private because this should be done at construction and only modified later.
+   * Sets a specific field.
    * @param idx the ASTM Field number index.  Note that ASTM Field Numbers are 1-indexed.  Follow specification.
    * @param field the Field to store
    */
-  private void setField(int idx, Field field) {
+  public void setField(int idx, Field field) {
     if (idx < 1 || idx >= fields.length + 1) {
       return;
     }

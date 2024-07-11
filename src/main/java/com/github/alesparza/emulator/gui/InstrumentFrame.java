@@ -1,5 +1,7 @@
 package com.github.alesparza.emulator.gui;
 
+import com.github.alesparza.astm.component.Component;
+import com.github.alesparza.astm.component.Field;
 import com.github.alesparza.astm.component.HostRecord;
 import com.github.alesparza.astm.protcol.AstmProtocol;
 import com.github.alesparza.emulator.instrument.Instrument;
@@ -61,7 +63,31 @@ public class InstrumentFrame extends JFrame {
     this.sendButton.addActionListener(e -> {
 
       // TODO: build all records based on current state of form
-      HostRecord hostRecord = new HostRecord(instrument.getType());
+      HostRecord hostRecord = new HostRecord();
+
+      // field 5: Sender Name
+      Field field5 = new Field("Sender Name", 1);
+      Component component = new Component("Sender Name", 100, "DxH".getBytes());
+      field5.setComponent(0, component);
+      hostRecord.setField(5, field5);
+
+      // field 6: Sender Street Address
+      Field field6 = new Field("Sender Street Address", 1);
+      component = new Component("Address", 100, "123 Lab Lane".getBytes());
+      field6.setComponent(0, component);
+      hostRecord.setField(6, field6);
+
+      // field 8: Sender Telephone Number
+      Field field8 = new Field("Sender Phone Number", 1);
+      component = new Component("Phone", 100, "555.123.4567".getBytes());
+      field8.setComponent(0, component);
+      hostRecord.setField(8, field8);
+
+      // field 10: Receiver ID
+      Field field10 = new Field("Receiver ID", 1);
+      component = new Component("Address", 100, "LIS".getBytes());
+      field10.setComponent(0, component);
+      hostRecord.setField(10, field10);
 
       instrument.printConsoleLn("Attempting to send message");
 

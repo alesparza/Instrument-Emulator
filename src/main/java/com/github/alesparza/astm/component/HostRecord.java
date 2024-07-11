@@ -4,6 +4,12 @@ import com.github.alesparza.emulator.instrument.InstrumentType;
 
 /**
  * Represents a Host Record.
+ * <br>
+ * This record only stores information based on the InstrumentType or set by form fields:
+ * Instrument Name,
+ * Instrument Address,
+ * Instrument Telephone Number,
+ * Receiver ID.
  */
 public class HostRecord extends Record {
 
@@ -15,40 +21,9 @@ public class HostRecord extends Record {
 
   /**
    * Constructs a new Host Record using instrument specific configurations.
-   * @param type the instrument type to use to construct the record.
    */
-  public HostRecord(InstrumentType type) {
+  public HostRecord() {
     super(NUM_FIELDS);
-    //TODO: insert instrument-agnostic configurations here
-    Field recordIdentifier = new Field(1, "Record Identifier");
-    Component component = new Component("Record Identifier", 1, new byte[] { (byte) RecordType.H.getRecordIdentifierChar()});
-    recordIdentifier.setComponent(0, component);
-    fields[1] = recordIdentifier;
-
-    Field delimiters = new Field(4, "Delimiters");
-    component = new Component("Field", 1, new byte[] { (byte) '|'});
-    delimiters.setComponent(0, component);
-    component = new Component("Repeat", 1, new byte[] { (byte) '\\'});
-    delimiters.setComponent(1, component);
-    component = new Component("Component", 1, new byte[] { (byte) '!'});
-    delimiters.setComponent(2, component);
-    component = new Component("Escape", 1, new byte[] { (byte) '~'});
-    delimiters.setComponent(3, component);
-    fields[2] = delimiters;
-
-    // remainder are instrument specific
-    switch (type) {
-
-      case GENERIC -> {
-        //TODO: make generic fields without size restrictions
-        ;
-      }
-      case DxH -> {
-        //TODO: make fields based on DxH specification
-        ;
-      }
-      default -> throw new IllegalStateException("Unsupported instrument type: " + type);
-    }
   }
 
   /**
@@ -58,4 +33,5 @@ public class HostRecord extends Record {
   public Field getRecordIdentifier() {
     return getField(1);
   }
+
 }

@@ -67,8 +67,8 @@ public class Component {
    * Gets the data of this component.
    * @return the data of this component
    */
-  public byte[] getData() {
-    return data;
+  public String getData() {
+    return new String(data);
   }
 
   /**

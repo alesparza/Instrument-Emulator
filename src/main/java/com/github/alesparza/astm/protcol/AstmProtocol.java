@@ -2,6 +2,7 @@ package com.github.alesparza.astm.protcol;
 
 import com.github.alesparza.ascii.Ascii;
 import com.github.alesparza.astm.component.Record;
+import com.github.alesparza.astm.component.RecordType;
 
 /**
  * Utilities to construct ASTM messages.
@@ -82,7 +83,7 @@ public class AstmProtocol {
   public static byte[] generateHRecord(AstmConfiguration astmConfiguration, Record record) {
     StringBuilder sb = new StringBuilder();
     // field 1: Record Identifier
-    sb.append("H");
+    sb.append(RecordType.H);
 
     // field 2: Delimiters
     sb.append(astmConfiguration.getFieldDelimiter());
@@ -100,11 +101,11 @@ public class AstmProtocol {
     sb.append(astmConfiguration.getFieldDelimiter());
 
     // field 5: Sender Name
-    sb.append("DxH");
+    sb.append(record.getField(5).getComponent(0).getData());
     sb.append(astmConfiguration.getFieldDelimiter());
 
     // field 6: Sender Street Address
-    // skipped
+    sb.append(record.getField(6).getComponent(0).getData());
     sb.append(astmConfiguration.getFieldDelimiter());
 
     // field 7: Reserved
@@ -112,7 +113,7 @@ public class AstmProtocol {
     sb.append(astmConfiguration.getFieldDelimiter());
 
     // field 8: Sender Telephone Number
-    //sb.append("TeleNum");
+    sb.append(record.getField(8).getComponent(0).getData());
     sb.append(astmConfiguration.getFieldDelimiter());
 
     // field 9: Characteristics of Sender
@@ -120,7 +121,7 @@ public class AstmProtocol {
     sb.append(astmConfiguration.getFieldDelimiter());
 
     // field 10: Receiver ID
-    sb.append("LIS");
+    sb.append(record.getField(10).getComponent(0).getData()); //TODO: from record/form but need to add textfield
     sb.append(astmConfiguration.getFieldDelimiter());
 
     // field 11: comment or special instructions
@@ -128,15 +129,15 @@ public class AstmProtocol {
     sb.append(astmConfiguration.getFieldDelimiter());
 
     // field 12: Processing ID
-    sb.append("P");
+    sb.append("P"); // pretty sure for emulator purposes, this is always P
     sb.append(astmConfiguration.getFieldDelimiter());
 
     // field 13: Version Number
-    sb.append("LIS2-A");
+    sb.append("LIS2-A"); // hardcoded protocol version
     sb.append(astmConfiguration.getFieldDelimiter());
 
     // field 14: Date and Time of Message
-    sb.append("20240703125902");
+    sb.append("20240703125902"); //TODO: use Now() YYYYMMDDHHMMSS
 
     // end of record
     sb.append("\r");
