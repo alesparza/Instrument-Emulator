@@ -123,32 +123,42 @@ public class Instrument {
 
   /**
    * Sends ENQ to start an ASTM message.
+   *
+   * @return
    */
-  public void sendENQ() {
+  public boolean sendENQ() {
     if (!connection.isInit()) {
       printConsoleLn("Error: not started");
-      return;
+      return false;
     }
     String ret;
     byte[] message = new byte[] {CntlChar.ENQ.getAsciiByte()};
     ret = connection.sendMessage(message);
-    if (!ret.isEmpty()) {printConsoleLn(ret);}
+    if (!ret.isEmpty()) {
+      printConsoleLn(ret);
+      return false;
+    }
     printCommLn("--> " + Ascii.getFormattedString(message));
+    return true;
   }
 
   /**
    * Sends EOT to end an ASTM message.
    */
-  public void sendEOT() {
+  public boolean sendEOT() {
     if (!connection.isInit()) {
       printConsoleLn("Error: not started");
-      return;
+      return false;
     }
     String ret;
     byte[] message = new byte[] {CntlChar.EOT.getAsciiByte()};
     ret = connection.sendMessage(message);
-    if (!ret.isEmpty()) {printConsoleLn(ret);}
+    if (!ret.isEmpty()) {
+      printConsoleLn(ret);
+      return false;
+    }
     printCommLn("--> " + Ascii.getFormattedString(message));
+    return true;
   }
 
   /**
