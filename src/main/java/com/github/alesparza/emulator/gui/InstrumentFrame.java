@@ -73,11 +73,15 @@ public class InstrumentFrame extends JFrame {
       }
 
       // send H record, terminate early etc.
-      if (!instrument.sendHRecord()) {
+      int frame = 1; // always start with frame 1
+      int lastFrame; // return value is the last frame sent
+      if ((lastFrame = instrument.sendHRecord(frame)) != -1) {
         instrument.printConsoleLn("Failed to send H record");
         instrument.sendEOT();
         return;
       }
+
+      frame = (lastFrame + 1) % 8; // calculate next frame to send, mod 8 (0-7)
       // TODO: instrument.sendPRecord();
       // TODO: instrument.sendORecord();
       // TODO: instrument.sendRCRecords();

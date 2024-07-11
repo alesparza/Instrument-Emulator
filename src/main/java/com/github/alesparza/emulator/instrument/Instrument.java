@@ -2,8 +2,11 @@ package com.github.alesparza.emulator.instrument;
 
 import com.github.alesparza.ascii.Ascii;
 import com.github.alesparza.ascii.Ascii.CntlChar;
+import com.github.alesparza.astm.protcol.AstmConfiguration;
+import com.github.alesparza.astm.protcol.AstmProtocol;
 
 import javax.swing.*;
+import java.util.Arrays;
 
 /**
  * Represents a single Instrument.
@@ -40,14 +43,18 @@ public class Instrument {
    */
   private JTextArea commTextArea;
 
-
   /**
    * The Instrument Connection this instrument uses to communicate.
    */
   private final InstrumentConnection connection;
 
   /**
-   * Constructs a new instrument.
+   * The ASTM configuration this instrument uses to communicate.
+   */
+  private final AstmConfiguration asmtConfiguration;
+
+  /**
+   * Constructs a new instrument with the default ASTM configuration.
    * @param name name of instrument
    * @param type type of instrument
    * @param hostname hostname for communication
@@ -59,6 +66,24 @@ public class Instrument {
     this.hostname = hostname;
     this.port = port;
     connection = new InstrumentConnection(hostname, port);
+    asmtConfiguration = new AstmConfiguration();
+  }
+
+  /**
+   * Constructs a new instrument.
+   * @param name name of instrument
+   * @param type type of instrument
+   * @param hostname hostname for communication
+   * @param port port for communication
+   * @param asmtConfiguration astm configuration
+   */
+  public Instrument(String name, InstrumentType type, String hostname, int port, AstmConfiguration asmtConfiguration) {
+    this.type = type;
+    this.name = name;
+    this.hostname = hostname;
+    this.port = port;
+    connection = new InstrumentConnection(hostname, port);
+    this.asmtConfiguration = asmtConfiguration;
   }
 
   /**
@@ -144,6 +169,7 @@ public class Instrument {
 
   /**
    * Sends EOT to end an ASTM message.
+   * @return
    */
   public boolean sendEOT() {
     if (!connection.isInit()) {
@@ -185,11 +211,19 @@ public class Instrument {
   }
 
   /**
-   * Sends the H record.
+   * Sends the H record(s).
    * @return <code>true</code> if entire message sent and ACK'd successfully, <code>false</code>otherwise.
    */
-  public boolean sendHRecord() {
-    return false;
+  public int sendHRecord(int startFrame) {
+    int frame = startFrame;
+    byte[] data = AstmProtocol.generateHRecord(asmtConfiguration);
+
+    // TODO: loop through 240 characters, incrementing frame number
+    byte[] toSend = AstmProtocol.generateMessage(frame, data, false);
+
+    printConsoleLn("Sending: " + Ascii.getFormattedString(toSend));
+
+    return frame;
   }
 
   /**
