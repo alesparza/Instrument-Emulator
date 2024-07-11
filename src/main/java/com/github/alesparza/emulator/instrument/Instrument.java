@@ -185,6 +185,14 @@ public class Instrument {
   }
 
   /**
+   * Sends the H record.
+   * @return <code>true</code> if entire message sent and ACK'd successfully, <code>false</code>otherwise.
+   */
+  public boolean sendHRecord() {
+    return false;
+  }
+
+  /**
    * Gets the name of the instrument.
    * @return the name of the instrument
    */

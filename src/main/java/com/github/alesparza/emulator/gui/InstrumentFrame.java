@@ -57,8 +57,27 @@ public class InstrumentFrame extends JFrame {
     // send button
     this.sendButton.addActionListener(e -> {
       instrument.printConsoleLn("Attempting to send message");
-      instrument.sendENQ();
-      // TODO: instrument.sendHRecord();
+
+      // start message with ENQ, terminate early on error
+      if (!instrument.sendENQ()) {
+        instrument.printConsoleLn("Failed to send ENQ");
+        instrument.sendEOT();
+        return;
+      }
+
+      // check for ACK, terminate early if not received
+      if (!instrument.checkForACK()) {
+        instrument.printConsoleLn("Failed check for ACK");
+        instrument.sendEOT();
+        return;
+      }
+
+      // send H record, terminate early etc.
+      if (!instrument.sendHRecord()) {
+        instrument.printConsoleLn("Failed to send H record");
+        instrument.sendEOT();
+        return;
+      }
       // TODO: instrument.sendPRecord();
       // TODO: instrument.sendORecord();
       // TODO: instrument.sendRCRecords();
