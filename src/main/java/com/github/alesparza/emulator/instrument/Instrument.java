@@ -218,8 +218,9 @@ public class Instrument {
     int frame = startFrame;
     byte[] data = AstmProtocol.generateHRecord(asmtConfiguration);
 
-    // TODO: loop through 240 characters, incrementing frame number
-    byte[] toSend = AstmProtocol.generateMessage(frame, data, false);
+    // TODO: loop through 64000 characters, incrementing frame number
+    // TODO: 64000 is DxH, but may not be standard
+    byte[] toSend = AstmProtocol.generateMessage(frame, data, true);
 
     printConsoleLn("Sending: " + Ascii.getFormattedString(toSend));
 
