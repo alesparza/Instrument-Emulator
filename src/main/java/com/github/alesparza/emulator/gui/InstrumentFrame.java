@@ -68,19 +68,19 @@ public class InstrumentFrame extends JFrame {
 
       // field 5: Sender Name
       Field field5 = new Field("Sender Name", 1);
-      Component component = new Component("Sender Name", 100, "DxH".getBytes());
+      Component component = new Component("Sender Name", 100, devicePanel.getName().getBytes());
       field5.setComponent(0, component);
       hostRecord.setField(5, field5);
 
       // field 6: Sender Street Address
       Field field6 = new Field("Sender Street Address", 1);
-      component = new Component("Address", 100, "123 Lab Lane".getBytes());
+      component = new Component("Address", 100, devicePanel.getAddress().getBytes());
       field6.setComponent(0, component);
       hostRecord.setField(6, field6);
 
       // field 8: Sender Telephone Number
       Field field8 = new Field("Sender Phone Number", 1);
-      component = new Component("Phone", 100, "555.123.4567".getBytes());
+      component = new Component("Phone", 100, devicePanel.getPhone().getBytes());
       field8.setComponent(0, component);
       hostRecord.setField(8, field8);
 
