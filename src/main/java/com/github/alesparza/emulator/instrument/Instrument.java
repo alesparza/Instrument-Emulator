@@ -129,8 +129,10 @@ public class Instrument {
       printConsoleLn("Error: not started");
       return;
     }
+    String ret;
     byte[] message = new byte[] {CntlChar.ENQ.getAsciiByte()};
-    connection.sendMessage(message);
+    ret = connection.sendMessage(message);
+    if (!ret.isEmpty()) {printConsoleLn(ret);}
     printCommLn("--> " + Ascii.getFormattedString(message));
   }
 
@@ -142,8 +144,10 @@ public class Instrument {
       printConsoleLn("Error: not started");
       return;
     }
+    String ret;
     byte[] message = new byte[] {CntlChar.EOT.getAsciiByte()};
-    connection.sendMessage(message);
+    ret = connection.sendMessage(message);
+    if (!ret.isEmpty()) {printConsoleLn(ret);}
     printCommLn("--> " + Ascii.getFormattedString(message));
   }
 
@@ -169,7 +173,7 @@ public class Instrument {
     disconnect();
     connect();
   }
-  
+
   /**
    * Gets the name of the instrument.
    * @return the name of the instrument

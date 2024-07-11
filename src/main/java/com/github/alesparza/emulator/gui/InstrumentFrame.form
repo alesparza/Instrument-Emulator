@@ -245,17 +245,20 @@
       </grid>
       <scrollpane id="78189" binding="consoleScrollablePane">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="800" height="150"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <verticalScrollBarPolicy value="20"/>
+        </properties>
         <border type="line" title="Console Log"/>
         <children>
           <component id="35645" class="javax.swing.JTextArea" binding="consoleTextArea">
             <constraints/>
             <properties>
               <editable value="false"/>
+              <lineWrap value="true"/>
               <maximumSize width="2147483647" height="400"/>
               <minimumSize width="1" height="100"/>
               <preferredSize width="1" height="100"/>
@@ -265,7 +268,7 @@
       </scrollpane>
       <scrollpane id="455ca" binding="commScrollablePane">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="800" height="150"/>
           </grid>
         </constraints>
@@ -276,6 +279,7 @@
             <constraints/>
             <properties>
               <editable value="false"/>
+              <lineWrap value="true"/>
               <maximumSize width="2147483647" height="400"/>
               <minimumSize width="1" height="100"/>
               <preferredSize width="1" height="100"/>
