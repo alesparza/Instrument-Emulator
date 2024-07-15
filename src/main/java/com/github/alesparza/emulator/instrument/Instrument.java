@@ -73,7 +73,7 @@ public class Instrument {
         asmtConfiguration = new AstmConfiguration();
         break;
       case DxH:
-        asmtConfiguration = new AstmConfiguration('|', '!', '\\', '~',64000);
+        asmtConfiguration = new AstmConfiguration('|', '\\', '!', '~',64000);
         break;
       default:
         asmtConfiguration = new AstmConfiguration();
