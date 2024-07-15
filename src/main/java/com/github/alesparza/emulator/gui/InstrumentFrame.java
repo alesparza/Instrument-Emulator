@@ -24,10 +24,8 @@ public class InstrumentFrame extends JFrame {
   private JScrollPane resultTab;
   private JTextField hostnameTextField;
   private JTextField portTextField;
-  private JTextField typeTextField; // TODO: move to device panel
   private JLabel hostnameLabel;
   private JLabel portLabel;
-  private JLabel typeLabel;
   private JButton startButton;
   private JButton stopButton;
   private JButton resetButton;
@@ -46,7 +44,7 @@ public class InstrumentFrame extends JFrame {
     setContentPane(contentPanel);
     this.hostnameTextField.setText(instrument.getHostname());
     this.portTextField.setText(String.valueOf(instrument.getPort()));
-    this.typeTextField.setText(instrument.getType().toString());
+    this.devicePanel.getTypeTextField().setText(instrument.getType().toString());
     instrument.setGUIComponents(consoleTextArea, commTextArea);
 
     // start button

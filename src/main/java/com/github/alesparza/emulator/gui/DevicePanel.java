@@ -10,6 +10,8 @@ public class DevicePanel {
   private JLabel nameLabel;
   private JLabel addressLabel;
   private JLabel phoneLabel;
+  private JTextField typeTextField;
+  private JLabel typeLabel;
 
   public String getName() {
     return nameTextField.getText();
@@ -21,5 +23,9 @@ public class DevicePanel {
 
   public String getPhone() {
     return phoneTextField.getText();
+  }
+
+  public JTextField getTypeTextField() {
+    return this.typeTextField;
   }
 }
