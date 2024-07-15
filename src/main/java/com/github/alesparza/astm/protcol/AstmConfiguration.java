@@ -15,12 +15,12 @@ public class AstmConfiguration {
   /**
    * Default field delimiter: '!'
    */
-  public static char DEFAULT_COMPONENT_DELIM = '!';
+  public static char DEFAULT_COMPONENT_DELIM = '^';
 
   /**
    * Default field delimiter: '~'
    */
-  public static char DEFAULT_ESCAPE_DELIM = '~';
+  public static char DEFAULT_ESCAPE_DELIM = '&';
 
   /**
    * Default size of ASTM message: 64000

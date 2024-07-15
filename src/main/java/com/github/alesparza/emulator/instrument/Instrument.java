@@ -67,7 +67,16 @@ public class Instrument {
     this.hostname = hostname;
     this.port = port;
     connection = new InstrumentConnection(hostname, port);
-    asmtConfiguration = new AstmConfiguration();
+    // setup ASTM configuration based on the type
+    switch (type) {
+      case GENERIC:
+        asmtConfiguration = new AstmConfiguration();
+        break;
+      case DxH:
+        asmtConfiguration = new AstmConfiguration('|', '!', '\\', '~',64000);
+    }
+
+
   }
 
   /**
