@@ -154,7 +154,7 @@
             </properties>
             <border type="none"/>
             <children>
-              <nested-form id="1073b" form-file="com/github/alesparza/emulator/gui/ResultPanel.form">
+              <nested-form id="1073b" form-file="com/github/alesparza/emulator/gui/ResultPanel.form" binding="resultPanel">
                 <constraints/>
               </nested-form>
             </children>
