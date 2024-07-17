@@ -109,7 +109,7 @@ public class InstrumentFrame extends JFrame {
       TerminatorRecord terminatorRecord = getTerminatorRecord();
       frame = (lastFrame + 1) % AstmProtocol.FRAME_MODULO; // calculate next frame to use
       if ((lastFrame = instrument.sendLRecord(frame, terminatorRecord)) == -1) {
-        instrument.printConsoleLn("Failed to send O record");
+        instrument.printConsoleLn("Failed to send L record");
         instrument.sendEOT();
         return;
       };

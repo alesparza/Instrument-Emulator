@@ -262,7 +262,7 @@ public class Instrument {
   }
 
   /**
-   * Sends the ) record(s).
+   * Sends the O record(s).
    * @return <code>true</code> if entire message sent and ACK'd successfully, <code>false</code>otherwise.
    */
   public int sendORecord(int startFrame, Record record) {
