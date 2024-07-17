@@ -136,6 +136,7 @@ public class InstrumentConnection {
    */
   public byte[] receiveMessage() {
     if (!isInit) throw new IllegalStateException("Not started!");
+    // TODO: have this throw a ConnectionException and catch later
     byte[] message = new byte[1024];
     byte[] ret;
     try {

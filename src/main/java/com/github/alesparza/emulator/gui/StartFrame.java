@@ -162,6 +162,7 @@ public class StartFrame extends JFrame {
       instrumentedFrame.setTitle(name);
       instrumentedFrame.setLocationRelativeTo(null);
       instrumentedFrame.setVisible(true);
+      // TODO: when this frame closes, remove from the instruments table
     });
 
     // can only select one option

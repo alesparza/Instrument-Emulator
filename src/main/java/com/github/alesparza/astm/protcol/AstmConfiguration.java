@@ -23,9 +23,10 @@ public class AstmConfiguration {
   public static char DEFAULT_ESCAPE_DELIM = '&';
 
   /**
-   * Default size of ASTM message: 64000
+   * Default size of ASTM message: Integer.Max_Value
+   * This is the maximum size of the actual data to be sent from the instrument.  Should always be set.
    */
-  public static int DEFAULT_DATA_LENGTH = 64000;
+  public static int DEFAULT_DATA_LENGTH = Integer.MAX_VALUE;
 
   /**
    * Field delimiter used by this configuration.
@@ -51,6 +52,8 @@ public class AstmConfiguration {
    * Length of size of ASTM messages.
    */
   int dataLength;
+
+  // TODO: add boolean array for required fields.  default to false for all.  changes depending on instrument config
 
   /**
    * Constructs a new ASTM configuration using the default delimiters.
