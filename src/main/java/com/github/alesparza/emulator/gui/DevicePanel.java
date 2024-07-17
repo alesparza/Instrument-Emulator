@@ -12,6 +12,8 @@ public class DevicePanel {
   private JLabel phoneLabel;
   private JTextField typeTextField;
   private JLabel typeLabel;
+  private JTextField deviceIDTextField;
+  private JLabel deviceIDLabel;
 
   public String getName() {
     return nameTextField.getText();
@@ -27,5 +29,9 @@ public class DevicePanel {
 
   public JTextField getTypeTextField() {
     return this.typeTextField;
+  }
+
+  public String getDeviceID() {
+    return deviceIDTextField.getText();
   }
 }
