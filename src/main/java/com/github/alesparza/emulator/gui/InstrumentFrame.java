@@ -59,10 +59,6 @@ public class InstrumentFrame extends JFrame {
 
     // send button
     this.sendButton.addActionListener(e -> {
-      HostRecord hostRecord = getHostRecord();
-      PatientRecord patientRecord = getPatientRecord();
-      OrderRecord orderRecord = getOrderRecord();
-
       instrument.printConsoleLn("Attempting to send message");
 
       // start message with ENQ, terminate early on error
@@ -80,6 +76,7 @@ public class InstrumentFrame extends JFrame {
       }
 
       // send H record, terminate early etc.
+      HostRecord hostRecord = getHostRecord();
       int frame = 1; // always start with frame 1
       int lastFrame; // return value is the last frame sent
       if ((lastFrame = instrument.sendHRecord(frame, hostRecord)) == -1) {
@@ -88,6 +85,7 @@ public class InstrumentFrame extends JFrame {
         return;
       }
 
+      PatientRecord patientRecord = getPatientRecord();
       frame = (lastFrame + 1) % AstmProtocol.FRAME_MODULO; // calculate next frame to use
       if ((lastFrame = instrument.sendPRecord(frame, patientRecord)) == -1) {
         instrument.printConsoleLn("Failed to send P record");
@@ -95,6 +93,7 @@ public class InstrumentFrame extends JFrame {
         return;
       };
 
+      OrderRecord orderRecord = getOrderRecord();
       frame = (lastFrame + 1) % AstmProtocol.FRAME_MODULO; // calculate next frame to use
       if ((lastFrame = instrument.sendORecord(frame, orderRecord)) == -1) {
         instrument.printConsoleLn("Failed to send O record");
@@ -102,9 +101,19 @@ public class InstrumentFrame extends JFrame {
         return;
       };
 
-      // TODO: need to send C records attached to Order
-      // TODO: instrument.sendRCRecords();
-      // TODO: instrument.sendLRecord();
+      // TODO: send C records attached to order
+
+      // TODO: send R and C records
+
+
+      TerminatorRecord terminatorRecord = getTerminatorRecord();
+      frame = (lastFrame + 1) % AstmProtocol.FRAME_MODULO; // calculate next frame to use
+      if ((lastFrame = instrument.sendLRecord(frame, terminatorRecord)) == -1) {
+        instrument.printConsoleLn("Failed to send O record");
+        instrument.sendEOT();
+        return;
+      };
+
       instrument.sendEOT();
     });
 
@@ -250,5 +259,14 @@ public class InstrumentFrame extends JFrame {
     orderRecord.setField(23, field23);
 
     return orderRecord;
+  }
+
+  /**
+   * Gets a Terminator Record
+   * @return new Record
+   */
+  private TerminatorRecord getTerminatorRecord() {
+    TerminatorRecord terminatorRecord = new TerminatorRecord();
+    return terminatorRecord;
   }
 }

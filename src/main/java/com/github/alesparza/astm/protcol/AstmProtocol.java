@@ -317,6 +317,7 @@ public class AstmProtocol {
 
     return sb.toString().getBytes();
   }
+
   /**
    * Generates an O record.
    * <br>
@@ -452,6 +453,32 @@ public class AstmProtocol {
 
     // field 31: Specimen Institution
     // skipped
+
+    // end of record
+    sb.append("\r");
+
+    return sb.toString().getBytes();
+  }
+
+  /**
+   * Generates an L record.
+   * <br>
+   * Example: <STX>7L|1|N<CR><ETX>0A<CR><LF>
+   * @param astmConfiguration the ASTM configuration to use for this record
+   * @param record
+   * @return
+   */
+  public static byte[] generateLRecord(AstmConfiguration astmConfiguration, Record record) {
+    StringBuilder sb = new StringBuilder();
+    // field 1: Record Identifier
+    sb.append(RecordType.L);
+
+    // field 2: Sequence Number
+    sb.append("1");
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 3: Termination Code
+    sb.append("N");
 
     // end of record
     sb.append("\r");
