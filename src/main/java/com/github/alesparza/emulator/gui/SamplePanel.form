@@ -24,6 +24,7 @@
           </grid>
         </constraints>
         <properties>
+          <text value="123456789A"/>
           <toolTipText value="Sample ID/Accession Number.  Max characters 22."/>
         </properties>
       </component>
@@ -48,6 +49,7 @@
           </grid>
         </constraints>
         <properties>
+          <text value="00001"/>
           <toolTipText value="Instrument Position.  Max characters 5."/>
         </properties>
       </component>
@@ -72,6 +74,7 @@
           </grid>
         </constraints>
         <properties>
+          <text value="R"/>
           <toolTipText value="Sample Priority.  Must be 'R' or 'S'."/>
         </properties>
       </component>
@@ -91,6 +94,7 @@
           </grid>
         </constraints>
         <properties>
+          <text value="20240101000000"/>
           <toolTipText value="Ordered D&amp;T.  Must be YYYYMMDDHHMMSS"/>
         </properties>
       </component>
@@ -110,6 +114,7 @@
           </grid>
         </constraints>
         <properties>
+          <text value="20240101010000"/>
           <toolTipText value="Collected D&amp;T.  Must be YYYYMMDDHHMMSS"/>
         </properties>
       </component>
@@ -129,31 +134,13 @@
           </grid>
         </constraints>
         <properties>
+          <text value="20240101020000"/>
           <toolTipText value="Lab Receipt D&amp;T.  Must be YYYYMMDDHHMMSS"/>
-        </properties>
-      </component>
-      <component id="7ec7c" class="javax.swing.JLabel" binding="specimenTypeLabel">
-        <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <labelFor value="6b2d5"/>
-          <text value="Specimen Type"/>
-        </properties>
-      </component>
-      <component id="6b2d5" class="javax.swing.JTextField" binding="specimenTypeTextField" default-binding="true">
-        <constraints>
-          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <toolTipText value="Specimen Type.  Max characters 21."/>
         </properties>
       </component>
       <component id="1b3c2" class="javax.swing.JLabel" binding="completeDTLabel">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <labelFor value="1e68b"/>
@@ -162,12 +149,33 @@
       </component>
       <component id="1e68b" class="javax.swing.JTextField" binding="releasedDateAndTimeTextField" default-binding="true">
         <constraints>
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="20240101030000"/>
+          <toolTipText value="Completed D&amp;T.  Must be YYYYMMDDHHMMSS"/>
+        </properties>
+      </component>
+      <component id="7ec7c" class="javax.swing.JLabel" binding="specimenTypeLabel">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <labelFor value="6b2d5"/>
+          <text value="Specimen Type"/>
+        </properties>
+      </component>
+      <component id="6b2d5" class="javax.swing.JTextField" binding="specimenTypeTextField" default-binding="true">
+        <constraints>
           <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
         <properties>
-          <toolTipText value="Completed D&amp;T.  Must be YYYYMMDDHHMMSS"/>
+          <text value="Whole Blood"/>
+          <toolTipText value="Specimen Type.  Max characters 21."/>
         </properties>
       </component>
     </children>
