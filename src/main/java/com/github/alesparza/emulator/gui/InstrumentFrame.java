@@ -202,7 +202,7 @@ public class InstrumentFrame extends JFrame {
 
     // field 4: Instrument Specimen ID
     Field field4 = new Field("Instrument Specimen ID", 1);
-    component = new Component("Instrument Specimen ID", 100, samplePanel.getPositionID().getBytes());
+    component = new Component("Instrument Specimen ID", 5, samplePanel.getPositionID().getBytes());
     field4.setComponent(0, component);
     orderRecord.setField(4, field4);
 
@@ -221,31 +221,31 @@ public class InstrumentFrame extends JFrame {
 
     // field 7: Requested Date and Time
     Field field7 = new Field("Requested Date and Time", 1);
-    component = new Component("Requested Date and Time", 100, samplePanel.getRequestDateAndTime().getBytes());
+    component = new Component("Requested Date and Time", 14, samplePanel.getRequestDateAndTime().getBytes());
     field7.setComponent(0, component);
     orderRecord.setField(7, field7);
 
     // field 8: Collected Date and Time
     Field field8 = new Field("Collected Date and Time", 1);
-    component = new Component("Collected Date and Time", 100, samplePanel.getCollectionDateAndTime().getBytes());
+    component = new Component("Collected Date and Time", 14, samplePanel.getCollectionDateAndTime().getBytes());
     field8.setComponent(0, component);
     orderRecord.setField(8, field8);
 
     // field 15: Received Date and Time
     Field field15 = new Field("Received Date and Time", 1);
-    component = new Component("Received Date and Time", 100, samplePanel.getReceivedDateAndTime().getBytes());
+    component = new Component("Received Date and Time", 14, samplePanel.getReceivedDateAndTime().getBytes());
     field15.setComponent(0, component);
     orderRecord.setField(15, field15);
 
     // field 16: Specimen Descriptor
     Field field16 = new Field("Specimen Descriptor", 1);
-    component = new Component("Specimen Type", 100, samplePanel.getSpecimenType().getBytes());
+    component = new Component("Specimen Type", 21, samplePanel.getSpecimenType().getBytes());
     field16.setComponent(0, component);
     orderRecord.setField(16, field16);
 
     // field 23: Release Date and Time
     Field field23 = new Field("Release Date and Time", 1);
-    component = new Component("Release Date and Time", 100, samplePanel.getReleasedDateAndTime().getBytes());
+    component = new Component("Release Date and Time", 14, samplePanel.getReleasedDateAndTime().getBytes());
     field23.setComponent(0, component);
     orderRecord.setField(23, field23);
 
