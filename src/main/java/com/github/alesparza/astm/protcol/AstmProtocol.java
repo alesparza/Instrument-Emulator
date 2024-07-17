@@ -330,6 +330,7 @@ public class AstmProtocol {
     StringBuilder sb = new StringBuilder();
     // field 1: Record Identifier
     sb.append(RecordType.O);
+    sb.append(astmConfiguration.getFieldDelimiter());
 
     // field 2: Sequence Number
     sb.append("1"); // TODO: will this ever be longer than one?
@@ -472,6 +473,7 @@ public class AstmProtocol {
     StringBuilder sb = new StringBuilder();
     // field 1: Record Identifier
     sb.append(RecordType.L);
+    sb.append(astmConfiguration.getFieldDelimiter());
 
     // field 2: Sequence Number
     sb.append("1");
