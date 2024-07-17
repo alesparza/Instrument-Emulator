@@ -6,7 +6,7 @@ public class SamplePanel {
   private JPanel samplePanel;
   private JTextField specimenIDTextField;
   private JTextField positionIDTextField;
-  private JTextField priorityTextField;
+  private JTextField priorityTextField; // TODO: make it a combobox?
   private JTextField requestDateAndTimeTextField;
   private JTextField collectionDateAndTimeTextField;
   private JTextField receivedDateAndTimeTextField;
@@ -20,4 +20,36 @@ public class SamplePanel {
   private JLabel receiveDTLabel;
   private JLabel completeDTLabel;
   private JLabel specimenTypeLabel;
+
+  public String getReleasedDateAndTime() {
+    return releasedDateAndTimeTextField.getText();
+  }
+
+  public String getSpecimenType() {
+    return specimenTypeTextField.getText();
+  }
+
+  public String getReceivedDateAndTimeTextField() {
+    return receivedDateAndTimeTextField.getText();
+  }
+
+  public String getCollectionDateAndTime() {
+    return collectionDateAndTimeTextField.getText();
+  }
+
+  public String getRequestDateAndTime() {
+    return requestDateAndTimeTextField.getText();
+  }
+
+  public String getPriority() {
+    return priorityTextField.getText();
+  }
+
+  public String getPositionID() {
+    return positionIDTextField.getText();
+  }
+
+  public String getSpecimenID() {
+    return specimenIDTextField.getText();
+  }
 }
