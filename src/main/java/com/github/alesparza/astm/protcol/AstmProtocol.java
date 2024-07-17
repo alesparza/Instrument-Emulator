@@ -42,7 +42,9 @@ public class AstmProtocol {
     for (int i = 1; i < data.length; i++) {
       sum = (sum + data[i]) % CHECKSUM_MODULO;
     }
-    // FIXME: if the value is too low, it only generates a single byte
+    if (sum < 15) {
+      return ("0" + Integer.toHexString(sum)).toUpperCase().getBytes();
+    }
     return Integer.toHexString(sum).toUpperCase().getBytes();
   }
 
