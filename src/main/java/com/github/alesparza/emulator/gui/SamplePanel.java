@@ -1,6 +1,7 @@
 package com.github.alesparza.emulator.gui;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class SamplePanel {
   private JPanel samplePanel;
@@ -29,7 +30,7 @@ public class SamplePanel {
     return specimenTypeTextField.getText();
   }
 
-  public String getReceivedDateAndTimeTextField() {
+  public String getReceivedDateAndTime() {
     return receivedDateAndTimeTextField.getText();
   }
 

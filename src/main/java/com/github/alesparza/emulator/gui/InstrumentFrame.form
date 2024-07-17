@@ -138,7 +138,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <nested-form id="b42ac" form-file="com/github/alesparza/emulator/gui/SamplePanel.form">
+              <nested-form id="b42ac" form-file="com/github/alesparza/emulator/gui/SamplePanel.form" binding="samplePanel">
                 <constraints/>
               </nested-form>
             </children>

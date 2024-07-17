@@ -1,9 +1,6 @@
 package com.github.alesparza.emulator.gui;
 
-import com.github.alesparza.astm.component.Component;
-import com.github.alesparza.astm.component.Field;
-import com.github.alesparza.astm.component.HostRecord;
-import com.github.alesparza.astm.component.PatientRecord;
+import com.github.alesparza.astm.component.*;
 import com.github.alesparza.astm.protcol.AstmProtocol;
 import com.github.alesparza.emulator.instrument.Instrument;
 
@@ -35,6 +32,7 @@ public class InstrumentFrame extends JFrame {
   private PatientPanel patientPanel;
   private JButton sendButton;
   private DevicePanel devicePanel;
+  private SamplePanel samplePanel;
   //TODO: add a label or something that changes to indicated connected
 
 
@@ -63,6 +61,7 @@ public class InstrumentFrame extends JFrame {
     this.sendButton.addActionListener(e -> {
       HostRecord hostRecord = getHostRecord();
       PatientRecord patientRecord = getPatientRecord();
+      OrderRecord orderRecord = getOrderRecord();
 
       instrument.printConsoleLn("Attempting to send message");
 
@@ -96,8 +95,14 @@ public class InstrumentFrame extends JFrame {
         return;
       };
 
-      frame = (lastFrame + 1) % AstmProtocol.FRAME_MODULO;
-      // TODO: instrument.sendORecord();
+      frame = (lastFrame + 1) % AstmProtocol.FRAME_MODULO; // calculate next frame to use
+      if ((lastFrame = instrument.sendORecord(frame, orderRecord)) == -1) {
+        instrument.printConsoleLn("Failed to send O record");
+        instrument.sendEOT();
+        return;
+      };
+
+      // TODO: need to send C records attached to Order
       // TODO: instrument.sendRCRecords();
       // TODO: instrument.sendLRecord();
       instrument.sendEOT();
@@ -172,7 +177,7 @@ public class InstrumentFrame extends JFrame {
     Field field9 = new Field("Sex", 1);
     component = new Component("Sex", 1, patientPanel.getSex().getBytes());
     field9.setComponent(0, component);
-    patientRecord.setField(9, field8);
+    patientRecord.setField(9, field9);
 
     // field 26: Location
     Field field26 = new Field("Patient Location", 1);
@@ -180,5 +185,70 @@ public class InstrumentFrame extends JFrame {
     field26.setComponent(0, component);
     patientRecord.setField(26, field26);
     return patientRecord;
+  }
+
+  /**
+   * Gets an Order Record from the InstrumentForm contents
+   * @return new Record
+   */
+  private OrderRecord getOrderRecord() {
+    OrderRecord orderRecord = new OrderRecord();
+
+    // field 3: Specimen ID
+    Field field3 = new Field("Specimen ID", 1);
+    Component component = new Component("Specimen ID", 22, samplePanel.getSpecimenID().getBytes());
+    field3.setComponent(0, component);
+    orderRecord.setField(3, field3);
+
+    // field 4: Instrument Specimen ID
+    Field field4 = new Field("Instrument Specimen ID", 1);
+    component = new Component("Instrument Specimen ID", 100, samplePanel.getPositionID().getBytes());
+    field4.setComponent(0, component);
+    orderRecord.setField(4, field4);
+
+    // field 5: Universal Test ID
+    Field field5 = new Field("Universal Test ID", 3);
+    // TODO: loop for multiple codes, needs to be built
+    component = new Component("Local Test Code", 20, "TEMP".getBytes());
+    field5.setComponent(2, component);
+    orderRecord.setField(5, field5);
+
+    // field 6: Priority
+    Field field6 = new Field("Priority", 1);
+    component = new Component("Priority", 1, samplePanel.getPriority().getBytes());
+    field6.setComponent(0, component);
+    orderRecord.setField(6, field6);
+
+    // field 7: Requested Date and Time
+    Field field7 = new Field("Requested Date and Time", 1);
+    component = new Component("Requested Date and Time", 100, samplePanel.getRequestDateAndTime().getBytes());
+    field7.setComponent(0, component);
+    orderRecord.setField(7, field7);
+
+    // field 8: Collected Date and Time
+    Field field8 = new Field("Collected Date and Time", 1);
+    component = new Component("Collected Date and Time", 100, samplePanel.getCollectionDateAndTime().getBytes());
+    field8.setComponent(0, component);
+    orderRecord.setField(8, field8);
+
+    // field 15: Received Date and Time
+    Field field15 = new Field("Received Date and Time", 1);
+    component = new Component("Received Date and Time", 100, samplePanel.getReceivedDateAndTime().getBytes());
+    field15.setComponent(0, component);
+    orderRecord.setField(15, field15);
+
+    // field 16: Specimen Descriptor
+    Field field16 = new Field("Specimen Descriptor", 1);
+    component = new Component("Specimen Type", 100, samplePanel.getSpecimenType().getBytes());
+    field16.setComponent(0, component);
+    orderRecord.setField(16, field16);
+
+    // field 23: Release Date and Time
+    Field field23 = new Field("Release Date and Time", 1);
+    component = new Component("Release Date and Time", 100, samplePanel.getReleasedDateAndTime().getBytes());
+    field23.setComponent(0, component);
+    orderRecord.setField(23, field23);
+
+    return orderRecord;
   }
 }

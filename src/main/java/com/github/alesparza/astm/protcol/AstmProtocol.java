@@ -317,5 +317,146 @@ public class AstmProtocol {
 
     return sb.toString().getBytes();
   }
+  /**
+   * Generates an O record.
+   * <br>
+   * Example: <STX>3O|1|18590023A|00006|!!!CD|R|||||||||20240703125656|Whole blood|||||!SYSTEM||20240703125901|||F<CR><ETX>F8<CR><LF>
+   * @param astmConfiguration the ASTM configuration to use for this record
+   * @param record
+   * @return
+   */
+  public static byte[] generateORecord(AstmConfiguration astmConfiguration, Record record) {
+    StringBuilder sb = new StringBuilder();
+    // field 1: Record Identifier
+    sb.append(RecordType.O);
+
+    // field 2: Sequence Number
+    sb.append("1"); // TODO: will this ever be longer than one?
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 3: Specimen ID
+    sb.append(record.getField(3).getComponent(0).getData());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 4: Instrument Specimen ID
+    sb.append(record.getField(4).getComponent(0).getData());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 5: Universal Test ID
+    // name: skipped
+    sb.append(astmConfiguration.getComponentDelimiter());
+    // type: skipped
+    sb.append(astmConfiguration.getComponentDelimiter());
+    sb.append(record.getField(5).getComponent(2).getData()); // Local Test Code: this is usually the only one used
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 6: Priority
+    sb.append(record.getField(6).getComponent(0).getData());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 7: Requested Date and Time
+    sb.append(record.getField(7).getComponent(0).getData());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 8: Collection Date and Time
+    sb.append(record.getField(8).getComponent(0).getData());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 9: Collection End Time
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 10: Collection Volume
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 11: Collector ID
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 12: Action Code
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 13: Danger Code
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 14: Relevant Clinical Info
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 15: Received Data and Time
+    sb.append(record.getField(15).getComponent(0).getData());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 16: Specimen Descriptor (specimen type)
+    sb.append(record.getField(16).getComponent(0).getData());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 17: Ordering Physician
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 18: Physician Phone Number
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 19: User Field #1
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 20 User Field #2
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 21: Laboratory Field #1
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 22: Laboratory Field #2
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 23: Release Date and Time
+    sb.append(record.getField(23).getComponent(0).getData());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 24: Instr. Change to Computer System
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 25: Instr. Sect. ID
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 26: Report Types
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 27: Reserved
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 28: Location of Specimen Collection
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 29: Nosocomial Infection Flag
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 30: Specimen Service
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 31: Specimen Institution
+    // skipped
+
+    // end of record
+    sb.append("\r");
+
+    return sb.toString().getBytes();
+  }
 
 }
