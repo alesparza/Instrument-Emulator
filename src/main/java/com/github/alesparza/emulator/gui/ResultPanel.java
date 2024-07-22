@@ -4,4 +4,11 @@ import javax.swing.*;
 
 public class ResultPanel {
   private JPanel resultPanel;
+  private JTable assayTable;
+
+
+
+  public ResultPanel() {
+    assayTable.
+  }
 }
