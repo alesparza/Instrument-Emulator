@@ -9,6 +9,6 @@ public class ResultPanel {
 
 
   public ResultPanel() {
-    assayTable.
+    
   }
 }
