@@ -114,7 +114,7 @@
         </constraints>
         <properties>
           <labelFor value="e9cbe"/>
-          <text value="Label"/>
+          <text value="Device ID"/>
         </properties>
       </component>
     </children>
