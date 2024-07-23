@@ -18,7 +18,6 @@ public class InstrumentFrame extends JFrame {
   private JScrollPane connectionTab;
   private JScrollPane sampleTab;
   private JScrollPane deviceTab;
-  private JScrollPane resultTab;
   private JTextField hostnameTextField;
   private JTextField portTextField;
   private JLabel hostnameLabel;
@@ -34,6 +33,7 @@ public class InstrumentFrame extends JFrame {
   private DevicePanel devicePanel;
   private SamplePanel samplePanel;
   private ResultPanel resultPanel;
+  private JScrollPane resultTab;
   //TODO: add a label or something that changes to indicated connected
 
 

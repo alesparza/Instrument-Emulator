@@ -143,14 +143,12 @@
               </nested-form>
             </children>
           </scrollpane>
-          <scrollpane id="68fbe" binding="resultTab">
+          <scrollpane id="b2f16" binding="resultTab">
             <constraints>
-              <tabbedpane title="Results">
-                <tooltip value="Results information"/>
-              </tabbedpane>
+              <tabbedpane title="Results"/>
             </constraints>
             <properties>
-              <preferredSize width="600" height="200"/>
+              <verticalScrollBarPolicy value="20"/>
             </properties>
             <border type="none"/>
             <children>
