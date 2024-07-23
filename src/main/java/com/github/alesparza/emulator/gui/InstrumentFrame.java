@@ -41,6 +41,7 @@ public class InstrumentFrame extends JFrame {
 
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     setContentPane(contentPanel);
+    this.resultPanel.setGUIComponents(consoleTextArea);
     this.hostnameTextField.setText(instrument.getHostname());
     this.portTextField.setText(String.valueOf(instrument.getPort()));
     this.devicePanel.getTypeTextField().setText(instrument.getType().toString());

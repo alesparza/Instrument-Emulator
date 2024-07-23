@@ -35,6 +35,7 @@ public class ResultPanel {
   private JButton deleteThisAssayButton;
   private TableModel assayTableModel;
   ArrayList<Assay> assayArrayList;
+  private JTextArea consoleTextArea;
 
   public ResultPanel() {
     // TODO: need to include the console log somehow
@@ -141,6 +142,7 @@ public class ResultPanel {
         unitsTextField.setText("");
         completedDateTimeTextField.setText("");
         assayTable.updateUI();
+        consoleTextArea.append("Delete test");
       }
     });
 
@@ -165,4 +167,11 @@ public class ResultPanel {
     });
   }
 
+  /**
+   * Sets GUI Components
+   * @param consoleTextArea
+   */
+  public void setGUIComponents(JTextArea consoleTextArea) {
+    this.consoleTextArea = consoleTextArea;
+  }
 }
