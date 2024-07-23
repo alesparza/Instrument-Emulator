@@ -37,6 +37,7 @@ public class ResultPanel {
   ArrayList<Assay> assayArrayList;
 
   public ResultPanel() {
+    // TODO: need to include the console log somehow
     assayArrayList = new ArrayList<>();
 
     assayTableModel = new AbstractTableModel() {
