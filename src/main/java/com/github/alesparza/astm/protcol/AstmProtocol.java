@@ -465,6 +465,91 @@ public class AstmProtocol {
   }
 
   /**
+   * Generates a R record.
+   * <br>
+   * Example: <STX>2P|1||641647714||ZZZTSTTWO!HUPLAB||19731107!50!Y|F|||||||||||||||||HCDS HUP Centr<CR><ETX>C5<CR><LF>
+   * @param astmConfiguration the ASTM configuration to use for this record
+   * @param record
+   * @return -1 for errors
+   */
+  public static byte[] generateRRecord(AstmConfiguration astmConfiguration, int startSequence, Record record) {
+    StringBuilder sb = new StringBuilder();
+    // field 1: Record Identifier
+    sb.append(RecordType.R);
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 2: Sequence Number
+    sb.append(startSequence);
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 3: Universal Test ID
+    sb.append(astmConfiguration.getComponentDelimiter());
+    // skip name
+    sb.append(astmConfiguration.getComponentDelimiter());
+    // skip type
+    sb.append(astmConfiguration.getComponentDelimiter());
+    // local code
+    sb.append(record.getField(3).getComponent(2).getData());
+    sb.append(astmConfiguration.getComponentDelimiter());
+    // skip LOINC
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 4: Data Measurement/Value
+    sb.append(record.getField(4).getComponent(0).getData());
+    // skip flags
+    sb.append(astmConfiguration.getComponentDelimiter());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 5: Units
+    sb.append(record.getField(5).getComponent(0).getData());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 6: Dilution Factor
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 7: Reference Ranges
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 8: Result Abnormal Flags
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 9: Nature of Abnormality Testing
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 10: Result Status
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 11: Date of Change
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 12: Operator Identifications
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 13: Date/Time Test Started
+    // skipped
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 14: Date/Time Test Completed
+    sb.append(record.getField(14).getComponent(0).getData());
+    sb.append(astmConfiguration.getFieldDelimiter());
+
+    // field 15: Instrument ID
+    // skipped
+
+    // end of record
+    sb.append("\r");
+
+    return sb.toString().getBytes();
+  }
+
+  /**
    * Generates an L record.
    * <br>
    * Example: <STX>7L|1|N<CR><ETX>0A<CR><LF>

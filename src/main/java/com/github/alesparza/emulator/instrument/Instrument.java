@@ -281,6 +281,26 @@ public class Instrument {
   }
 
   /**
+   * Sends the O record(s).
+   * @return <code>true</code> if entire message sent and ACK'd successfully, <code>false</code>otherwise.
+   */
+  public int sendRRecord(int startFrame, int startSequence, Record record) {
+    int frame = startFrame;
+    int sequence = startSequence;
+    byte[] data = AstmProtocol.generateRRecord(asmtConfiguration, sequence, record);
+
+    // TODO: loop through astmConfiguration.getDataLength() characters, incrementing frame number
+    byte[] toSend = AstmProtocol.generateMessage(frame, data, true);
+    connection.sendMessage(toSend);
+    printCommLn("--> " + Ascii.getFormattedString(toSend));
+    if (!checkForACK()) {
+      printConsoleLn("Failed to send message");
+      return AstmProtocol.INVALID_FRAME;
+    }
+    return sequence;
+  }
+
+  /**
    * Sends the L record(s).
    * @return <code>true</code> if entire message sent and ACK'd successfully, <code>false</code>otherwise.
    */

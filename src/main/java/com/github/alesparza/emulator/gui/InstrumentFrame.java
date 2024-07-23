@@ -2,6 +2,7 @@ package com.github.alesparza.emulator.gui;
 
 import com.github.alesparza.astm.component.*;
 import com.github.alesparza.astm.protcol.AstmProtocol;
+import com.github.alesparza.emulator.assay.Assay;
 import com.github.alesparza.emulator.instrument.Instrument;
 
 import javax.swing.*;
@@ -106,7 +107,24 @@ public class InstrumentFrame extends JFrame {
 
       // TODO: send C records attached to order
 
-      // TODO: send R and C records
+      // TODO: send R and C records in a loop
+      int sequence = 1;
+      int lastSequence = 1;
+      for (Assay assay : resultPanel.assayArrayList) {
+        ResultRecord resultRecord = ResultRecord.generateRecord(this, assay);
+        frame = (lastFrame + 1) % AstmProtocol.FRAME_MODULO; // calculate next frame to use
+        // TODO: calculate the sequence to use
+        if ((sequence = instrument.sendRRecord(frame, sequence, resultRecord)) == -1) {
+          instrument.printConsoleLn("Failed to send R record");
+          instrument.sendEOT();
+          return;
+        };
+        // can't return two variables, but they grow together
+        // sequence number does not reset, so check the difference to know what the new lastFrame is
+        lastFrame = lastFrame + (lastSequence - sequence);
+        sequence = lastSequence;
+        // TODO: another loop to send C records for this result
+      }
 
 
       TerminatorRecord terminatorRecord = TerminatorRecord.generateRecord();
