@@ -61,7 +61,9 @@
                     <preferred-size width="50" height="-1"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <toolTipText value="Name of the test"/>
+                </properties>
               </component>
               <component id="8f80d" class="javax.swing.JLabel" binding="testCodeLabel">
                 <constraints>
@@ -78,7 +80,9 @@
                     <preferred-size width="50" height="-1"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <toolTipText value="Interface test code/alias"/>
+                </properties>
               </component>
               <component id="749b3" class="javax.swing.JLabel" binding="resultlabel">
                 <constraints>
@@ -95,7 +99,9 @@
                     <preferred-size width="50" height="-1"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <toolTipText value="Result of test"/>
+                </properties>
               </component>
               <component id="b6215" class="javax.swing.JLabel" binding="unitsLabel">
                 <constraints>
@@ -112,7 +118,9 @@
                     <preferred-size width="50" height="-1"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <toolTipText value="Units of test"/>
+                </properties>
               </component>
               <component id="221fb" class="javax.swing.JLabel" binding="completedDTLabel">
                 <constraints>
@@ -129,7 +137,9 @@
                     <preferred-size width="150" height="-1"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <toolTipText value="Must be YYYYMMDDHHMMSS format"/>
+                </properties>
               </component>
             </children>
           </grid>
@@ -147,6 +157,7 @@
                 </constraints>
                 <properties>
                   <text value="Update This Assay"/>
+                  <toolTipText value="Update the index with the current contents"/>
                 </properties>
               </component>
               <component id="44c22" class="javax.swing.JButton" binding="newAssayButton">
@@ -155,6 +166,7 @@
                 </constraints>
                 <properties>
                   <text value="Add As New Assay"/>
+                  <toolTipText value="Add contents as new assay"/>
                 </properties>
               </component>
               <component id="da772" class="javax.swing.JButton" binding="changeAssayButton">
@@ -163,6 +175,7 @@
                 </constraints>
                 <properties>
                   <text value="Change Loaded Assay"/>
+                  <toolTipText value="Change contents to the entered index"/>
                 </properties>
               </component>
               <hspacer id="fa146">
@@ -176,6 +189,7 @@
                 </constraints>
                 <properties>
                   <text value="Delete This Assay"/>
+                  <toolTipText value="Delete the current index"/>
                 </properties>
               </component>
             </children>
@@ -205,6 +219,7 @@
                 </constraints>
                 <properties>
                   <text value="0"/>
+                  <toolTipText value="Which row is currently displayed"/>
                 </properties>
               </component>
             </children>
