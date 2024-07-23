@@ -11,6 +11,8 @@ public class ResultPanel {
   private JPanel resultPanel;
   private JTable assayTable;
   private JScrollPane assayScrollPane;
+  private JPanel topPanel;
+  private JButton newAssayButton;
   private TableModel assayTableModel;
   ArrayList<Assay> assayArrayList;
 
@@ -18,7 +20,7 @@ public class ResultPanel {
     assayArrayList = new ArrayList<>();
 
     assayTableModel = new AbstractTableModel() {
-      private final String[] columnNames = {"Test Name","Test Code", "Result", "Comments"};
+      private final String[] columnNames = {"Test Name","Test Code", "Result", "Units", "Completed Date/Time", "Comments"};
       @Override
       public int getRowCount() {
         return assayArrayList.size();
@@ -38,7 +40,11 @@ public class ResultPanel {
             return assayArrayList.get(rowIndex).getCode();
           case 2:
             return assayArrayList.get(rowIndex).getResult();
-          case 3:
+            case 3:
+              return assayArrayList.get(rowIndex).getUnits();
+              case 4:
+                return assayArrayList.get(rowIndex).getCompleteDateTime();
+          case 5:
             return assayArrayList.get(rowIndex).getPrintableComments();
         }
         return "";
@@ -49,9 +55,6 @@ public class ResultPanel {
         return columnNames[column];
       }
     };
-    assayArrayList.add(new Assay("White Blood Cells", "WBC", "7"));
-    assayArrayList.get(0).addComment("Test 1");
-    assayArrayList.get(0).addComment("Test 2");
     assayTable.setModel(assayTableModel);
     assayTable.repaint();
   }

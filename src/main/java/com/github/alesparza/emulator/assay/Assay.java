@@ -25,6 +25,11 @@ public class Assay {
   String units;
 
   /**
+   * Date assay completed.
+   */
+  String completeDate;
+
+  /**
    * List of comments attached to the assay.
    */
   ArrayList<String> comments;
@@ -65,8 +70,36 @@ public class Assay {
     return result;
   }
 
+  public String getUnits() {
+    return units;
+  }
+
+  public String getCompleteDateTime() {
+    return completeDate;
+  }
+
   public ArrayList<String> getComments() {
     return comments;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+  public void setResult(String result) {
+    this.result = result;
+  }
+
+  public void setUnits(String units) {
+    this.units = units;
+  }
+
+  public void setCompleteDate(String completeDate) {
+    this.completeDate = completeDate;
   }
 
   /**
@@ -90,5 +123,12 @@ public class Assay {
    */
   public void addComment(String comment) {
     comments.add(comment);
+  }
+
+  /**
+   * Resets the comments for this assay.
+   */
+  public void resetComments() {
+    comments.clear();
   }
 }
