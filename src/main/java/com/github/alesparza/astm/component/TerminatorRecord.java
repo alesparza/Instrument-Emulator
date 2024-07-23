@@ -19,6 +19,15 @@ public class TerminatorRecord extends Record {
   }
 
   /**
+   * Gets a Terminator Record
+   * @return new Record
+   */
+  public static TerminatorRecord generateRecord() {
+    TerminatorRecord record = new TerminatorRecord();
+    return record;
+  }
+
+  /**
    * Gets the Record Identifier field of the Host Record (Field 1).
    * @return the requested field.
    */

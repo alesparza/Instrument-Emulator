@@ -1,6 +1,6 @@
 package com.github.alesparza.astm.component;
 
-import java.util.ArrayList;
+import com.github.alesparza.emulator.gui.InstrumentFrame;
 
 /**
  * Represents a ASTM record.
@@ -42,4 +42,5 @@ public abstract class Record {
     }
     fields[idx - 1] = field;
   }
+
 }
