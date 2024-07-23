@@ -124,15 +124,15 @@ public class InstrumentFrame extends JFrame {
         ResultRecord resultRecord = ResultRecord.generateRecord(this, assay);
         frame = (lastFrame + 1) % AstmProtocol.FRAME_MODULO; // calculate next frame to use
         // TODO: calculate the sequence to use
-        if ((sequence = instrument.sendRRecord(frame, sequence, resultRecord)) == -1) {
+        if ((sequence = instrument.sendRRecord(frame, lastSequence, resultRecord)) == -1) {
           instrument.printConsoleLn("Failed to send R record");
           instrument.sendEOT();
           return;
         };
         // can't return two variables, but they grow together
         // sequence number does not reset, so check the difference to know what the new lastFrame is
-        lastFrame = lastFrame + (lastSequence - sequence);
-        sequence = lastSequence;
+        lastFrame = lastFrame + (sequence - lastSequence + 1);
+        lastSequence = sequence + 1;
         // TODO: another loop to send C records for this result
       }
 
