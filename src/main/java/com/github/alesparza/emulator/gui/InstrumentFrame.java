@@ -6,6 +6,8 @@ import com.github.alesparza.emulator.assay.Assay;
 import com.github.alesparza.emulator.instrument.Instrument;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class InstrumentFrame extends JFrame {
   private JPanel contentPanel;
@@ -36,6 +38,7 @@ public class InstrumentFrame extends JFrame {
   private SamplePanel samplePanel;
   private ResultPanel resultPanel;
   private JScrollPane resultTab;
+  private JButton clearButton;
   //TODO: add a label or something that changes to indicated connected
 
 
@@ -60,6 +63,13 @@ public class InstrumentFrame extends JFrame {
 
     // reset button
     this.resetButton.addActionListener(e -> instrument.reset());
+
+    this.clearButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        // TODO: clear the logs
+      }
+    });
 
     // send button
     this.sendButton.addActionListener(e -> {
