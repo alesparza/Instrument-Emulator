@@ -113,6 +113,7 @@ public class ResultPanel {
         // TODO: check if Test Code already exists
         // TODO: check if fields are not empty and not too long
         // TODO: check if date/time is correct format
+        // TODO: check index for out of range
         int index = Integer.parseInt(currentAssayTextField.getText());
         Assay assay = assayArrayList.get(index);
         assay.setName(testNameTextField.getText());
@@ -131,6 +132,7 @@ public class ResultPanel {
        */
       @Override
       public void actionPerformed(ActionEvent e) {
+        // TODO: check index for out of range
         int index = Integer.parseInt(currentAssayTextField.getText());
         assayArrayList.remove(index);
         testNameTextField.setText("");
@@ -150,6 +152,7 @@ public class ResultPanel {
        */
       @Override
       public void actionPerformed(ActionEvent e) {
+        // TODO: check index for out of range
         int index = Integer.parseInt(currentAssayTextField.getText());
         Assay assay = assayArrayList.get(index);
         testNameTextField.setText(assay.getName());
