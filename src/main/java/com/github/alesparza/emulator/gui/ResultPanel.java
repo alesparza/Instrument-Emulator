@@ -5,6 +5,8 @@ import com.github.alesparza.emulator.assay.Assay;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ResultPanel {
@@ -78,17 +80,85 @@ public class ResultPanel {
     assayArrayList.add(new Assay("White Blood Cells", "WBC", "7.0"));
     assayArrayList.get(0).setCompleteDate("20240101120000");
     assayArrayList.get(0).setUnits("10*3\\uL");
-    assayArrayList.add(new Assay("Red Blood Cells", "RBC", "4.0"));
-    assayArrayList.get(1).setCompleteDate("20240101120000");
-    assayArrayList.get(1).setUnits("10*3\\uL");
-    assayArrayList.add(new Assay("Hemoglobin", "HGB", "15.0"));
-    assayArrayList.get(2).setCompleteDate("20240101120000");
-    assayArrayList.get(2).setUnits("g\\dL");
-    assayArrayList.add(new Assay("Hematocrit", "HCT", "45"));
-    assayArrayList.get(3).setCompleteDate("20240101120000");
-    assayArrayList.get(3).setUnits("%");
     assayTable.setModel(assayTableModel);
     assayTable.repaint();
+
+    // New Assay Button
+    newAssayButton.addActionListener(new ActionListener() {
+      /**
+       * Add the contents of the fields as a new assay.
+       */
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        // TODO: check if Test Code already exists
+        // TODO: check if fields are not empty and not too long
+        // TODO: check if date/time is correct format
+        int nextIndex = assayArrayList.size();
+        Assay assay = new Assay(testNameTextField.getText(), testCodeTextField.getText(), resultTextField.getText());
+        assay.setUnits(unitsTextField.getText());
+        assay.setCompleteDate(completedDateTimeTextField.getText());
+        assayArrayList.add(assay);
+        assayTable.updateUI();
+      }
+    });
+
+    // Update Assay Button
+    updateButton.addActionListener(new ActionListener() {
+      /**
+       * Update the table based on the current contents displayed.
+       */
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        // TODO: check if Test Code already exists
+        // TODO: check if fields are not empty and not too long
+        // TODO: check if date/time is correct format
+        int index = Integer.parseInt(currentAssayTextField.getText());
+        Assay assay = assayArrayList.get(index);
+        assay.setName(testNameTextField.getText());
+        assay.setCode(testCodeTextField.getText());
+        assay.setResult(resultTextField.getText());
+        assay.setUnits(unitsTextField.getText());
+        assay.setCompleteDate(completedDateTimeTextField.getText());
+        assayTable.updateUI();
+      }
+    });
+
+    // Delete Assay Button
+    deleteThisAssayButton.addActionListener(new ActionListener() {
+      /**
+       * Delete the assay in the index.
+       */
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        int index = Integer.parseInt(currentAssayTextField.getText());
+        assayArrayList.remove(index);
+        testNameTextField.setText("");
+        testCodeTextField.setText("");
+        resultTextField.setText("");
+        unitsTextField.setText("");
+        completedDateTimeTextField.setText("");
+        assayTable.updateUI();
+      }
+    });
+
+
+    // Change Loaded Assay Button
+    changeAssayButton.addActionListener(new ActionListener() {
+      /**
+       * Change the printed text based on the index.
+       */
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        int index = Integer.parseInt(currentAssayTextField.getText());
+        Assay assay = assayArrayList.get(index);
+        testNameTextField.setText(assay.getName());
+        testCodeTextField.setText(assay.getCode());
+        resultTextField.setText(assay.getResult());
+        unitsTextField.setText(assay.getUnits());
+        completedDateTimeTextField.setText(assay.getCompleteDateTime());
+        assayTable.updateUI();
+      }
+    });
   }
 
 }
