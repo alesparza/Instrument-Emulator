@@ -161,6 +161,8 @@ public class ResultPanel {
         assayArrayList.add(assay);
         assayTable.updateUI();
         consoleTextArea.append("Created new assay: " + testName + "\n");
+        currentAssayTextField.setText(String.valueOf(nextIndex));
+        lock();
         loadAssay(nextIndex);
       }
     });
