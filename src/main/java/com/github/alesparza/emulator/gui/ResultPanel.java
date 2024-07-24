@@ -25,7 +25,6 @@ public class ResultPanel {
   private JPanel buttonPannel;
   private JPanel currentAssayPanel;
   private JTextField currentAssayTextField;
-  private JLabel currentAssayLabel;
   private JPanel indexPanel;
   private JLabel testCodeLabel;
   private JLabel testNameLabel;
@@ -33,6 +32,7 @@ public class ResultPanel {
   private JLabel unitsLabel;
   private JLabel completedDTLabel;
   private JButton deleteThisAssayButton;
+  private JCheckBox lockCheckBox;
   private TableModel assayTableModel;
   ArrayList<Assay> assayArrayList;
   private JTextArea consoleTextArea;
