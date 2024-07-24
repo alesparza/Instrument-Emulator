@@ -207,7 +207,6 @@ public class ResultPanel {
       }
     });
 
-
     // Change Loaded Assay Button
     changeAssayButton.addActionListener(new ActionListener() {
       /**
@@ -218,6 +217,18 @@ public class ResultPanel {
         // TODO: check index for out of range
         int index = Integer.parseInt(currentAssayTextField.getText());
         loadAssay(index);
+      }
+    });
+
+    lockCheckBox.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (lockCheckBox.isSelected()) {
+          lock();
+        }
+        else {
+          unlock();
+        }
       }
     });
 
@@ -255,6 +266,34 @@ public class ResultPanel {
     } catch (IndexOutOfBoundsException e) {
       consoleTextArea.append("Assay index " + index + " does not exist\n");
     }
+  }
+
+  /**
+   * Locks the results pages from editing.  Only the index can be changed.
+   */
+  public void lock() {
+    lockCheckBox.setSelected(true);
+    lockCheckBox.setText("Locked");
+    currentAssayTextField.setEditable(true);
+    testNameTextField.setEditable(false);
+    testCodeTextField.setEditable(false);
+    resultTextField.setEditable(false);
+    unitsTextField.setEditable(false);
+    completedDateTimeTextField.setEditable(false);
+  }
+
+  /**
+   * Locks the results pages from editing.  Only the index can be changed.
+   */
+  public void unlock() {
+    lockCheckBox.setSelected(false);
+    lockCheckBox.setText("Unlocked");
+    currentAssayTextField.setEditable(false);
+    testNameTextField.setEditable(true);
+    testCodeTextField.setEditable(true);
+    resultTextField.setEditable(true);
+    unitsTextField.setEditable(true);
+    completedDateTimeTextField.setEditable(true);
   }
 
   /**

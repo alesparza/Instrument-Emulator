@@ -206,6 +206,7 @@
                   </grid>
                 </constraints>
                 <properties>
+                  <editable value="false"/>
                   <text value="0"/>
                   <toolTipText value="Which row is currently displayed"/>
                 </properties>
