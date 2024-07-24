@@ -101,56 +101,24 @@ public class ResultPanel {
           return;
         }
 
-        // check for empty entries.
-        String testName = testNameTextField.getText();
-        if (testName.isEmpty()) {
-          consoleTextArea.append("Test name cannot be blank.\n");
+        if (!isValidAssay()) {
+          consoleTextArea.append("Not a valid assay configuration, no new assay created\n");
           return;
         }
-        String testCode = testCodeTextField.getText();
-        if (testCode.isEmpty()) {
-          consoleTextArea.append("Test code cannot be blank.\n");
-          return;
-        }
-        String result = resultTextField.getText();
-        if (result.isEmpty()) {
-          consoleTextArea.append("Result cannot be blank.\n");
-          return;
-        }
-        String units = unitsTextField.getText();
-        if (units.isEmpty()) {
-          consoleTextArea.append("Units cannot be blank.\n");
-          return;
-        }
-        String dateTime = completedDateTimeTextField.getText();
-        if (dateTime.isEmpty()) {
-          consoleTextArea.append("Completed Date/Time cannot be blank.\n");
-          return;
-        }
+
+        String name = testNameTextField.getText();
+        String code = testCodeTextField.getText();
 
         // check for duplicate names and codes, these must be unique
         for (Assay assay : assayArrayList) {
-          if (testName.equals(assay.getName())) {
-            consoleTextArea.append("Test name already exists: " + testName + "\n");
+          if (name.equals(assay.getName())) {
+            consoleTextArea.append("Test name already exists: " + name + "\n");
             return;
           }
-          if (testCode.equals(assay.getCode())) {
-            consoleTextArea.append("Test code already exists: " + testCode + "\n");
+          if (code.equals(assay.getCode())) {
+            consoleTextArea.append("Test code already exists: " + code + "\n");
             return;
           }
-        }
-
-        // check for date/time format
-        if (dateTime.length() != 14) {
-          consoleTextArea.append("Date and Time must be YYYYMMDDHHMMSS format.\n");
-          return;
-        }
-
-        try {
-          Double check = Double.parseDouble(dateTime);
-        } catch (NumberFormatException ex) {
-          consoleTextArea.append("Date and Time must be YYYYMMDDHHMMSS format.\n");
-          return;
         }
 
         // go ahead and make the new assay
@@ -158,7 +126,7 @@ public class ResultPanel {
         Assay assay = createAssay();
         assayArrayList.add(assay);
         assayTable.updateUI();
-        consoleTextArea.append("Created new assay: " + testName + "\n");
+        consoleTextArea.append("Created new assay: " + name + "\n");
         currentAssayTextField.setText(String.valueOf(nextIndex));
         lock();
         loadAssay(nextIndex);
@@ -172,13 +140,27 @@ public class ResultPanel {
        */
       @Override
       public void actionPerformed(ActionEvent e) {
-        // TODO: check if Test Code already exists
-        // TODO: check if fields are not empty and not too long
-        // TODO: check if date/time is correct format
-        // TODO: check index for out of range
-        int index = Integer.parseInt(currentAssayTextField.getText());
-        Assay assay = assayArrayList.get(index);
-        updateAssayDisplay(assay);
+        // only update the assay when the index is locked
+        if (lockCheckBox.isSelected()) {
+          consoleTextArea.append("Assay record locked.\n");
+        }
+
+        // still check if the assay is in the right format
+        if (!isValidAssay()) {
+          consoleTextArea.append("Not a valid assay configuration, not updated\n");
+          return;
+        }
+
+        // replace the current (valid) index with the current display contents
+        try {
+          int index = Integer.parseInt(currentAssayTextField.getText());
+          Assay assay = createAssay();
+          assayArrayList.set(index, assay);
+          updateAssayDisplay(assay);
+          consoleTextArea.append("Updated assay at index " + index + ".\n");
+        } catch (NumberFormatException ex) {
+          consoleTextArea.append("No assay at index " + currentAssayTextField.getText() + ".\n");
+        }
       }
     });
 
@@ -227,9 +209,19 @@ public class ResultPanel {
        */
       @Override
       public void actionPerformed(ActionEvent e) {
-        // TODO: check index for out of range
-        int index = Integer.parseInt(currentAssayTextField.getText());
-        loadAssay(index);
+        // only change the display when the record is locked (to unlock the index).
+        if (!lockCheckBox.isSelected()) {
+          consoleTextArea.append("Index not unlocked.\n");
+        }
+
+        // only change display for valid index
+        try {
+          int index = Integer.parseInt(currentAssayTextField.getText());
+          Assay assay = assayArrayList.get(index);
+          updateAssayDisplay(assay);
+        } catch (NumberFormatException ex) {
+          consoleTextArea.append("No assay at index " + currentAssayTextField.getText() + ".\n");
+        }
       }
     });
 
@@ -335,6 +327,54 @@ public class ResultPanel {
     assay.setUnits(unitsTextField.getText());
     assay.setCompleteDate(completedDateTimeTextField.getText());
     return assay;
+  }
+
+  /**
+   * Checks if the current display is valid or not
+   * @return true if the assay is valid, false otherwise.
+   */
+  public boolean isValidAssay() {
+    // check for empty entries.
+    String testName = testNameTextField.getText();
+    if (testName.isEmpty()) {
+      consoleTextArea.append("Test name cannot be blank.\n");
+      return false;
+    }
+    String testCode = testCodeTextField.getText();
+    if (testCode.isEmpty()) {
+      consoleTextArea.append("Test code cannot be blank.\n");
+      return false;
+    }
+    String result = resultTextField.getText();
+    if (result.isEmpty()) {
+      consoleTextArea.append("Result cannot be blank.\n");
+      return false;
+    }
+    String units = unitsTextField.getText();
+    if (units.isEmpty()) {
+      consoleTextArea.append("Units cannot be blank.\n");
+      return false;
+    }
+    String dateTime = completedDateTimeTextField.getText();
+    if (dateTime.isEmpty()) {
+      consoleTextArea.append("Completed Date/Time cannot be blank.\n");
+      return false;
+    }
+
+    // check for date/time format
+    if (dateTime.length() != 14) {
+      consoleTextArea.append("Date and Time must be YYYYMMDDHHMMSS format.\n");
+      return false;
+    }
+
+    try {
+      Double check = Double.parseDouble(dateTime);
+    } catch (NumberFormatException ex) {
+      consoleTextArea.append("Date and Time must be YYYYMMDDHHMMSS format.\n");
+      return false;
+    }
+
+    return true;
   }
 
   /**
