@@ -160,6 +160,8 @@ public class ResultPanel {
           updateAssayDisplay(assay);
           consoleTextArea.append("Updated assay at index " + index + ".\n");
         } catch (NumberFormatException ex) {
+          consoleTextArea.append("Index not a number: " + currentAssayTextField.getText() + ".\n");
+        } catch (ArrayIndexOutOfBoundsException ex) {
           consoleTextArea.append("No assay at index " + currentAssayTextField.getText() + ".\n");
         }
       }
@@ -182,24 +184,25 @@ public class ResultPanel {
         int index = -1;
         try {
           index = Integer.parseInt(currentAssayTextField.getText());
+          // check if the name is the same.  if not, update the display only
+          String name = assayArrayList.get(index).getName();
+          if (!name.equals(testNameTextField.getText())) {
+            consoleTextArea.append("Index " + index + " does not contain " + name + ".  Updating display...\n");
+            updateAssayDisplay(assayArrayList.get(index));
+            consoleTextArea.append("Click delete button again to confirm.\n");
+            return;
+          }
+
+          // reaching here, all checks pass, go ahead and remove it
+          assayArrayList.remove(index);
+          clearAssay();
+          consoleTextArea.append("Deleted assay " + name + " at index " + index + ".\n");
         } catch (NumberFormatException ex) {
+          consoleTextArea.append("Not a number: " + currentAssayTextField.getText() + ".\n");
+          return;
+        } catch (IndexOutOfBoundsException ex) {
           consoleTextArea.append("No assay at index " + currentAssayTextField.getText() + ".\n");
-          return;
         }
-
-        // check if the name is the same.  if not, update the display only
-        String name = assayArrayList.get(index).getName();
-        if (!name.equals(testNameTextField.getText())) {
-          consoleTextArea.append("Index " + index + " does not contain " + name + ".  Updating display...\n");
-          updateAssayDisplay(assayArrayList.get(index));
-          consoleTextArea.append("Click delete button again to confirm.\n");
-          return;
-        }
-
-        // reaching here, all checks pass, go ahead and remove it
-        assayArrayList.remove(index);
-        clearAssay();
-        consoleTextArea.append("Deleted assay " + name + " at index " + index + ".\n");
       }
     });
 
