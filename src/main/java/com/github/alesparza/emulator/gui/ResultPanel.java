@@ -92,15 +92,76 @@ public class ResultPanel {
        */
       @Override
       public void actionPerformed(ActionEvent e) {
-        // TODO: check if Test Code already exists
         // TODO: check if fields are not empty and not too long
         // TODO: check if date/time is correct format
+
+        // check if the record is locked.  only update when unlocked
+        if (lockCheckBox.isSelected()) {
+          consoleTextArea.append("Assay record locked.  Unlock before creating a new assay\n");
+          return;
+        }
+
+        // check for empty entries.
+        String testName = testNameTextField.getText();
+        if (testName.isEmpty()) {
+          consoleTextArea.append("Test name cannot be blank.\n");
+          return;
+        }
+        String testCode = testCodeTextField.getText();
+        if (testCode.isEmpty()) {
+          consoleTextArea.append("Test code cannot be blank.\n");
+          return;
+        }
+        String result = resultTextField.getText();
+        if (result.isEmpty()) {
+          consoleTextArea.append("Result cannot be blank.\n");
+          return;
+        }
+        String units = unitsTextField.getText();
+        if (units.isEmpty()) {
+          consoleTextArea.append("Units cannot be blank.\n");
+          return;
+        }
+        String dateTime = completedDateTimeTextField.getText();
+        if (dateTime.isEmpty()) {
+          consoleTextArea.append("Completed Date/Time cannot be blank.\n");
+          return;
+        }
+
+        // check for duplicate names and codes, these must be unique
+        for (Assay assay : assayArrayList) {
+          if (testName.equals(assay.getName())) {
+            consoleTextArea.append("Test name already exists: " + testName + "\n");
+            return;
+          }
+          if (testCode.equals(assay.getCode())) {
+            consoleTextArea.append("Test code already exists: " + testCode + "\n");
+            return;
+          }
+        }
+
+        // check for date/time format
+        if (dateTime.length() != 14) {
+          consoleTextArea.append("Date and Time must be YYYYMMDDHHMMSS format.\n");
+          return;
+        }
+
+        try {
+          Double check = Double.parseDouble(dateTime);
+        } catch (NumberFormatException ex) {
+          consoleTextArea.append("Date and Time must be YYYYMMDDHHMMSS format.\n");
+          return;
+        }
+
+        // go ahead and make the new assay
         int nextIndex = assayArrayList.size();
         Assay assay = new Assay(testNameTextField.getText(), testCodeTextField.getText(), resultTextField.getText());
         assay.setUnits(unitsTextField.getText());
         assay.setCompleteDate(completedDateTimeTextField.getText());
         assayArrayList.add(assay);
         assayTable.updateUI();
+        consoleTextArea.append("Created new assay: " + testName + "\n");
+        loadAssay(nextIndex);
       }
     });
 
@@ -156,20 +217,44 @@ public class ResultPanel {
       public void actionPerformed(ActionEvent e) {
         // TODO: check index for out of range
         int index = Integer.parseInt(currentAssayTextField.getText());
-        Assay assay = assayArrayList.get(index);
-        testNameTextField.setText(assay.getName());
-        testCodeTextField.setText(assay.getCode());
-        resultTextField.setText(assay.getResult());
-        unitsTextField.setText(assay.getUnits());
-        completedDateTimeTextField.setText(assay.getCompleteDateTime());
-        assayTable.updateUI();
+        loadAssay(index);
       }
     });
 
-
-
     //TODO: need some kind of "lock" button to prevent data from changing by accident.
     //TODO: either modified the index or modified the contents.  But not both at the same time
+  }
+
+  /**
+   * Loads an assay into the fields.
+   * @param index index in table
+   */
+  public void loadAssay(String index) {
+    try {
+      int intIndex = Integer.parseInt(index);
+      loadAssay(intIndex);
+    } catch (NumberFormatException ex) {
+      consoleTextArea.append("Index must be numeric");
+    }
+  }
+
+  /**
+   * Loads an assay into the fields.
+   * @param index index in table
+   */
+  public void loadAssay(int index) {
+    try {
+    Assay assay = assayArrayList.get(index);
+    testNameTextField.setText(assay.getName());
+    testCodeTextField.setText(assay.getCode());
+    resultTextField.setText(assay.getResult());
+    unitsTextField.setText(assay.getUnits());
+    completedDateTimeTextField.setText(assay.getCompleteDateTime());
+    assayTable.updateUI();
+    consoleTextArea.append("Loaded assay " + index + ": '" + assay.getName() + "'\n");
+    } catch (IndexOutOfBoundsException e) {
+      consoleTextArea.append("Assay index " + index + " does not exist\n");
+    }
   }
 
   /**
