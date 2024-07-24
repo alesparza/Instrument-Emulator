@@ -236,9 +236,6 @@ public class ResultPanel {
         }
       }
     });
-
-    //TODO: need some kind of "lock" button to prevent data from changing by accident.
-    //TODO: either modified the index or modified the contents.  But not both at the same time
   }
 
   /**
