@@ -221,8 +221,10 @@ public class ResultPanel {
           int index = Integer.parseInt(currentAssayTextField.getText());
           Assay assay = assayArrayList.get(index);
           updateAssayDisplay(assay);
-        } catch (NumberFormatException ex) {
+        } catch (IndexOutOfBoundsException ex) {
           consoleTextArea.append("No assay at index " + currentAssayTextField.getText() + ".\n");
+        } catch (NumberFormatException ex) {
+          consoleTextArea.append("Not a number: " + currentAssayTextField.getText() + ".\n");
         }
       }
     });
