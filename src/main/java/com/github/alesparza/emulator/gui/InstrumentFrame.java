@@ -64,12 +64,9 @@ public class InstrumentFrame extends JFrame {
     // reset button
     this.resetButton.addActionListener(e -> instrument.reset());
 
-    this.clearButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        consoleTextArea.setText("");
-        commTextArea.setText("");
-      }
+    this.clearButton.addActionListener(e -> {
+      consoleTextArea.setText("");
+      commTextArea.setText("");
     });
 
     // send button
