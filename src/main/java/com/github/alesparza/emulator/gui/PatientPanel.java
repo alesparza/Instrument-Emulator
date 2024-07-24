@@ -8,7 +8,7 @@ public class PatientPanel {
   private JTextField mTextField;
   private JTextField lastTextField;
   private JTextField mrnTextField;
-  private JTextField dobTextField; // TODO: make it a chooser
+  private JTextField dobTextField;
   private JTextField sexTextField;
   private JLabel middleNameLabel;
   private JLabel firstNameLabel;
@@ -47,5 +47,8 @@ public class PatientPanel {
   public String getLocation() {
     return locationTextField.getText();
   }
+
+  // TODO: connect to console logger
+  // TODO: make DOB a chooser, but only return the formatted one
 
 }

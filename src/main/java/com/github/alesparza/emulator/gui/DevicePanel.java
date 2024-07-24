@@ -34,4 +34,6 @@ public class DevicePanel {
   public String getDeviceID() {
     return deviceIDTextField.getText();
   }
+
+  // TODO: connect to console logger
 }

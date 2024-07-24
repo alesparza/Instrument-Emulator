@@ -53,4 +53,9 @@ public class SamplePanel {
   public String getSpecimenID() {
     return specimenIDTextField.getText();
   }
+
+
+  // TODO: connect to console logger
+
+  // TODO: make all date/time fields choosers, but only send correct format back
 }
