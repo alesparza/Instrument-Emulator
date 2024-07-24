@@ -192,11 +192,34 @@ public class ResultPanel {
        */
       @Override
       public void actionPerformed(ActionEvent e) {
-        // TODO: check index for out of range
-        int index = Integer.parseInt(currentAssayTextField.getText());
+        // ensure the assay record is unlocked (locking the assay index)
+        if (!lockCheckBox.isSelected()) {
+          consoleTextArea.append("Assay record not locked.\n");
+          return;
+        }
+
+        // check if locked index is out of range
+        int index = -1;
+        try {
+          index = Integer.parseInt(currentAssayTextField.getText());
+        } catch (NumberFormatException ex) {
+          consoleTextArea.append("No assay at index " + currentAssayTextField.getText() + ".\n");
+          return;
+        }
+
+        // check if the name is the same.  if not, update the display only
+        String name = assayArrayList.get(index).getName();
+        if (!name.equals(testNameTextField.getText())) {
+          consoleTextArea.append("Index " + index + " does not contain " + name + ".  Updating display...\n");
+          updateAssayDisplay(assayArrayList.get(index));
+          consoleTextArea.append("Click delete button again to confirm.\n");
+          return;
+        }
+
+        // reaching here, all checks pass, go ahead and remove it
         assayArrayList.remove(index);
         clearAssay();
-        consoleTextArea.append("Delete test");
+        consoleTextArea.append("Deleted assay " + name + " at index " + index + ".\n");
       }
     });
 
