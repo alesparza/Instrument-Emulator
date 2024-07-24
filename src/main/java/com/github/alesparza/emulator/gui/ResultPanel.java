@@ -142,7 +142,8 @@ public class ResultPanel {
       public void actionPerformed(ActionEvent e) {
         // only update the assay when the index is locked
         if (lockCheckBox.isSelected()) {
-          consoleTextArea.append("Assay record locked.\n");
+          consoleTextArea.append("Assay record locked.  Unlocked before update contents.\n");
+          return;
         }
 
         // still check if the assay is in the right format
@@ -211,7 +212,8 @@ public class ResultPanel {
       public void actionPerformed(ActionEvent e) {
         // only change the display when the record is locked (to unlock the index).
         if (!lockCheckBox.isSelected()) {
-          consoleTextArea.append("Index not unlocked.\n");
+          consoleTextArea.append("Index not unlocked.  Unlock to select the index.\n");
+          return;
         }
 
         // only change display for valid index
