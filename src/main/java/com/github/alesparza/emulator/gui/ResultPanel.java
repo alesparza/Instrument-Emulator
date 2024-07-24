@@ -262,7 +262,7 @@ public class ResultPanel {
     unitsTextField.setText(assay.getUnits());
     completedDateTimeTextField.setText(assay.getCompleteDateTime());
     assayTable.updateUI();
-    consoleTextArea.append("Loaded assay " + index + ": '" + assay.getName() + "'\n");
+    consoleTextArea.append("Loaded assay " + index + ": " + assay.getName() + "\n");
     } catch (IndexOutOfBoundsException e) {
       consoleTextArea.append("Assay index " + index + " does not exist\n");
     }
