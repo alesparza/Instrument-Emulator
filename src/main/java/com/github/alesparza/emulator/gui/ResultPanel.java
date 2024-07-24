@@ -181,13 +181,7 @@ public class ResultPanel {
         // TODO: check index for out of range
         int index = Integer.parseInt(currentAssayTextField.getText());
         Assay assay = assayArrayList.get(index);
-        //TODO: this can be a private method with Assay input
-        assay.setName(testNameTextField.getText());
-        assay.setCode(testCodeTextField.getText());
-        assay.setResult(resultTextField.getText());
-        assay.setUnits(unitsTextField.getText());
-        assay.setCompleteDate(completedDateTimeTextField.getText());
-        assayTable.updateUI();
+        updateAssayDisplay(assay);
       }
     });
 
@@ -201,13 +195,7 @@ public class ResultPanel {
         // TODO: check index for out of range
         int index = Integer.parseInt(currentAssayTextField.getText());
         assayArrayList.remove(index);
-        // TODO: this can be a private clear method
-        testNameTextField.setText("");
-        testCodeTextField.setText("");
-        resultTextField.setText("");
-        unitsTextField.setText("");
-        completedDateTimeTextField.setText("");
-        assayTable.updateUI();
+        clearAssay();
         consoleTextArea.append("Delete test");
       }
     });
@@ -258,12 +246,7 @@ public class ResultPanel {
   public void loadAssay(int index) {
     try {
     Assay assay = assayArrayList.get(index);
-    testNameTextField.setText(assay.getName());
-    testCodeTextField.setText(assay.getCode());
-    resultTextField.setText(assay.getResult());
-    unitsTextField.setText(assay.getUnits());
-    completedDateTimeTextField.setText(assay.getCompleteDateTime());
-    assayTable.updateUI();
+    updateAssayDisplay(assay);
     consoleTextArea.append("Loaded assay " + index + ": " + assay.getName() + "\n");
     } catch (IndexOutOfBoundsException e) {
       consoleTextArea.append("Assay index " + index + " does not exist\n");
@@ -296,6 +279,31 @@ public class ResultPanel {
     resultTextField.setEditable(true);
     unitsTextField.setEditable(true);
     completedDateTimeTextField.setEditable(true);
+  }
+
+  /**
+   * Updates the display with a specific assay
+   * @param assay
+   */
+  public void updateAssayDisplay(Assay assay) {
+    testNameTextField.setText(assay.getName());
+    testCodeTextField.setText(assay.getCode());
+    resultTextField.setText(assay.getResult());
+    unitsTextField.setText(assay.getUnits());
+    completedDateTimeTextField.setText(assay.getCompleteDateTime());
+    assayTable.updateUI();
+  }
+
+  /**
+   * Clears the displayed assay.  Does not delete the assay from the list of assays.
+   */
+  public void clearAssay() {
+    testNameTextField.setText("");
+    testCodeTextField.setText("");
+    resultTextField.setText("");
+    unitsTextField.setText("");
+    completedDateTimeTextField.setText("");
+    assayTable.updateUI();
   }
 
   /**
