@@ -67,7 +67,8 @@ public class InstrumentFrame extends JFrame {
     this.clearButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        // TODO: clear the logs
+        consoleTextArea.setText("");
+        commTextArea.setText("");
       }
     });
 
