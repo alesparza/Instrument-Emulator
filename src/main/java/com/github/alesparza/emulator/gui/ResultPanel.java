@@ -31,7 +31,7 @@ public class ResultPanel {
   private JLabel resultlabel;
   private JLabel unitsLabel;
   private JLabel completedDTLabel;
-  private JButton deleteThisAssayButton;
+  private JButton deleteAssayButton;
   private JCheckBox lockCheckBox;
   private TableModel assayTableModel;
   ArrayList<Assay> assayArrayList;
@@ -127,7 +127,7 @@ public class ResultPanel {
     });
 
     // Delete Assay Button
-    deleteThisAssayButton.addActionListener(new ActionListener() {
+    deleteAssayButton.addActionListener(new ActionListener() {
       /**
        * Delete the assay in the index.
        */
