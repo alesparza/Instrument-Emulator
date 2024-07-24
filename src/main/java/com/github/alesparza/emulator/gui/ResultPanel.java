@@ -155,6 +155,7 @@ public class ResultPanel {
 
         // go ahead and make the new assay
         int nextIndex = assayArrayList.size();
+        // TODO: this can be a static method of the panel
         Assay assay = new Assay(testNameTextField.getText(), testCodeTextField.getText(), resultTextField.getText());
         assay.setUnits(unitsTextField.getText());
         assay.setCompleteDate(completedDateTimeTextField.getText());
@@ -180,6 +181,7 @@ public class ResultPanel {
         // TODO: check index for out of range
         int index = Integer.parseInt(currentAssayTextField.getText());
         Assay assay = assayArrayList.get(index);
+        //TODO: this can be a private method with Assay input
         assay.setName(testNameTextField.getText());
         assay.setCode(testCodeTextField.getText());
         assay.setResult(resultTextField.getText());
@@ -199,6 +201,7 @@ public class ResultPanel {
         // TODO: check index for out of range
         int index = Integer.parseInt(currentAssayTextField.getText());
         assayArrayList.remove(index);
+        // TODO: this can be a private clear method
         testNameTextField.setText("");
         testCodeTextField.setText("");
         resultTextField.setText("");
