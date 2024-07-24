@@ -281,7 +281,7 @@ public class Instrument {
   }
 
   /**
-   * Sends the O record(s).
+   * Sends the R record(s).
    * @return <code>true</code> if entire message sent and ACK'd successfully, <code>false</code>otherwise.
    */
   public int sendRRecord(int startFrame, int startSequence, Record record) {
