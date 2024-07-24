@@ -155,10 +155,7 @@ public class ResultPanel {
 
         // go ahead and make the new assay
         int nextIndex = assayArrayList.size();
-        // TODO: this can be a static method of the panel
-        Assay assay = new Assay(testNameTextField.getText(), testCodeTextField.getText(), resultTextField.getText());
-        assay.setUnits(unitsTextField.getText());
-        assay.setCompleteDate(completedDateTimeTextField.getText());
+        Assay assay = createAssay();
         assayArrayList.add(assay);
         assayTable.updateUI();
         consoleTextArea.append("Created new assay: " + testName + "\n");
@@ -327,6 +324,17 @@ public class ResultPanel {
     unitsTextField.setText("");
     completedDateTimeTextField.setText("");
     assayTable.updateUI();
+  }
+
+  /**
+   * Creates an Assay based on the current field contents.
+   * @return new Assay
+   */
+  public Assay createAssay() {
+    Assay assay = new Assay(testNameTextField.getText(), testCodeTextField.getText(), resultTextField.getText());
+    assay.setUnits(unitsTextField.getText());
+    assay.setCompleteDate(completedDateTimeTextField.getText());
+    return assay;
   }
 
   /**
