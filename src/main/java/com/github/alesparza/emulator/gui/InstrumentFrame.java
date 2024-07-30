@@ -6,8 +6,6 @@ import com.github.alesparza.emulator.assay.Assay;
 import com.github.alesparza.emulator.instrument.Instrument;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class InstrumentFrame extends JFrame {
   private JPanel contentPanel;
@@ -39,6 +37,7 @@ public class InstrumentFrame extends JFrame {
   private ResultPanel resultPanel;
   private JScrollPane resultTab;
   private JButton clearButton;
+  private JButton listenButton;
   //TODO: add a label or something that changes to indicated connected
 
 
@@ -51,12 +50,16 @@ public class InstrumentFrame extends JFrame {
     this.portTextField.setText(String.valueOf(instrument.getPort()));
     this.devicePanel.getTypeTextField().setText(instrument.getType().toString());
     instrument.setGUIComponents(consoleTextArea, commTextArea);
+    if (instrument.getHostname().isEmpty()) listenButton.setEnabled(true);
 
     // start button
     this.startButton.addActionListener(e -> instrument.connect());
 
     // stop button
     this.stopButton.addActionListener(e -> instrument.disconnect());
+
+    // listen button
+    this.listenButton.addActionListener(e -> instrument.listen());
 
     // check button
     this.checkButton.addActionListener(e -> instrument.check());

@@ -126,7 +126,7 @@ public class InstrumentConnection {
   public String serverListen() {
     if (!isInit) return "Error: cannot listen for incoming connections when not started";
     if (isConnected) return "Already connected to client";
-    int timeout = 1000;
+    int timeout = 5000;
     try {
       serverSocket.setSoTimeout(timeout);
       socket = serverSocket.accept();

@@ -136,6 +136,13 @@ public class Instrument {
   }
 
   /**
+   * Listens for incoming connections
+   */
+  public void listen() {
+    printConsoleLn(connection.serverListen());
+  }
+
+  /**
    * Disconnect the instrument.
    */
   public void disconnect() {
