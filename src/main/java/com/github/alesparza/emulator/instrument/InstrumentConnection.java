@@ -3,6 +3,7 @@ package com.github.alesparza.emulator.instrument;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.Arrays;
 
@@ -47,6 +48,16 @@ public class InstrumentConnection {
   private boolean isInit = false;
 
   /**
+   * Flag for if the connection is acting as a server or client.
+   */
+  private boolean isServer = false;
+
+  /**
+   * Flag for if the connection is established or not.
+   */
+  private boolean isConnected = false;
+
+  /**
    * Constructs a new connection for an instrument.
    * @param hostname hostname for communication
    * @param port port for communication
@@ -54,6 +65,7 @@ public class InstrumentConnection {
   public InstrumentConnection(String hostname, int port) {
     this.hostname = hostname;
     this.port = port;
+    if (this.hostname.isEmpty()) isServer = true;
   }
 
   /**
@@ -81,11 +93,12 @@ public class InstrumentConnection {
       socket.setSoTimeout(timeout);
       out = socket.getOutputStream();
       in = socket.getInputStream();
+      isConnected = true;
+      isInit = true;
+      return "Connected to " + hostname + ":" + port;
     } catch (IOException e) {
       return "Error creating client socket: " + e.getMessage();
     }
-    isInit = true;
-    return "Connected to " + hostname + ":" + port;
   }
 
   /**
@@ -98,19 +111,35 @@ public class InstrumentConnection {
     int timeout = 1000;
     try {
       serverSocket = new ServerSocket(port);
-      serverSocket.setSoTimeout(timeout);
-      socket = serverSocket.accept();
-      socket.setSoTimeout(timeout);
       isInit = true;
-      return "Started server on port " + port + " and connected to LIS";
-    } catch (SocketTimeoutException e) {
-      isInit = false;
-      return "Timed out after " + timeout / 1000 + " seconds waiting for connection to port " + port + ".  Try again later.";
-    }
-    catch (IOException e) {
+      return "Started server on port " + port;
+    } catch (IOException e) {
       isInit = false;
       return "Error starting server: " + e;
     }
+  }
+
+  /**
+   * If not connected, tries to listen for incoming connections and accept them.
+   * @return
+   */
+  public String serverListen() {
+    if (!isInit) return "Error: cannot listen for incoming connections when not started";
+    if (isConnected) return "Already connected to client";
+    int timeout = 1000;
+    try {
+      serverSocket.setSoTimeout(timeout);
+      socket = serverSocket.accept();
+      socket.setSoTimeout(timeout);
+    } catch (SocketException e) {
+      return "Error setting up socket timeout";
+    } catch (SocketTimeoutException e) {
+      return "Timed out after " + timeout / 1000 + " seconds waiting for connection to port " + port + ".  Try again later.";
+    } catch (IOException e) {
+      return "Error accepting incoming connection: " + e;
+    }
+    isConnected = true;
+    return "Accepted connection from " + socket.getInetAddress() + ":" + socket.getPort();
   }
 
   /**
@@ -120,6 +149,9 @@ public class InstrumentConnection {
   public String sendMessage(byte[] message) {
     if (!isInit) {
       return "Error: not started";
+    }
+    if (isServer && !isConnected) {
+      return "Error: not connected to client";
     }
     try {
       out.write(message);
@@ -137,6 +169,9 @@ public class InstrumentConnection {
   public byte[] receiveMessage() {
     if (!isInit) throw new IllegalStateException("Not started!");
     // TODO: have this throw a ConnectionException and catch later
+    if (isServer && !isConnected) {
+      throw new IllegalStateException("Not connected to client");
+    }
     byte[] message = new byte[1024];
     byte[] ret;
     try {
@@ -192,11 +227,27 @@ public class InstrumentConnection {
   }
 
   /**
-   * Checks if connection is initialised.
+   * Checks if socket is initialised.
    * @return true if initialised, otherwise false
    */
   public boolean isInit() {
     return this.isInit;
+  }
+
+  /**
+   * Checks if socket is server.
+   * @return true if is a server, otherwise false
+   */
+  public boolean isServer() {
+    return this.isServer;
+  }
+
+  /**
+   * Checks if socket  is connected.
+   * @return true if connected, otherwise false
+   */
+  public boolean isConnected() {
+    return this.isConnected;
   }
 
 }
