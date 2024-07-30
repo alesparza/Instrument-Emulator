@@ -31,8 +31,6 @@ public class AstmProtocol {
    * keeping only the eight least significant bits (i.e. mod 256).
    * The checksum initialises to 0 and does not include STX.  It does include the frame number and ETX or EOB.
    * The checksum characters are converted to the hexadecimal representation.
-   * Example:
-   * <STX>1H|\!~|||DxH|||||LIS||P|LIS2-A|20240703125902<CR><ETX>59<CR><LF>
    * @param data the message from STX through the end of data and the ETX or ETB.
    * @return the checksum of the message as two ASCII characters of the hexadecimal value.
    */
@@ -79,7 +77,7 @@ public class AstmProtocol {
   /**
    * Generates an H record.
    * <br>
-   * Example: <STX>1H|\!~|||DxH|||||LIS||P|LIS2-A|20240703125902<CR><ETX>59<CR><LF>
+   * Example: <STX>1H|\!~|||Instrument|||||LIS||P|LIS2-A|20240703125902<CR><ETX>59<CR><LF>
    * @param astmConfiguration the ASTM configuration to use for this record
    * @param record
    * @return
@@ -152,7 +150,7 @@ public class AstmProtocol {
   /**
    * Generates a P record.
    * <br>
-   * Example: <STX>2P|1||641647714||ZZZTSTTWO!HUPLAB||19731107!50!Y|F|||||||||||||||||HCDS HUP Centr<CR><ETX>C5<CR><LF>
+   * Example: <STX>2P|1||123456789||LAST!FIRST||19900101!|F|||||||||||||||||LOCATION<CR><ETX>C5<CR><LF>
    * @param astmConfiguration the ASTM configuration to use for this record
    * @param record
    * @return
@@ -465,9 +463,7 @@ public class AstmProtocol {
   }
 
   /**
-   * Generates a R record.
-   * <br>
-   * Example: <STX>2P|1||641647714||ZZZTSTTWO!HUPLAB||19731107!50!Y|F|||||||||||||||||HCDS HUP Centr<CR><ETX>C5<CR><LF>
+   * Generates an R record.
    * @param astmConfiguration the ASTM configuration to use for this record
    * @param record
    * @return -1 for errors

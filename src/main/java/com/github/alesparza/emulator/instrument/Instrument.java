@@ -72,6 +72,7 @@ public class Instrument {
       case GENERIC:
         asmtConfiguration = new AstmConfiguration();
         break;
+      // based on DxH ASTM protocol publically available from Beckman Coulter's website.
       case DxH:
         asmtConfiguration = new AstmConfiguration('|', '\\', '!', '~',64000);
         break;
