@@ -8,11 +8,6 @@ public class Emulator {
   public static void main(String[] args) {
     StartFrame startFrame = new StartFrame();
 
-    SwingUtilities.invokeLater(new Runnable() {
-      @Override
-      public void run() {
-        startFrame.setVisible(true);
-      }
-    });
+    SwingUtilities.invokeLater(() -> startFrame.setVisible(true));
   }
 }
