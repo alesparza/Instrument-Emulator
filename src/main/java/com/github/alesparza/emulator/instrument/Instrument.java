@@ -7,7 +7,6 @@ import com.github.alesparza.astm.protcol.AstmConfiguration;
 import com.github.alesparza.astm.protcol.AstmProtocol;
 
 import javax.swing.*;
-import java.util.Arrays;
 
 /**
  * Represents a single Instrument.
@@ -69,12 +68,20 @@ public class Instrument {
     connection = new InstrumentConnection(hostname, port);
     // setup ASTM configuration based on the type
     switch (type) {
-      case GENERIC:
+      case ASTM:
         asmtConfiguration = new AstmConfiguration();
         break;
       // based on DxH ASTM protocol publically available from Beckman Coulter's website.
-      case DxH:
+      case ASTM_DXH:
         asmtConfiguration = new AstmConfiguration('|', '\\', '!', '~',64000);
+        break;
+      case AU:
+        printConsoleLn("Error: AU protocol not written");
+        asmtConfiguration = null;
+        break;
+      case HL7:
+        printConsoleLn("Error: HL7 protocol not written");
+        asmtConfiguration = null;
         break;
       default:
         asmtConfiguration = new AstmConfiguration();

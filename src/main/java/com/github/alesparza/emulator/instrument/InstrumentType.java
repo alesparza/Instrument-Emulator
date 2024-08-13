@@ -1,6 +1,6 @@
 package com.github.alesparza.emulator.instrument;
 
 public enum InstrumentType {
-    GENERIC, DxH;
+    ASTM, ASTM_DXH, AU, HL7;
 
 }
